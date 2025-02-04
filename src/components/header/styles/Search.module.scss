@@ -1,0 +1,14 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/div_mixin.scss" as global_mixins;
+.main__con {
+  @include global_mixins.large-div-style(
+    $font-size: 16px,
+    $justify-content: flex-start,
+    $height: 30px,
+    $width: 300px,
+    $padding: 5px 0px 5px 10px
+  );
+  background-color: global_variables.$base__back-color;
+  color: global_variables.$base__font-color;
+  grid-area: 1 / 2 / 2 / 3;
+}

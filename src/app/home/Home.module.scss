@@ -1,0 +1,9 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+.main__con {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: global_variables.$base__back-color;
+}

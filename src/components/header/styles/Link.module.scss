@@ -1,0 +1,27 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/div_mixin.scss" as global_mixins;
+.main__con {
+  background-color: global_variables.$base__back-color;
+  color: global_variables.$base__font-color;
+  grid-area: 1 / 1 / 2 / 2;
+  @include global_mixins.large-div-style(
+    $border-color: black,
+    $width: 100%,
+    $font-size: 18px
+  );
+  ul {
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+
+    li {
+      cursor: pointer;
+      border-radius: 2px;
+      padding: 3px;
+    }
+    li:hover{
+      background-color: white;
+      color: black;
+    }
+  }
+}

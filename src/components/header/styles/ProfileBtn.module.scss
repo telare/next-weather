@@ -1,0 +1,4 @@
+@use "@shared/styles/mixins/btn_mixin" as global_variables;
+.main__con {
+  @include global_variables.btn($border-color:none);
+}
