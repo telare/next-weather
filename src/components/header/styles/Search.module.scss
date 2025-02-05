@@ -11,4 +11,21 @@
   background-color: global_variables.$base__back-color;
   color: global_variables.$base__font-color;
   grid-area: 1 / 2 / 2 / 3;
+  gap: 5% ;
+  input {
+    all: unset;
+    height: 30px;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    font-family: inherit;
+    width: 70%;
+  }
+}
+
+.shortcuts__con {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

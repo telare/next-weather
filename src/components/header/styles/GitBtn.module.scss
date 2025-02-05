@@ -3,5 +3,7 @@
 
 .main__con {
     @include global_mixins.btn($width:150px, $height:40px,$font-size:16px, $background-color:white, $border-color:white, $color:black);
-    
+    text-decoration: none;
+    display: flex;
+    gap:4%;
 }
