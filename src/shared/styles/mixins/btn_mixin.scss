@@ -1,29 +1,20 @@
 @use "@shared/styles/variables/variables.module" as global_variables;
-@mixin btn(
-  $font-size: global_variables.$base__font-size,
-  $width: 50px,
-  $height: 40px,
-  $border-radius: 10px,
-  $background-color: global_variables.$base__back-color,
-  $color: global_variables.$base__font-color,
-  $border-width: global_variables.$base__border-width,
-  $border-color: global_variables.$base__border-color,
-  $padding: 0px 0px 0px 0px,
-  $font-family: inherit
-) {
-  background-color: $background-color;
-  color: global_variables.$base__font-color;
-  font-family: $font-family;
-  border-color: $border-color;
-  border-style: solid;
-  border-radius: $border-radius;
-  color: $color;
-  border-width: $border-width;
+@mixin btn() {
+  width:  50px;
+  height: 20px;
+  border-radius:10px;
+  padding:  10px;
+
+  background-color: global_variables.$base__back-color;
+  border-color:  global_variables.$base__border-color;
+  border-style: solid; 
+  border-width: global_variables.$base__border-width;
+
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: $padding;
-  font-size: $font-size;
-  width: $width;
-  height: $height;
+  align-items: center; 
+
+  color: global_variables.$base__font-color;
+  font-family: inherit;
+  font-size: global_variables.$base__font-size;
 }

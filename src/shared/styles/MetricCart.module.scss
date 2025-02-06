@@ -1,0 +1,51 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/div_mixin" as global_mixins;
+.main__con {
+  @include global_mixins.standart-div-style();
+  padding: 20px 5px;
+  flex-direction: column;
+}
+.main__con_large {
+  @include global_mixins.div-style();
+  width: 420px;
+  flex-direction: column;
+  height: 180px;
+}
+.main__con_header {
+  @include global_mixins.large-div-style();
+  height: 10%;
+  width: 90%;
+  border: none;
+  justify-content: flex-start;
+  h3 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+}
+
+.main__con_render_component {
+  @include global_mixins.small-div-style();
+  padding: 10px;
+  justify-content: flex-start;
+  border-color: white;
+  border: none;
+  width: 90%;
+  h2 {
+    font-size: 40px;
+    font-weight: 500;
+  }
+}
+
+.main__con_footer {
+  @include global_mixins.large-div-style();
+  height: 20%;
+  align-items: flex-end;
+  border: none;
+  justify-content: flex-start;
+  border-color: white;
+  p {
+    line-height: 1;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}

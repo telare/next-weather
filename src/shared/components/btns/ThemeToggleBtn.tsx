@@ -1,4 +1,4 @@
-import themeToggleBtn_styles from "@/components/header/styles/ThemeToggleBtn.module.scss";
+import themeToggleBtn_styles from "@/sections/header/styles/ThemeToggleBtn.module.scss";
 import Image from "next/image";
 
 export default function ThemeToggleBtn() {

@@ -1,49 +1,38 @@
 @use "@shared/styles/variables/variables.module" as global_variables;
-@mixin div-style($font-size, $border-radius, $border-color, $justify-content,$padding) {
+
+@mixin div-style() {
   display: flex;
   align-items: center;
-  justify-content: $justify-content;
-  border-radius: $border-radius;
-  font-size: $font-size;
   border-style: solid;
-  padding:$padding;
   font-family: inherit;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px;
+  border-color: white;
+
+  font-size: global_variables.$base__font-size;
+  background-color: global_variables.$base__back-color;
   border-width: global_variables.$base__border-width;
-  border-color: $border-color;
 }
 
-@mixin small-div-style($font-size, $border-radius) {
-  @include div-style($font-size, $border-radius);
-  width: 200px;
-  height: 200px;
+@mixin small-div-style() {
+  @include div-style();
+  width: 160px;
+  height: 80px;
 }
 
-@mixin standart-div-style($font-size, $border-radius) {
-  @include div-style($font-size, $border-radius);
-  width: 300px;
-  height: 300px;
+@mixin standart-div-style() {
+  @include div-style();
+  width: 180px;
+  height: 180px;
 }
-@mixin big-div-style($font-size, $border-radius) {
-  @include div-style($font-size, $border-radius);
+@mixin big-div-style() {
+  @include div-style();
   width: 500px;
   height: 500px;
 }
-@mixin large-div-style(
-  $height: 90px,
-  $font-size: global_variables.$base__font-size,
-  $border-radius: 10px,
-  $border-color: global_variables.$base__border-color,
-  $justify-content: center, 
-  $width:400px,
-  $padding: 0px 0px 0px 0px,
-) {
-  @include div-style(
-    $font-size,
-    $border-radius,
-    $border-color,
-    $justify-content,
-    $padding
-  );
-  width:$width;
-  height: $height;
+@mixin large-div-style() {
+  @include div-style();
+  width: 90%;
+  height: 10%;
 }

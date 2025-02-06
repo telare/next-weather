@@ -1,4 +1,4 @@
-import profileBtn_styles from "@/components/header/styles/ProfileBtn.module.scss";
+import profileBtn_styles from "@/sections/header/styles/ProfileBtn.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 export default function ProfileBtn() {

@@ -1,4 +1,4 @@
-import Nav from "@/components/header/Nav";
+import Nav from "@/sections/header/Nav";
 import favorite_styles from "./Favorite.module.scss";
 export default function ProfilePage() {
   return (

@@ -1,14 +1,15 @@
 @use "@shared/styles/mixins/div_mixin.scss" as global_mixins;
 @use "@shared/styles/variables/variables.module" as global_variables;
 .main__con {
-  @include global_mixins.large-div-style("10%", 20px, 10px);
+  @include global_mixins.large-div-style();
   width: 80%;
+  background-color: global_variables.$base__back-color;
+
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
-  background-color: global_variables.$base__back-color;
 }
 .child__con {
   display: flex;

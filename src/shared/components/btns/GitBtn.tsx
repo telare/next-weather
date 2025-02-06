@@ -1,4 +1,4 @@
-import gitBtn_styles from "@/components/header/styles/GitBtn.module.scss";
+import gitBtn_styles from "@/sections/header/styles/GitBtn.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 export default function GitBtn() {

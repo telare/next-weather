@@ -1,0 +1,15 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/btn_mixin" as global_mixins;
+
+.main__con {
+  @include global_mixins.btn();
+  width: 150px;
+  height: 25px;
+  font-size: 16px;
+  background-color: white;
+  border-color: white;
+  color: black;
+  text-decoration: none;
+  display: flex;
+  gap: 4%;
+}
