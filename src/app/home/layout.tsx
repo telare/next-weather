@@ -10,6 +10,7 @@ type HomeLayout = {
 export default function HomeLayout({ children }: HomeLayout) {
   return (
     <html lang="en">
+      {/* <meta http-equiv="Secure-Content-Policy"/> */}
       <body className={space_grotesk.className} style={{backgroundColor:'black'}}>
         {/* Layout UI */}
         {/* Place children where you want to render a page or nested layout */}

@@ -3,6 +3,7 @@ import styles from "../../styles/MetricCart.module.scss";
 type MetricCart = {
   title: string;
   icon?: string;
+  border?:boolean; 
   size: "standart" | "large";
   renderComponent: React.ReactElement;
   description: string;
@@ -14,6 +15,7 @@ export default function MetricCart() {
     //     size === "standart" ? styles.main__con : styles.main__con_large
     //   }
     // >
+    
     <div className={styles.main__con}>
       <div className={styles.main__con_header}>
         <Image

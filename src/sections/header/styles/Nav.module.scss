@@ -2,9 +2,7 @@
 @use "@shared/styles/variables/variables.module" as global_variables;
 .main__con {
   @include global_mixins.large-div-style();
-  width: 80%;
-  background-color: global_variables.$base__back-color;
-
+  height: 5%;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 1fr;

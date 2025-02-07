@@ -1,11 +1,8 @@
 @use "@shared/styles/mixins/div_mixin" as global_mixins;
 @use "@shared/styles/variables/variables.module" as global_variables;
 .main__con {
-  @include global_mixins.large-div-style();
-  width: 80%;
-  height: 600px;
-  display: flex;
-  margin-top: 15px;
+  @include global_mixins.section-div-style();
+  // height: 600px;
   gap: 2%;
 }
 
