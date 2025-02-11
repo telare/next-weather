@@ -1,0 +1,13 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/div_mixin" as global_mixins;
+.main__con {
+  @include global_mixins.div-style();
+  width: 30%;
+  height: 60%;
+  flex-direction: column;
+}
+.field {
+  @include global_mixins.large-div-style();
+  height: 10%;
+  margin: 2% 0;
+}

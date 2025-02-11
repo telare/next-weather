@@ -1,0 +1,36 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/div_mixin" as global_mixins;
+.main__con {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: global_variables.$base__back-color;
+}
+.form__con {
+  @include global_mixins.div-style();
+  height: 90vh;
+  width: 90vw;
+  flex-direction: column;
+  div:nth-child(1) {
+    @include global_mixins.large-div-style();
+    justify-content: flex-end;
+    border: none;
+  }
+}
+.title__con {
+  @include global_mixins.div-style();
+  width: 80%;
+  height: 30%;
+  border: none;
+  flex-direction: column;
+  h2 {
+    text-align: center;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}

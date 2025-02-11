@@ -1,13 +1,12 @@
 
 import { Space_Grotesk } from 'next/font/google';
+import { LayoutProps } from '../../../.next/types/app/home/layout';
 const space_grotesk = Space_Grotesk({
   subsets:['latin'],
   weight:'400'
 })
-type HomeLayout = {
-  children: React.ReactNode;
-};
-export default function HomeLayout({ children }: HomeLayout) {
+
+export default function HomeLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       {/* <meta http-equiv="Secure-Content-Policy"/> */}
