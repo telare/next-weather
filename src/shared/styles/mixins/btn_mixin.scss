@@ -1,20 +1,16 @@
 @use "@shared/styles/variables/variables.module" as global_variables;
 @mixin btn() {
-  width:  50px;
+  width: 50px;
   height: 20px;
-  border-radius:10px;
-  padding:  10px;
-
-  background-color: global_variables.$base__back-color;
-  border-color:  global_variables.$base__border-color;
-  border-style: solid; 
-  border-width: global_variables.$base__border-width;
+  padding: 10px;
+  border-style: inherit;
+  border-radius: 10px;
 
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
+  background-color: inherit;
 
-  color: global_variables.$base__font-color;
+  font-size: inherit;
   font-family: inherit;
-  font-size: global_variables.$base__font-size;
 }

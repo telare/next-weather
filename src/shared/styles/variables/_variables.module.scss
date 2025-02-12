@@ -1,13 +1,14 @@
-//font
-$base__font-color: white;
+//common
 $base__font-size: 25px;
 $base__font-weight: 500;
-
-//colors
-$base__back-color: black;
-$base__border-color: #999997;
-
-
 $base__border-width: 2px;
 
+//light mode
+$base__font-color: black;
+$base__back-color: white;
+$base__border-color: black;
 
+//dark mode
+$base__font-color-dark: white;
+$base__back-color-dark: black;
+$base__border-color-dark: white;

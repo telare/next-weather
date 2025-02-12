@@ -1,13 +1,64 @@
 @use "@shared/styles/variables/variables.module" as global_variables;
-@use "@shared/styles/mixins/div_mixin" as global_mixins;
+@use "@shared/styles/mixins/div_mixin" as global_div_mixins;
+@use "@shared/styles/mixins/btn_mixin" as global_btn_mixins;
 .main__con {
-  @include global_mixins.div-style();
+  @include global_div_mixins.div-style();
   width: 30%;
-  height: 60%;
+  height: 70%;
   flex-direction: column;
+  padding: 2%;
+  gap: 2%;
 }
-.field {
-  @include global_mixins.large-div-style();
+.title {
+  @include global_div_mixins.div-style();
+  width: 76%;
+  height: 27%;
+  border: none;
+
+  h2 {
+    text-align: center;
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}
+.field__con {
+  @include global_div_mixins.large-div-style();
+  height: 14%;
+  flex-direction: column;
+  border: none;
+  padding: 0;
+  align-items: baseline;
+  gap: 5%;
+  input {
+    @include global_div_mixins.div-style();
+    width: 91%;
+    height: 20%;
+    padding: 4%;
+  }
+  // error con
+  div:nth-child(2) {
+    @include global_div_mixins.div-style();
+    justify-content: flex-start;
+    height: 5%;
+    border: none;
+
+    width: 95%;
+    padding: 2%;
+    font-size: 18px;
+  }
+}
+
+.main__btn {
+  @include global_btn_mixins.btn();
+  width: 30%;
   height: 10%;
-  margin: 2% 0;
+}
+
+.link__con {
+  @include global_div_mixins.large-div-style();
+  height: 5vh;
+  border: none;
 }

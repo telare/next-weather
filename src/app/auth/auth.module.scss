@@ -6,31 +6,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: global_variables.$base__back-color;
+  color:inherit;
 }
 .form__con {
   @include global_mixins.div-style();
   height: 90vh;
   width: 90vw;
   flex-direction: column;
-  div:nth-child(1) {
-    @include global_mixins.large-div-style();
-    justify-content: flex-end;
-    border: none;
-  }
 }
-.title__con {
-  @include global_mixins.div-style();
-  width: 80%;
-  height: 30%;
+.themeBtn__con {
+  @include global_mixins.large-div-style();
+  justify-content: flex-end;
   border: none;
-  flex-direction: column;
-  h2 {
-    text-align: center;
-    margin: 0;
-  }
-  p {
-    margin: 0;
-    text-align: center;
-  }
 }

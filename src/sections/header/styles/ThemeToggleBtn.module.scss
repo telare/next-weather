@@ -1,5 +1,7 @@
 @use "@shared/styles/mixins/btn_mixin" as global_mixins;
 .main__con {
-    @include global_mixins.btn();
-    border-color:black
+  @include global_mixins.btn();
+  width: 50px;
+  height: 50px;
+  border: none;
 }

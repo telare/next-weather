@@ -13,7 +13,6 @@
   justify-content: center;
   flex-direction: column;
   align-content: flex-end;
-  color: global_variables.$base__font-color;
 }
 
 .current_weather__con_header {
@@ -98,6 +97,5 @@
   @include global_mixins.large-div-style();
   height: 50%;
   width: 99%;
-  border-color: black;
   gap: 2%;
 }

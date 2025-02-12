@@ -1,0 +1,14 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/theme_mixin" as global_theme_mixin;
+
+body {
+  @include global_theme_mixin.theme-toggle($current-theme: light);
+  font-size: global_variables.$base__font-size;
+  font-weight: global_variables.$base__font-weight;
+  border: none;
+}
+
+.dark body {
+  @include global_theme_mixin.theme-toggle($current-theme: dark);
+  border: none;
+}
