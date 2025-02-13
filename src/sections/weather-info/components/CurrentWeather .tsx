@@ -1,7 +1,15 @@
-import Image from "next/image";
+import { useQuery } from "@tanstack/react-query";
 import styles from "../styles/WeatherInfo.module.scss";
 import MetricCart from "@/shared/components/Carts/MetricCart";
 export default function CurrentWeather() {
+  const {data, isLoading, isError} = useQuery({
+    queryKey: ['posts'],
+    queryFn: async () => {
+      const response = await fetch('/weather/current-weather')
+      return await response.json()
+    },
+  })
+  console.log(data)
   return (
     <div className={styles.current_weather__con}>
       <div className={styles.current_weather__con_header}>
@@ -17,7 +25,7 @@ export default function CurrentWeather() {
         </div>
       </div>
       <div className={styles.current_weather__con_footer}>
-        <MetricCart/>
+        {/* <MetricCart/> */}
         {/* <div className={styles.current_weather__con_footer_weather}>
           <Image
             src="/icons/night-mode/thermometer.png"
@@ -32,7 +40,7 @@ export default function CurrentWeather() {
           </div>
         </div> */}
         
-<MetricCart/>
+{/* <MetricCart/> */}
         {/* <div className={styles.current_weather__con_footer_wind}>
         
           <div>

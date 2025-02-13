@@ -1,20 +1,21 @@
+"use client"
 import gitBtn_styles from "@/sections/header/styles/GitBtn.module.scss";
-import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import Button from "./Button";
 export default function GitBtn() {
+  const router = useRouter()
   return (
-    <Link
-      href="https://github.com/telare/next-weather"
-      className={gitBtn_styles.main__con}
-      target="_blank"
-    >
-      <Image
-        src="/icons/light-mode/github_icon.png"
-        alt="GitHub Icon"
-        width={20}
-        height={20}
-      />
-      Source code
-    </Link>
+    <Button
+      type="button"
+      title="Source code"
+      func={() => router.push("https://github.com/telare/next-weather")}
+      style={gitBtn_styles.main__con}
+      width={40}
+      image={{
+        src: "/icons/light-mode/github_icon.png",
+        height: 20,
+        width: 20,
+      }}
+    />
   );
 }

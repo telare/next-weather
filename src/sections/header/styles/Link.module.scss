@@ -2,7 +2,8 @@
 @use "@shared/styles/mixins/div_mixin.scss" as global_mixins;
 .main__con {
   @include global_mixins.large-div-style();
-height: 90%;
+  border: none;
+  height: 90%;
   width: 100%;
   grid-area: 1 / 1 / 2 / 2;
   font-size: 18px;
@@ -30,7 +31,7 @@ height: 90%;
 .link__active {
   all: unset;
   text-decoration: underline;
-  text-decoration-color: #999997;
+  text-decoration-color: white;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
 }

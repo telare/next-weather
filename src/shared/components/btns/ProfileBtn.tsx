@@ -1,15 +1,18 @@
 import profileBtn_styles from "@/sections/header/styles/ProfileBtn.module.scss";
-import Image from "next/image";
-import Link from "next/link";
+import Button from "./Button";
+import { redirect } from "next/navigation";
 export default function ProfileBtn() {
   return (
-    <Link href="/profile" className={profileBtn_styles.main__con}>
-      <Image
-        src="/icons/night-mode/user_icon.png"
-        alt="User Icon"
-        width={40}
-        height={40}
-      />
-    </Link>
+    <Button
+      type="button"
+      func={() => redirect("/profile")}
+      style={profileBtn_styles.main__con}
+      width={40}
+      image={{
+        src: "",
+        height: 40,
+        width: 40,
+      }}
+    />
   );
 }

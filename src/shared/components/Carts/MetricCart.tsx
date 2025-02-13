@@ -2,7 +2,7 @@
 import Image from "next/image";
 import styles from "../../styles/MetricCart.module.scss";
 import { QueryClientProvider, useQuery } from "@tanstack/react-query";
-import queryClient from "@/app/lib/TanStackClient";
+import queryClient from "@/providers/TanStackProvider";
 type MetricCart = {
   title: string;
   icon?: string;
