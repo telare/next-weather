@@ -3,6 +3,7 @@
 .main__con {
   @include global_mixins.section-div-style();
   // height: 600px;
+
   gap: 2%;
 }
 
@@ -95,6 +96,7 @@
 
 .metric__con {
   @include global_mixins.large-div-style();
+  border: none;
   height: 50%;
   width: 99%;
   gap: 2%;

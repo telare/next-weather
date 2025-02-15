@@ -28,7 +28,7 @@ export default function SignUpPage() {
         <div className={styles.themeBtn__con}>
           <ThemeToggleBtn />
         </div>
-        <Form schema={signUpSchema} title={title} />
+        <Form schema={signUpSchema} title={title} type="sign-up"/>
       </div>
     </div>
   );

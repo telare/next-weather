@@ -3,7 +3,6 @@ import link_styles from "./styles/Link.module.scss";
 import { usePathname } from "next/navigation";
 export default function Links() {
   const pathName = usePathname();
-  console.log(pathName);
   return (
     <div className={link_styles.main__con}>
       <ul>

@@ -7,11 +7,16 @@ import FormField from "./FormField";
 import Button from "../btns/Button";
 import { redirect, usePathname } from "next/navigation";
 import Link from "next/link";
+import { User } from "@/shared/types/User";
+import { useRouter } from "next/navigation";
 type FormProps = {
   schema: ObjectSchema<FieldValues, AnyObject>;
   title: React.ReactElement;
+  type: "log-in" | "sign-up";
+  
 };
-export default function Form({ schema, title }: FormProps) {
+export default function Form({ schema, title, type}: FormProps) {
+  const router = useRouter();
   const pathname = usePathname();
   type Form = InferType<typeof schema>;
   const methods = useForm<Form>({
@@ -20,14 +25,44 @@ export default function Form({ schema, title }: FormProps) {
   const fields: string[] = Object.keys(schema.fields);
   const { handleSubmit } = methods;
 
-  function submitData(data: Form): void {
-    console.log(data);
+  async function signUp(data: Form): Promise<void> {
+    if ("password" in data) {
+      const userData: User = {
+        id: self.crypto.randomUUID(),
+        name: (data as User).name,
+        email: (data as User).email,
+        password: (data as User).password,
+      };
+      try {
+        const res = await fetch("/api/auth/sign-up", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+        });
+        const result = await res;
+        console.log(result);
+        if (result.status === 200) {
+          router.push("/home");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  }
+
+  async function logIn(data: Form): Promise<void> {
+    // if added successfully do this
     redirect("/home");
   }
 
   return (
     <FormProvider {...methods}>
-      <form className={styles.main__con} onSubmit={handleSubmit(submitData)}>
+      <form
+        className={styles.main__con}
+        onSubmit={handleSubmit(type === "log-in" ? logIn : signUp)}
+      >
         <div className={styles.title}>{title}</div>
 
         {fields.map((field, i) => (
@@ -41,7 +76,7 @@ export default function Form({ schema, title }: FormProps) {
 
         <Button
           title="Continue"
-          func={() => submitData}
+          func={type === "log-in" ? () => logIn : () => signUp}
           width={50}
           type="submit"
           style={styles.main__btn}

@@ -1,10 +1,7 @@
 "use client";
 
 import { Layout } from "@/shared/types/Layout";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useState } from "react";
 
 export default function TanStackProvider({ children }: Layout) {

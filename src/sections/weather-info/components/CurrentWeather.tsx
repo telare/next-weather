@@ -1,15 +1,12 @@
+"use client";
 import { useQuery } from "@tanstack/react-query";
 import styles from "../styles/WeatherInfo.module.scss";
 import MetricCart from "@/shared/components/Carts/MetricCart";
+import { DataContext } from "@/providers/data-provider";
+import { useContext } from "react";
 export default function CurrentWeather() {
-  const {data, isLoading, isError} = useQuery({
-    queryKey: ['posts'],
-    queryFn: async () => {
-      const response = await fetch('/weather/current-weather')
-      return await response.json()
-    },
-  })
-  console.log(data)
+  const data = useContext(DataContext);
+
   return (
     <div className={styles.current_weather__con}>
       <div className={styles.current_weather__con_header}>
@@ -21,11 +18,12 @@ export default function CurrentWeather() {
           <h3>New York</h3>
         </div>
         <div>
-          <h1>1°</h1>
+          
+          {/* <h1>{data ? Math.floor(data?.temperature.current_temp) : 1}°</h1> */}
         </div>
       </div>
       <div className={styles.current_weather__con_footer}>
-        {/* <MetricCart/> */}
+        <MetricCart title="" size="standart" />
         {/* <div className={styles.current_weather__con_footer_weather}>
           <Image
             src="/icons/night-mode/thermometer.png"
@@ -39,8 +37,8 @@ export default function CurrentWeather() {
             <p>High:2°</p>
           </div>
         </div> */}
-        
-{/* <MetricCart/> */}
+
+        <MetricCart title="Wind" size="standart" />
         {/* <div className={styles.current_weather__con_footer_wind}>
         
           <div>

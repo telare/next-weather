@@ -3,12 +3,11 @@ import Image from "next/image";
 type Button = {
   title?: string;
   type: "submit" | "reset" | "button" | undefined;
-  image: {
+  image?: {
     src: string;
     width: number | `${number}`;
     height: number | `${number}`;
   };
-  imageSrc?: string;
 
   func: () => void;
   width: string | number;

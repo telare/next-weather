@@ -8,12 +8,8 @@ const space_grotesk = Space_Grotesk({
 
 export default function FavoriteLayout({ children }: Layout) {
   return (
-    <html lang="en">
-      <body className={space_grotesk.className} style={{backgroundColor:'inherit'}}>
-        {/* Layout UI */}
-        {/* Place children where you want to render a page or nested layout */}
+      <div className={space_grotesk.className} style={{backgroundColor:'inherit'}}>
         <div>{children}</div>
-      </body>
-    </html>
+      </div>
   );
 }

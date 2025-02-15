@@ -5,7 +5,7 @@ import "@shared/styles/global.scss";
 export default function RootLayout({ children }: Layout) {
   return (
     <html lang="en">
-      <body>
+      <body style={{border:"none"}}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

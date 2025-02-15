@@ -9,7 +9,7 @@ export default function ProfileBtn() {
       style={profileBtn_styles.main__con}
       width={40}
       image={{
-        src: "",
+        src: "/icons/night-mode/user_icon.png",
         height: 40,
         width: 40,
       }}
