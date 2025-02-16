@@ -4,7 +4,7 @@ export type Weather = {
 //     sunset: number;
 //     sunrise: number;
 //   };
-
+  name: string;
   weather: {
     icon: string;
     descr: string;

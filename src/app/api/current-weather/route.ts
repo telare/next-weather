@@ -2,20 +2,17 @@ import { Weather } from "@/shared/types/Weather";
 
 export async function GET(req: Request) {
   const url: URL = new URL(req.url);
-  const city: string = url.searchParams.get("city") || "Kiev";
+  const city: string = url.searchParams.get("q") || "Kiev";
+  console.log("City in route handler: ",city)
   const res = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?q=${city}&&units=metric&appid=${process.env.WEATHER_API_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${process.env.WEATHER_API_KEY}`
   );
   const data = await res.json();
   const formatted_data: Weather = {
-    // general: {
-    //   name:data.main,
-    //   sunrise: data.current.sunrise,
-    //   sunset: data.current.sunset,
-    // },
+    name:data.name,
     weather: {
-      icon: data.weather.main,
-      descr: data.weather.description,
+      icon: data.weather[0].main,
+      descr: data.weather[0].description,
     },
     temperature: {
       feels_like: data.main.feels_like,

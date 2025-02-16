@@ -88,7 +88,6 @@
 .metrics__main_con {
   @include global_mixins.large-div-style();
   height: 90%;
-  border: none;
   width: 60%;
   flex-direction: column;
   gap: 2%;
@@ -98,6 +97,7 @@
   @include global_mixins.large-div-style();
   border: none;
   height: 50%;
+  display: flex;
   width: 99%;
   gap: 2%;
 }

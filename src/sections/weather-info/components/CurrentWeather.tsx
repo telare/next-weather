@@ -3,10 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import styles from "../styles/WeatherInfo.module.scss";
 import MetricCart from "@/shared/components/Carts/MetricCart";
 import { DataContext } from "@/providers/data-provider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 export default function CurrentWeather() {
   const data = useContext(DataContext);
-
+  if(data ){
+    console.log(data.name)
+  }
   return (
     <div className={styles.current_weather__con}>
       <div className={styles.current_weather__con_header}>
@@ -15,45 +17,44 @@ export default function CurrentWeather() {
       </div>
       <div className={styles.current_weather__con_main}>
         <div>
-          <h3>New York</h3>
+          <h3>{ data && data.name && data.name}</h3>
         </div>
-        <div>
-          
-          {/* <h1>{data ? Math.floor(data?.temperature.current_temp) : 1}°</h1> */}
-        </div>
-      </div>
-      <div className={styles.current_weather__con_footer}>
-        <MetricCart title="" size="standart" />
-        {/* <div className={styles.current_weather__con_footer_weather}>
-          <Image
-            src="/icons/night-mode/thermometer.png"
-            width={20}
-            height={20}
-            alt=""
-          />
-          <p>Light Rain</p>
+        {data ? (
           <div>
-            <p>Low:-1°</p>
-            <p>High:2°</p>
-          </div>
-        </div> */}
+            <div>
+              {/* {data && <h1>{Math.floor(data?.temperature.current_temp)}°</h1>} */}
+              <h1>1°</h1>
+            </div>
+            <div className={styles.current_weather__con_footer}>
+              {/* <MetricCart
+                title={data.weather.descr}
+                size="standart"
+                description={`Low: ${data.temperature.min_temp} High: ${data.temperature.max_temp}`}
+                mainInfo={data.weather.icon}
+              /> */}
+             
 
-        <MetricCart title="Wind" size="standart" />
-        {/* <div className={styles.current_weather__con_footer_wind}>
-        
-          <div>
-            <Image
-              src="/icons/night-mode/wind.png"
-              alt="Wind"
-              width={20}
-              height={20}
-            />
-            <h3>Wind</h3>
-          </div>
-          <div>
+              {/* <MetricCart title="Wind" size="standart" /> */}
+              {/* <div className={styles.current_weather__con_footer_wind}>
            
+             <div>
+               <Image
+                 src="/icons/night-mode/wind.png"
+                 alt="Wind"
+                 width={20}
+                 height={20}
+               />
+               <h3>Wind</h3>
+             </div>
+             <div>
+              
+             </div>
+           </div> */}
+            </div>
           </div>
-        </div> */}
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

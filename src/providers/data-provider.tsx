@@ -6,36 +6,29 @@ import { createContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./global-store";
 
-export const DataContext = createContext<
-  Weather | "loading" | "error" | undefined
->(undefined);
+export const DataContext = createContext<Weather | undefined>(undefined);
 
 export default function DataProvider({ children }: Layout) {
-  const cityName = useSelector((state: RootState) => state.cityName.cityName);
-  const [weatherData, setWeatherData] = useState<
-    Weather | "loading" | "error"
-  >();
+  const cityName = useSelector((state: RootState) => state.cityName.value);
   async function queryFunc(): Promise<Weather> {
-    const response = await fetch(`/current-weather?q=${cityName}`);
+    const response = await fetch(`/api/current-weather?q=${cityName}`);
     return await response.json();
   }
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ["current-weather"],
+  const { data, isLoading, error } = useQuery({
+    queryKey: [cityName],
     queryFn: () => queryFunc(),
   });
   useEffect(() => {
-    if (!isLoading && !isError) {
-      setWeatherData(data);
-    }
-    if (isLoading) {
-      setWeatherData("loading");
-    }
-    if (isError) {
-      setWeatherData("error");
-    }
-  }, [cityName]);
-
-  return (
-    <DataContext.Provider value={weatherData}>{children}</DataContext.Provider>
-  );
+    console.log(data);
+  }, [data]);
+  if(data){
+    return <DataContext.Provider value={data}>{children}</DataContext.Provider>
+  }
+  if(isLoading){
+    return <DataContext.Provider value={"Loading"}>{children}</DataContext.Provider>
+  }
+  if(error){
+    return <DataContext.Provider value={`Error ${error.message}`}>{children}</DataContext.Provider>
+  }
+  
 }
