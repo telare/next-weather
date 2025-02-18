@@ -13,9 +13,8 @@ type FormProps = {
   schema: ObjectSchema<FieldValues, AnyObject>;
   title: React.ReactElement;
   type: "log-in" | "sign-up";
-  
 };
-export default function Form({ schema, title, type}: FormProps) {
+export default function Form({ schema, title, type }: FormProps) {
   const router = useRouter();
   const pathname = usePathname();
   type Form = InferType<typeof schema>;
@@ -53,8 +52,25 @@ export default function Form({ schema, title, type}: FormProps) {
   }
 
   async function logIn(data: Form): Promise<void> {
-    // if added successfully do this
-    redirect("/home");
+    try {
+      const res = await fetch("/api/auth/log-in", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const userData: {
+        userVerifed: boolean;
+      } = await res.json();
+      if (userData.userVerifed === true) {
+        redirect("/home");
+      } else {
+        redirect("/auth/sign-up");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (

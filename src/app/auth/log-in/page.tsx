@@ -23,7 +23,7 @@ export default function LogInPage() {
         <div className={styles.themeBtn__con}>
           <ThemeToggleBtn />
         </div>
-        <Form schema={logInSchema} title={title} />
+        <Form schema={logInSchema} title={title} type="log-in"/>
       </div>
     </div>
   );
