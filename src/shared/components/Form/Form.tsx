@@ -25,7 +25,7 @@ export default function Form({ schema, title, type }: FormProps) {
   const { handleSubmit } = methods;
 
   async function signUp(data: Form): Promise<void> {
-    if ("password" in data) {
+    if ("name" in data && "email" in data && "password" in data) {
       const userData: User = {
         id: self.crypto.randomUUID(),
         name: (data as User).name,
@@ -42,10 +42,11 @@ export default function Form({ schema, title, type }: FormProps) {
         });
         const result = await res;
         console.log(result);
-        if (result.status === 200) {
+        if (result.status === 201) {
           router.push("/home");
         }
       } catch (e) {
+        //redirect to error page
         console.log(e);
       }
     }
@@ -61,12 +62,13 @@ export default function Form({ schema, title, type }: FormProps) {
         body: JSON.stringify(data),
       });
       const userData: {
-        userVerifed: boolean;
+        isUserVerifed: boolean;
       } = await res.json();
-      if (userData.userVerifed === true) {
-        redirect("/home");
+      console.log(userData);
+      if (userData.isUserVerifed === true) {
+        router.push("/home");
       } else {
-        redirect("/auth/sign-up");
+        router.push("/auth/sign-up");
       }
     } catch (e) {
       console.log(e);

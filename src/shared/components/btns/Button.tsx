@@ -8,12 +8,20 @@ type Button = {
     width: number | `${number}`;
     height: number | `${number}`;
   };
+  icon?: React.ReactElement;
 
   func: () => void;
   width: string | number;
   style: string;
 };
-export default function Button({ title, func, image, type, style }: Button) {
+export default function Button({
+  title,
+  func,
+  image,
+  icon,
+  type,
+  style,
+}: Button) {
   return (
     <button onClick={func} type={type} className={style}>
       {image && (
@@ -24,6 +32,8 @@ export default function Button({ title, func, image, type, style }: Button) {
           height={image.height}
         />
       )}
+      {icon && icon}
+
       {title && title}
     </button>
   );

@@ -3,7 +3,7 @@ import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { User } from "@/shared/types/User";
 import { NextResponse } from "next/server";
-import prisma from "@/providers/prismaClient";
+import prisma from "@/app/clients/prismaClient";
 export async function POST(req: Request) {
   const userData: User | undefined = await req.json();
   if (userData && req.method === "POST") {

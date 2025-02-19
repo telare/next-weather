@@ -1,0 +1,111 @@
+@use "@shared/styles/mixins/div_mixin.scss" as global_div_mixins;
+@use "@shared/styles/mixins/btn_mixin.scss" as global_btn_mixins;
+@use "@shared/styles/variables/variables.module" as global_variables;
+// nav
+.nav_main__con {
+  @include global_div_mixins.large-div-style();
+  height: 5%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+.nav_child__con {
+  display: flex;
+  grid-area: 1 / 2 / 2 / 3;
+  justify-content: flex-end;
+  align-items: center;
+  column-gap: 20px;
+  padding-right: 15px;
+}
+//   Links
+.links_main__con {
+  @include global_div_mixins.large-div-style();
+  border: none;
+  height: 90%;
+  width: 100%;
+  grid-area: 1 / 1 / 2 / 2;
+  font-size: 18px;
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    gap: 30px;
+
+    li {
+      cursor: pointer;
+      border-radius: 2px;
+      padding: 3px;
+    }
+
+    li:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+}
+.links_link {
+  all: unset;
+}
+.links_link__active {
+  all: unset;
+  text-decoration: underline;
+  text-decoration-color: white;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+//   Search
+.search_main__con {
+  @include global_div_mixins.large-div-style();
+  font-size: 16px;
+  justify-content: flex-start;
+  height: 30px;
+  width: 300px;
+  padding: 5px 0px 5px 10px;
+  grid-area: 1 / 2 / 2 / 3;
+  gap: 5%;
+  input {
+    all: unset;
+    height: 30px;
+    background-color: inherit;
+    color: inherit;
+    border: none;
+    font-family: inherit;
+    width: 70%;
+  }
+}
+
+.search_shortcuts__con {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Btns
+// Git
+.git_btn {
+  @include global_btn_mixins.btn();
+  width: 150px;
+  height: 25px;
+  font-size: 16px;
+  text-decoration: none;
+  display: flex;
+  gap: 4%;
+}
+
+// Profile
+.profile_btn {
+  @include global_btn_mixins.btn();
+  border-color: none;
+  all: unset;
+}
+// Theme
+.theme_btn {
+  @include global_btn_mixins.btn();
+  width: 50px;
+  height: 50px;
+  border: none;
+}

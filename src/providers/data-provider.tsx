@@ -6,7 +6,9 @@ import { createContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./global-store";
 
-export const DataContext = createContext<Weather | undefined>(undefined);
+export const DataContext = createContext<Weather | undefined | string>(
+  undefined
+);
 
 export default function DataProvider({ children }: Layout) {
   const cityName = useSelector((state: RootState) => state.cityName.value);
@@ -21,14 +23,19 @@ export default function DataProvider({ children }: Layout) {
   useEffect(() => {
     console.log(data);
   }, [data]);
-  if(data){
-    return <DataContext.Provider value={data}>{children}</DataContext.Provider>
+  if (data) {
+    return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
   }
-  if(isLoading){
-    return <DataContext.Provider value={"Loading"}>{children}</DataContext.Provider>
+  if (isLoading) {
+    return (
+      <DataContext.Provider value={"Loading"}>{children}</DataContext.Provider>
+    );
   }
-  if(error){
-    return <DataContext.Provider value={`Error ${error.message}`}>{children}</DataContext.Provider>
+  if (error) {
+    return (
+      <DataContext.Provider value={`Error ${error.message}`}>
+        {children}
+      </DataContext.Provider>
+    );
   }
-  
 }
