@@ -19,7 +19,6 @@ export type Weather = {
     pressure: number;
     visibility: number;
     humidity: number;
-    // uv: number;
   };
   wind: {
     speed: number;

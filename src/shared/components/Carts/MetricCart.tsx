@@ -1,14 +1,13 @@
 "use client";
-import Image from "next/image";
 import styles from "../../styles/MetricCart.module.scss";
 type MetricCart = {
-  title: string;
-  description:string;
-  icon?: string;
+  title?: string;
+  description: string;
+  icon?: React.ReactElement;
   border?: boolean;
   size: "standart" | "large";
   renderComponent?: React.ReactElement;
-  mainInfo:string;
+  mainInfo: string;
 };
 export default function MetricCart({
   title,
@@ -25,12 +24,7 @@ export default function MetricCart({
       }
     >
       <div className={styles.main__con_header}>
-        <Image
-          src={icon ? icon : "/icons/night-mode/thermometer.png"}
-          alt="Metric Icon"
-          width={20}
-          height={20}
-        />
+        {icon && icon}
         <h3>{title}</h3>
       </div>
       <div className={styles.main__con_render_component}>

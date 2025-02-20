@@ -3,6 +3,7 @@ import styles from "../../styles/WeatherInfo.module.scss";
 import MetricCart from "@/shared/components/Carts/MetricCart";
 import { DataContext } from "@/providers/data-provider";
 import { useContext } from "react";
+import { weatherIconPicker } from "@/utils/weatherIconPicker";
 export default function CurrentWeather() {
   const data = useContext(DataContext);
   if (data) {
@@ -25,10 +26,10 @@ export default function CurrentWeather() {
         </div>
         <div className={styles.current_weather__con_footer}>
           <MetricCart
+            icon={weatherIconPicker(data.weather.icon)}
             title={data.weather.descr}
             size="standart"
             description={`Low: ${data.temperature.min_temp} High: ${data.temperature.max_temp}`}
-            mainInfo={data.weather.icon}
           />
           <MetricCart
             title="Wind"

@@ -5,9 +5,17 @@ import { createSlice } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
 
 const initialState: {
-  value: string;
+  value: {
+    lon:string,
+    lat:string,
+    name:string
+  };
 } = {
-  value: "",
+  value: {
+    lon:"",
+    lat:"",
+    name:""
+  },
 };
 
 const cityNameSlice = createSlice({
@@ -15,7 +23,11 @@ const cityNameSlice = createSlice({
   initialState,
 
   reducers: {
-    setCityName(state, action: PayloadAction<string>) {
+    setCityName(state, action: PayloadAction<{
+      lon:string,
+      lat:string,
+      name:string,
+    }>) {
       state.value = action.payload;
     },
   },

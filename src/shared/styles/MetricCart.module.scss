@@ -25,10 +25,12 @@
 
 .main__con_render_component {
   @include global_mixins.small-div-style();
+  width: 90%;
+
   padding: 10px;
   justify-content: flex-start;
+
   border: none;
-  width: 90%;
   h2 {
     font-size: 40px;
     font-weight: 500;
@@ -37,10 +39,11 @@
 
 .main__con_footer {
   @include global_mixins.large-div-style();
+  width: 90%;
   height: 20%;
-  align-items: flex-end;
   border: none;
   justify-content: flex-start;
+
   p {
     line-height: 1;
     font-size: 18px;
