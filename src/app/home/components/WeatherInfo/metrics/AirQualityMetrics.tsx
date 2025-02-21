@@ -15,8 +15,8 @@ export default function AirQualityMetrics() {
           title="Humidity"
           icon={humidityIcon}
           size="standart"
-          mainInfo={`${data.other.humidity} %`}
-          description={descriptionBuilder({title:"humidity", value: data.other.humidity})}
+          mainInfo={`${data.currentWeather.other.humidity} %`}
+          description={descriptionBuilder({title:"humidity", value:data.currentWeather.other.humidity})}
         />
 
         {/* pressure cart */}
@@ -24,8 +24,8 @@ export default function AirQualityMetrics() {
           title="Pressure"
           icon={pressureIcon}
           size="standart"
-          mainInfo={`${data.other.pressure} Pa`}
-          description={descriptionBuilder({title:"pressure", value: data.other.pressure})}
+          mainInfo={`${data.currentWeather.other.pressure} Pa`}
+          description={descriptionBuilder({title:"pressure", value: data.currentWeather.other.pressure})}
         />
 
         {/* visibility cart */}
@@ -33,8 +33,8 @@ export default function AirQualityMetrics() {
           title="Visibility"
           icon={visibilityIcon}
           size="standart"
-          mainInfo={`${data.other.visibility / 100} %`}
-          description={descriptionBuilder({title:"visibility", value: data.other.visibility})}
+          mainInfo={`${data.currentWeather.other.visibility/ 100} %`}
+          description={descriptionBuilder({title:"visibility", value: data.currentWeather.other.visibility})}
         />
 
         {/* feels like cart */}
@@ -42,8 +42,8 @@ export default function AirQualityMetrics() {
           title="Feels like"
           icon={thermometerIcon}
           size="standart"
-          mainInfo={`${Math.floor(data.temperature.feels_like)}°`}
-          description={descriptionBuilder({title:"feelslike", value: data.temperature.feels_like})}
+          mainInfo={`${Math.floor(data.currentWeather.temperature.feels_like)}°`}
+          description={descriptionBuilder({title:"feelslike", value: data.currentWeather.temperature.feels_like})}
         />
       </div>
     );

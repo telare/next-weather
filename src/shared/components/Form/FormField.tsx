@@ -1,5 +1,5 @@
 "use client";
-import { useFormContext } from "react-hook-form";
+import { FieldError, useFormContext } from "react-hook-form";
 import styles from "@shared/styles/Form.module.scss";
 type FormField = {
   name: string;
@@ -9,10 +9,9 @@ type FormField = {
 export default function FormField({ name, type, placeholder }: FormField) {
   const {
     register,
-    getValues,
     formState: { errors },
   } = useFormContext();
-
+  const error: FieldError | undefined = errors[name] as FieldError | undefined;
   return (
     <div className={styles.field__con}>
       <input
@@ -21,9 +20,7 @@ export default function FormField({ name, type, placeholder }: FormField) {
         {...register(name)}
         className={styles.field}
       />
-      <div>
-        {/* <p>sdsssss</p> */}
-      </div>
+      <div>{error && error.message && <p>{error.message}</p>}</div>
     </div>
   );
 }

@@ -4,9 +4,6 @@ export default function WeekForecast() {
   return (
     <div className={styles.left__col_forecast}>
       <MetricCart />
-      <MetricCart />
-      <MetricCart />
-      <MetricCart />
     </div>
   );
 }

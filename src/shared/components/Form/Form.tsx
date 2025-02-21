@@ -5,7 +5,7 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { AnyObject, InferType, ObjectSchema } from "yup";
 import FormField from "./FormField";
 import Button from "../btns/Button";
-import { redirect, usePathname } from "next/navigation";
+import {  usePathname } from "next/navigation";
 import Link from "next/link";
 import { User } from "@/shared/types/User";
 import { useRouter } from "next/navigation";

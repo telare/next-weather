@@ -12,9 +12,9 @@ const initialState: {
   };
 } = {
   value: {
-    lon:"",
-    lat:"",
-    name:""
+    lat:"50.450001",
+    lon:"30.523333",
+    name:"Kyiv"
   },
 };
 

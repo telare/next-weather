@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export default async function GET(req: NextRequest) {
+export  async function GET(req: NextRequest) {
   try {
     const lat = req.nextUrl.searchParams.get("lat");
     const lon = req.nextUrl.searchParams.get("lon");
     const res = await fetch(
-      `http://api.openweathermap.org/data/2.5/uvi?lon=${lon}&lat=${lat}&appid=${process.env.WEATHER_API_KEY}`
+      `http://api.openweathermap.org/data/2.5/uvi?lon=${lon}&lat=${lat}&units=metric&appid=${process.env.WEATHER_API_KEY}`
     );
     const data = await res.json();
     const uviData: {
