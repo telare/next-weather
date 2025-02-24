@@ -7,20 +7,24 @@ import { useSelector } from "react-redux";
 import { RootState } from "./global-store";
 import axios from "axios";
 
-export const DataContext = createContext<
-  | {
-    currentWeather: Weather;
-    other: {
-      pollution: number;
-      uv: number;
-      weekForecast: {
-        [key: string]: Weather;
-      };
-    };
-  }
-  | undefined
-  | string
->(undefined);
+export const DataContext = createContext<{
+  isLoading: boolean;
+  isError: boolean;
+  data:
+    | {
+        currentWeather: Weather;
+        other: {
+          pollution: number;
+          uv: number;
+          weekForecast: Weather[];
+        };
+      }
+    | undefined;
+}>({
+  isLoading: false,
+  isError: false,
+  data: undefined,
+});
 
 export default function DataProvider({ children }: Layout) {
   const cityName = useSelector((state: RootState) => state.cityName.value);
@@ -31,33 +35,12 @@ export default function DataProvider({ children }: Layout) {
         other: {
           pollution: number;
           uv: number;
-          weekForecast: {
-            [key: string]: Weather;
-          };
+          weekForecast: Weather[];
         };
       }
-    | string
+    | undefined
   > {
     try {
-      // const currentWeatherResp = await axios.get(
-      //   `/api/current-weather?lon=${cityName.lon}&lat=${cityName.lat}`
-      // );
-      // const currentWeatherData = currentWeatherResp.data;
-
-      // const pollutionResp = await axios.get(
-      //   `/api/current-weather/pollution?lon=${cityName.lon}&lat=${cityName.lat}`
-      // );
-      // const pollutionData = pollutionResp.data;
-
-      // const uvResp = await axios.get(
-      //   `/api/current-weather/pollution?lon=${cityName.lon}&lat=${cityName.lat}`
-      // );
-      // const uvData = uvResp.data;
-
-      // const weeekForecastResp = await axios.get(
-      //   `/api/current-weather?lon=${cityName.lon}&lat=${cityName.lat}`
-      // );
-      // const weeekForecastData = weeekForecastResp.data;
       if (cityName.lat !== "" && cityName.lon !== "") {
         const currentWeatherResp = await axios.get(
           `/api/current-weather?lon=${cityName.lon}&lat=${cityName.lat}`
@@ -88,39 +71,31 @@ export default function DataProvider({ children }: Layout) {
         };
         return weatherData;
       } else {
-        return `Error in data`;
+        throw new Error("Latitude and Longitude are required");
       }
-    } catch (e) {
-      return `${e}`;
+    } catch (e: any) {
+      throw new Error(e.response?.data?.message || e.message);
     }
   }
 
   const {
     data: weatherData,
     isLoading: isWeatherLoading,
-    error: weathererror,
+    isError,
   } = useQuery({
     queryKey: [cityName],
     queryFn: () => queryFunc(),
   });
 
-  if (weatherData) {
-    return (
-      <DataContext.Provider value={weatherData}>
-        {children}
-      </DataContext.Provider>
-    );
-  }
-  if (isWeatherLoading) {
-    return (
-      <DataContext.Provider value={"Loading"}>{children}</DataContext.Provider>
-    );
-  }
-  if (weathererror) {
-    return (
-      <DataContext.Provider value={`Error ${weathererror.message}`}>
-        {children}
-      </DataContext.Provider>
-    );
-  }
+  return (
+    <DataContext.Provider
+      value={{
+        data: weatherData,
+        isError: isError,
+        isLoading: isWeatherLoading,
+      }}
+    >
+      {children}
+    </DataContext.Provider>
+  );
 }

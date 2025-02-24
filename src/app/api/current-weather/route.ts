@@ -4,7 +4,6 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   const lat = req.nextUrl.searchParams.get("lat");
   const lon = req.nextUrl.searchParams.get("lon");
-  console.log(lon, lat)
   const res = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?lon=${lon}&lat=${lat}&units=metric&appid=${process.env.WEATHER_API_KEY}`
   );

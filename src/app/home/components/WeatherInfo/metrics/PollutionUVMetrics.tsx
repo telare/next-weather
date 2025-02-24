@@ -6,9 +6,8 @@ import { DataContext } from "@/providers/data-provider";
 import { lightThemeIcon, pollutionIcon } from "@/utils/Icons";
 import { descriptionBuilder } from "@/utils/descriptionbuilder";
 export default function PollutionUV() {
-  const data = useContext(DataContext);
-  if (typeof data === "object") {
-    console.log(data);
+  const weather = useContext(DataContext);
+  if (!weather.isError && weather.data) {
     return (
       <div className={styles.metric__con}>
         {/* pollution cart */}
@@ -16,10 +15,10 @@ export default function PollutionUV() {
           title="Air Pollution"
           icon={pollutionIcon}
           size="large"
-          mainInfo={`${data.other.pollution}`}
+          mainInfo={`${weather.data.other.pollution}`}
           description={descriptionBuilder({
             title: "pollution",
-            value: data.other.pollution,
+            value: weather.data.other.pollution,
           })}
         />
 
@@ -28,10 +27,10 @@ export default function PollutionUV() {
           icon={lightThemeIcon}
           title="UV index"
           size="large"
-          mainInfo={`${data.other.uv}`}
+          mainInfo={`${weather.data.other.uv}`}
           description={descriptionBuilder({
             title: "uvIndex",
-            value: data.other.uv,
+            value: weather.data.other.uv,
           })}
         />
       </div>

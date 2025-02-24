@@ -1,38 +1,42 @@
-@use "@shared/styles/mixins/div_mixin.scss" as global_mixins;
+@use "@shared/styles/mixins/div_mixin.scss" as global_div_mixins;
 @use "@shared/styles/variables/variables.module" as global_variables;
 
 .main__con {
-  @include global_mixins.section-div-style();
+  @include global_div_mixins.section-div-style();
   height: 800px;
   gap: 5%;
 }
 
 .left__col {
-  width: 70%;
+  @include global_div_mixins.div-style();
+  border:none;
+  width: 80%;
   gap: 5%;
   height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 .left__col_forecast {
-  @include global_mixins.large-div-style();
-  width: 90%;
+  @include global_div_mixins.large-div-style();
+  width: 100%;
   height: 45%;
   column-gap: 2%;
 }
 .left__col_map {
-  @include global_mixins.big-div-style();
+  @include global_div_mixins.big-div-style();
+  height: 45%;
 }
 .right__col {
-  @include global_mixins.div-style();
+  @include global_div_mixins.div-style();
   height: 90%;
-  width: 25%;
+  width: 20%;
   align-items: baseline;
 }
 .right__col_top_cities {
-  @include global_mixins.div-style();
+  @include global_div_mixins.div-style();
   height: 50%;
   width: 90%;
   gap:2%;
@@ -41,7 +45,7 @@
     font-size: 20px
   }
   div {
-    @include global_mixins.div-style();
+    @include global_div_mixins.div-style();
     border: none;
     justify-content: flex-start;
     width: 90%;

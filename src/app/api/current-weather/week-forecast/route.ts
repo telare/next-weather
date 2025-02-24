@@ -8,19 +8,41 @@ export async function GET(req: NextRequest) {
 
   try {
     const res = await axios.get(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.WEATHER_API_KEY}`
+      `https://api.openweathermap.org/data/2.5/forecast?lon=${lon}&lat=${lat}&appid=${process.env.WEATHER_API_KEY}`
     );
     const data = res.data;
     if (data) {
-      const formatted_data: {
-        [key: string]: Weather;
-      } = {
-        day1: data.day1,
-        day2: data.day2,
-        day3: data.day3,
-        day4: data.day4,
-        day5: data.day5,
-      };
+      const formatted_data: { day: Weather }[] = data.list
+        .map((list, i) => {
+          if (i === 0 || i === 8 || i === 16 || i === 24 || i === 32) {
+            return {
+              dt_txt: list.dt_txt,
+              weather: {
+                icon: list.weather[0].main,
+                descr: list.weather[0].description,
+              },
+              temperature: {
+                feels_like: list.main.feels_like,
+                current_temp: list.main.temp,
+                max_temp: list.main.temp_max,
+                min_temp: list.main.temp_min,
+              },
+              other: {
+                humidity: list.main.humidity,
+                pressure: list.main.pressure,
+                visibility: list.visibility,
+              },
+              wind: {
+                speed: list.wind.speed,
+                deg: list.wind.deg,
+              },
+            };
+          } else {
+            return null;
+          }
+        })
+        .filter(Boolean);
+
       return NextResponse.json(formatted_data);
     } else
       return NextResponse.json(`Error in data from external API`, {

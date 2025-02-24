@@ -1,10 +1,6 @@
 export type Weather = {
-//   general: {
-//     name:string;
-//     sunset: number;
-//     sunrise: number;
-//   };
   name: string;
+  dt_txt?: string;
   weather: {
     icon: string;
     descr: string;
