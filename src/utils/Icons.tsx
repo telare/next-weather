@@ -29,7 +29,6 @@ import {
   Moon,
 } from "lucide-react";
 
-// create a state in global for handling theme to use it here with ternary operator
 export const searchIcon = <Search />
 export const commandIcon = <Command />
 export const navigationIcon = <Navigation />
