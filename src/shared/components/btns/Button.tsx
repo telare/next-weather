@@ -32,6 +32,7 @@ export default function Button({
           height={image.height}
         />
       )}
+
       {icon && icon}
 
       {title && title}

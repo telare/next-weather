@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { DataContext } from "@/providers/data-provider";
 import { lightThemeIcon, pollutionIcon } from "@/utils/Icons";
 import { descriptionBuilder } from "@/utils/descriptionbuilder";
+import UvPollutionProgressBar from "@/shared/components/ProgressBar/UvPollutionProgressBar";
 export default function PollutionUV() {
   const weather = useContext(DataContext);
   if (!weather.isError && weather.data) {
@@ -15,10 +16,15 @@ export default function PollutionUV() {
           title="Air Pollution"
           icon={pollutionIcon}
           size="large"
-          mainInfo={`${weather.data.other.pollution}`}
           description={descriptionBuilder({
             title: "pollution",
             value: weather.data.other.pollution,
+          })}
+          renderComponent={UvPollutionProgressBar({
+            value:
+              weather.data.other.pollution <= 5
+                ? Math.floor(weather.data.other.pollution * 20)
+                : 100,
           })}
         />
 
@@ -27,10 +33,15 @@ export default function PollutionUV() {
           icon={lightThemeIcon}
           title="UV index"
           size="large"
-          mainInfo={`${weather.data.other.uv}`}
           description={descriptionBuilder({
             title: "uvIndex",
             value: weather.data.other.uv,
+          })}
+          renderComponent={UvPollutionProgressBar({
+            value:
+              weather.data.other.uv <= 10
+                ? Math.floor(weather.data.other.uv * 10)
+                : 100,
           })}
         />
       </div>

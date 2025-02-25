@@ -1,10 +1,10 @@
 'use client'
 import ThemeToggleBtn from "shared/components/btns/ThemeToggleBtn";
 import Search from "./Search";
-import ProfileBtn from "@shared/components/btns/ProfileBtn";
+import ProfileBtn from "../btns/ProfileBtn";
 import Links from "./Links";
 import styles from "@shared/styles/Nav.module.scss";
-import GitBtn from "@shared/components/btns/GitBtn";
+import GitBtn from "../btns/GitBtn";
 export default function Nav() {
   return (
     <div className={styles.nav_main__con}>

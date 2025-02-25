@@ -7,7 +7,7 @@ type MetricCart = {
   border?: boolean;
   size: "standart" | "large";
   renderComponent?: React.ReactElement;
-  mainInfo: string;
+  mainInfo?: string;
 };
 export default function MetricCart({
   title,

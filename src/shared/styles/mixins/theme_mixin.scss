@@ -3,12 +3,9 @@
   @if $current-theme == light {
     background-color: white;
     color: black;
-    border: solid black;
-    
   }
   @if $current-theme == dark {
     background-color: black;
     color: white;
-    border: solid white;
   }
 }

@@ -5,12 +5,38 @@ import { DataContext } from "@/providers/data-provider";
 import { useContext } from "react";
 import { weatherIconPicker } from "@/utils/weatherIconPicker";
 import Clock from "@/app/home/components/WeatherInfo/Clock";
+import Image from "next/image";
+import { windIcon } from "@/utils/Icons";
+import { descriptionBuilder } from "@/utils/descriptionbuilder";
+
 export default function CurrentWeather() {
   const weather = useContext(DataContext);
   if (weather.isError) {
     console.log(weather);
   }
   if (!weather.isError && weather.data) {
+    console.log(weather.data.currentWeather.wind.speed)
+    const windRenderComponent = (
+      <div className={styles.wind__compass_con}>
+        <Image
+          alt="wind-compass"
+          src={"/img/compass_body.svg"}
+          width={300}
+          height={300}
+          className={styles.wind__compass_body}
+        />
+        <Image
+          alt="compass-arrow"
+          src={"/img/compass_arrow.svg"}
+          width={300}
+          height={300}
+          className={styles.wind__compass_arrow}
+          style={{
+            transform: `rotate(${weather.data.currentWeather.wind.deg}deg)`,
+          }}
+        />
+      </div>
+    );
     return (
       <div className={styles.current_weather__con}>
         <Clock />
@@ -29,15 +55,27 @@ export default function CurrentWeather() {
         </div>
         <div className={styles.current_weather__con_footer}>
           <MetricCart
-            icon={weatherIconPicker(weather.data.currentWeather.weather.icon)}
             title={weather.data.currentWeather.weather.descr}
             size="standart"
-            description={`Low: ${weather.data.currentWeather.temperature.min_temp} High: ${weather.data.currentWeather.temperature.max_temp}`}
+            renderComponent={weatherIconPicker(
+              weather.data.currentWeather.weather.icon
+            )}
+            description={`Low: ${Math.floor(
+              weather.data.currentWeather.temperature.min_temp
+            )} \nHigh: ${Math.floor(
+              weather.data.currentWeather.temperature.max_temp
+            )}`}
           />
           <MetricCart
+            icon={windIcon}
             title="Wind"
             size="standart"
+            renderComponent={windRenderComponent}
             mainInfo={`${weather.data.currentWeather.wind.speed}`}
+            description={descriptionBuilder({
+              title: "wind",
+              value: weather.data.currentWeather.wind.speed,
+            })}
           />
         </div>
       </div>

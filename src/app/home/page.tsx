@@ -7,7 +7,11 @@ export default function HomePage() {
     <div className={styles.main__con}>
       <Nav />
       <WeatherMain />
-      <Footer/>
+      <Footer />
     </div>
   );
 }
+
+
+
+

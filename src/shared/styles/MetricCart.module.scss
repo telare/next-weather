@@ -17,6 +17,7 @@
   width: 90%;
   border: none;
   justify-content: flex-start;
+  gap: 5%;
   h3 {
     font-size: 20px;
     font-weight: 500;
@@ -26,7 +27,6 @@
 .main__con_render_component {
   @include global_mixins.small-div-style();
   width: 90%;
-
   padding: 10px;
   justify-content: flex-start;
 

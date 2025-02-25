@@ -1,20 +1,29 @@
-'use client';
+"use client";
 import styles from "@shared/styles/Nav.module.scss";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 export default function ThemeToggleBtn() {
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button className={styles.theme_btn}>
-          <Image
-            src="/icons/night-mode/light-mode_icon.png"
-            alt="Mode"
-            width={40}
-            height={40}
-          />
+          {theme === "dark" ? (
+            <Image
+              src="/icons/night-mode/light-mode_icon.png"
+              alt="Mode"
+              width={40}
+              height={40}
+            />
+          ) : (
+            <Image
+              src="/icons/night-mode/night-mode_icon.png"
+              alt="Mode"
+              width={40}
+              height={40}
+            />
+          )}
         </button>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="dropdown-content">
