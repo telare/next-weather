@@ -9,7 +9,7 @@
 
 .left__col {
   @include global_div_mixins.div-style();
-  border:none;
+  border: none;
   width: 80%;
   gap: 5%;
   height: 90%;
@@ -17,7 +17,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 .left__col_forecast {
   @include global_div_mixins.large-div-style();
@@ -37,17 +36,18 @@
 }
 .right__col_top_cities {
   @include global_div_mixins.div-style();
+  border: none;
   height: 50%;
   width: 90%;
-  gap:2%;
+  gap: 2%;
   flex-direction: column;
-  h3{
-    font-size: 20px
+  h3 {
+    font-size: 20px;
   }
   div {
     @include global_div_mixins.div-style();
-    border: none;
     justify-content: flex-start;
+    border-width: 1px;
     width: 90%;
     height: 15%;
   }
