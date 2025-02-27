@@ -5,13 +5,13 @@ import { object, string } from "yup";
 import ThemeToggleBtn from "@/shared/components/btns/ThemeToggleBtn";
 export default function SignUpPage() {
   const signUpSchema = object({
-    name: string()
-      .min(2, { message: "At least 2 symbols" })
-      .max(7, { message: "Maximum 7 symbols" }),
-    email: string().email(),
+    name: string().min(2, "At least 2 symbols").max(7, "Maximum 7 symbols"),
+    email: string()
+      .email("Invalid email address" )
+      .required("Email is required"),
     password: string()
-      .min(4, { message: "At least 4 symbols" })
-      .max(10, { message: "Maximum 10 symbols" }),
+      .min(4,"At least 4 symbols")
+      .max(10, "Maximum 10 symbols"),
   });
   const title: React.ReactElement = (
     <div>
@@ -28,7 +28,7 @@ export default function SignUpPage() {
         <div className={styles.themeBtn__con}>
           <ThemeToggleBtn />
         </div>
-        <Form schema={signUpSchema} title={title} type="sign-up"/>
+        <Form schema={signUpSchema} title={title} type="sign-up" />
       </div>
     </div>
   );

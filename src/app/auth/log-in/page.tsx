@@ -5,10 +5,12 @@ import { object, string } from "yup";
 import ThemeToggleBtn from "@/shared/components/btns/ThemeToggleBtn";
 export default function LogInPage() {
   const logInSchema = object({
-    email: string().email(),
+    email: string()
+      .email("Invalid email address")
+      .required("Email is required"),
     password: string()
-      .min(4, { message: "At least 4 symbols" })
-      .max(10, { message: "Maximum 10 symbols" }),
+      .min(4, "At least 4 symbols")
+      .max(10, "Maximum 10 symbols"),
   });
 
   const title: React.ReactElement = (
@@ -23,7 +25,7 @@ export default function LogInPage() {
         <div className={styles.themeBtn__con}>
           <ThemeToggleBtn />
         </div>
-        <Form schema={logInSchema} title={title} type="log-in"/>
+        <Form schema={logInSchema} title={title} type="log-in" />
       </div>
     </div>
   );
