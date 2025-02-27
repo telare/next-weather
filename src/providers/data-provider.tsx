@@ -73,8 +73,8 @@ export default function DataProvider({ children }: Layout) {
       } else {
         throw new Error("Latitude and Longitude are required");
       }
-    } catch (e: any) {
-      throw new Error(e.response?.data?.message || e.message);
+    } catch (e: unknown) {
+      throw new Error(e as string);
     }
   }
 

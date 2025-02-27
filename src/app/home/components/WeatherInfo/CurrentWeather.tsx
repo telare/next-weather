@@ -12,10 +12,9 @@ import { descriptionBuilder } from "@/utils/descriptionbuilder";
 export default function CurrentWeather() {
   const weather = useContext(DataContext);
   if (weather.isError) {
-    console.log(weather);
+    throw new Error("401 - unathorized. Log in or sign up please");
   }
   if (!weather.isError && weather.data) {
-    console.log(weather.data.currentWeather.wind.speed)
     const windRenderComponent = (
       <div className={styles.wind__compass_con}>
         <Image

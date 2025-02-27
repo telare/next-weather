@@ -3,7 +3,6 @@ type ProgressBarProps = {
   value: number;
 };
 export default function UvPollutionProgressBar({ value }: ProgressBarProps) {
-  console.log(value)
   return (
     <div className={styles.main__con}>
       <div

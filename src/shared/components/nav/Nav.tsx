@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import ThemeToggleBtn from "shared/components/btns/ThemeToggleBtn";
 import Search from "./Search";
 import ProfileBtn from "../btns/ProfileBtn";

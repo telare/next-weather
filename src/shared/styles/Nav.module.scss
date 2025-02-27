@@ -5,6 +5,7 @@
 .nav_main__con {
   @include global_div_mixins.large-div-style();
   height: 5%;
+  width: 100%;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 1fr;

@@ -17,7 +17,7 @@ export default function useDebounce<T>({
     return () => {
       clearTimeout(timeOutFunc);
     };
-  }, [value]);
+  }, [value, timeOut]);
 
-  return debouncedValue
+  return debouncedValue;
 }

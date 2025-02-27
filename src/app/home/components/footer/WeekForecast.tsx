@@ -7,6 +7,9 @@ import { weatherIconPicker } from "@/utils/weatherIconPicker";
 import { descriptionBuilder } from "@/utils/descriptionbuilder";
 export default function WeekForecast() {
   const weather = useContext(DataContext);
+  if (weather.isError) {
+    throw new Error("401 - unathorized. Log in or sign up please");
+  }
   if (!weather.isError && weather.data) {
     return (
       <div className={styles.left__col_forecast}>

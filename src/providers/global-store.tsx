@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Layout } from "@/shared/types/Layout";
 import { configureStore, PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
@@ -42,5 +42,5 @@ export const { setCityName } = cityNameSlice.actions;
 export default function GlobalStateProvider({children}:Layout) {
   return (
     <Provider store={globalStore}>{children}</Provider>
-  )
+  );
 }

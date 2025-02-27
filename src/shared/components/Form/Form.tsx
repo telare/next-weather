@@ -5,7 +5,7 @@ import { FieldValues, FormProvider, useForm } from "react-hook-form";
 import { AnyObject, InferType, ObjectSchema } from "yup";
 import FormField from "./FormField";
 import Button from "../btns/Button";
-import {  usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { User } from "@/shared/types/User";
 import { useRouter } from "next/navigation";
@@ -41,13 +41,12 @@ export default function Form({ schema, title, type }: FormProps) {
           body: JSON.stringify(userData),
         });
         const result = await res;
-        console.log(result);
         if (result.status === 201) {
           router.push("/home");
         }
-      } catch (e) {
+      } catch (e: unknown) {
         //redirect to error page
-        console.log(e);
+        throw new Error(e as string);
       }
     }
   }
@@ -64,14 +63,14 @@ export default function Form({ schema, title, type }: FormProps) {
       const userData: {
         isUserVerifed: boolean;
       } = await res.json();
-      console.log(userData);
       if (userData.isUserVerifed === true) {
         router.push("/home");
       } else {
         router.push("/auth/sign-up");
       }
-    } catch (e) {
-      console.log(e);
+    } catch (e: unknown) {
+      //redirect to error page
+      throw new Error(e as string);
     }
   }
 
@@ -107,7 +106,7 @@ export default function Form({ schema, title, type }: FormProps) {
           </p>
         ) : (
           <p>
-            Don't have account?<Link href="/auth/sign-up">Sign Up</Link>
+            Don&apos;t have account?<Link href="/auth/sign-up">Sign Up</Link>
           </p>
         )}
       </div>

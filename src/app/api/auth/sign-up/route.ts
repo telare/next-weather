@@ -9,7 +9,7 @@ export async function POST(req: Request) {
   if (userData && req.method === "POST") {
     try {
       const user_hashed_pass = bcrypt.hashSync(userData.password, 10);
-      const postUserDB = await prisma.user.create({
+      await prisma.user.create({
         data: {
           id: userData.id,
           name: userData.name,

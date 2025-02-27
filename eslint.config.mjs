@@ -15,10 +15,10 @@ const eslintConfig = [
     plugins: ["sonarjs"],
     rules: {
       semi: ["warn"],
-      qoutes: ["error", "double"],
+      quotes: ["error", "double"],
       "prefer-arrow-callback": "error",
 
-      "sonarjs/no-implicit-dependencies": "error",
+      "sonarjs/no-implicit-dependencies": "off",
 
       "no-console": "error",
     },

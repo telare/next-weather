@@ -1,5 +1,5 @@
 
-import { Layout } from '@/shared/types/Layout';
+import { Layout } from "@/shared/types/Layout";
 
 export default function FavoriteLayout({ children }: Layout) {
   return (

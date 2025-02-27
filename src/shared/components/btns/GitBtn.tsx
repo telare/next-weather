@@ -1,10 +1,10 @@
-"use client"
+"use client";
 import styles from "@shared/styles/Nav.module.scss";
 import { useRouter } from "next/navigation";
 import Button from "./Button";
 import { githubIcon } from "@/utils/Icons";
 export default function GitBtn() {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <Button
       type="button"

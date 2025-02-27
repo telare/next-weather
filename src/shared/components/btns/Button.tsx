@@ -11,8 +11,8 @@ type Button = {
   icon?: React.ReactElement;
 
   func: () => void;
-  width: string | number;
-  style: string;
+  width?: string | number;
+  style?: string;
 };
 export default function Button({
   title,

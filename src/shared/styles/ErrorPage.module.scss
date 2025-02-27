@@ -1,0 +1,25 @@
+@use "@shared/styles/mixins/div_mixin" as global_div_mixin;
+@use "@shared/styles/mixins/btn_mixin" as global_btn_mixin;
+.main__con {
+  @include global_div_mixin.section-div-style();
+  flex-direction: column;
+  border: none;
+  h2 {
+    margin: 0;
+  }
+  p {
+  }
+}
+.reset_btn {
+  @include global_btn_mixin.btn();
+  width: 10%;
+  height: 7%;
+  @media (prefers-color-scheme: 'dark') {
+    background-color: white;
+    color: black;
+  }
+  @media (prefers-color-scheme: 'white') {
+    background-color: black;
+    color: white;
+  }
+}

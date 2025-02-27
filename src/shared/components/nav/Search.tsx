@@ -17,12 +17,12 @@ export default function Search() {
         axios
           .get(`/api/geocode?city=${debouncedValue}`)
           .then((resp) => dispatch(setCityName(resp.data)));
-      } catch (e) {
-        // redirect to error page
-        console.log('Erro in fetching coordinates:', e);
+      } catch (e: unknown) {
+        //redirect to error page
+        throw new Error(e as string);
       }
     }
-  }, [debouncedValue]);
+  }, [debouncedValue,dispatch]);
   return (
     <div className={styles.search_main__con}>
       <input

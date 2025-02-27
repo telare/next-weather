@@ -45,7 +45,7 @@ export async function GET(req: NextRequest) {
 
       return NextResponse.json(formatted_data);
     } else
-      return NextResponse.json(`Error in data from external API`, {
+      return NextResponse.json("Error in data from external API", {
         status: 500,
       });
   } catch (e) {
