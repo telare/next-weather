@@ -25,7 +25,7 @@ export default function Search() {
         throw new Error(e as string);
       }
     }
-  }, [debouncedValue, dispatch]);
+  }, [debouncedValue, dispatch, router]);
   return (
     <div className={styles.search_main__con}>
       <input
