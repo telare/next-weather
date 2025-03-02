@@ -1,0 +1,14 @@
+@use "@shared/styles/mixins/div_mixin" as global_div_mixins;
+.main__con {
+  @include global_div_mixins.div-style();
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  backdrop-filter: blur(5px);
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+

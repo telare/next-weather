@@ -1,17 +1,20 @@
-import { Layout } from "@/shared/types/Layout";
 import TanStackProvider from "../../providers/TanStackProvider";
 import DataProvider from "@/providers/data-provider";
 import GlobalStore from "@/providers/global-store";
 
-export default function HomeLayout({ children }: Layout) {
+export default function HomeLayout({
+  children,
+  searchModal,
+}: {
+  children: React.ReactNode;
+  searchModal: React.ReactNode;
+}) {
   return (
-    <div
-      style={{ backgroundColor: "inherit", border: "inherit" }}
-    >
+    <div style={{ backgroundColor: "inherit", border: "inherit" }}>
       <TanStackProvider>
         <GlobalStore>
           <DataProvider>
-            <div>{children}</div>
+            <div>{children}{searchModal}</div>
           </DataProvider>
         </GlobalStore>
       </TanStackProvider>
