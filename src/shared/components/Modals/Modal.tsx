@@ -1,10 +1,22 @@
 "use client";
-import styles from "@shared/styles/Portal.module.scss";
+import {
+  Dialog,
+  DialogContent,
+  DialogOverlay,
+} from "@/components/ui/dialog";
+import { Layout } from "@/shared/types/Layout";
+import styles from "@shared/styles/Modal.module.scss";
 
 type ModalProps = {
-  children: React.ReactElement;
+  onOpenChange: () => void;
 };
 
-export default function Modal({ children }: ModalProps) {
-  return <div className={styles.main__con}>{children}</div>;
+export default function Modal({ children, onOpenChange }: Layout & ModalProps) {
+  return (
+    <Dialog defaultOpen={true} modal={true} onOpenChange={onOpenChange}>
+      <DialogOverlay>
+        <DialogContent className={styles.main__con}>{children}</DialogContent>
+      </DialogOverlay>
+    </Dialog>
+  );
 }

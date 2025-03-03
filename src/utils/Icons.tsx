@@ -23,7 +23,6 @@ import {
   Thermometer,
   Eye,
   CalendarDays,
-  
 
   UsersRound,
   Moon,

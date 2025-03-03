@@ -13,8 +13,9 @@ export default function HomeLayout({
     <div style={{ backgroundColor: "inherit", border: "inherit" }}>
       <TanStackProvider>
         <GlobalStore>
+        {searchModal}
           <DataProvider>
-            <div>{children}{searchModal}</div>
+            <div>{children}</div>
           </DataProvider>
         </GlobalStore>
       </TanStackProvider>
