@@ -11,7 +11,7 @@ const space_grotesk = Space_Grotesk({
 });
 export default function RootLayout({ children }: Layout) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         style={{
           border: "none",

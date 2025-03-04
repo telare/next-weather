@@ -1,15 +1,14 @@
 import styles from "@shared/styles/Nav.module.scss";
 import Button from "./Button";
 import { redirect } from "next/navigation";
-import { userIcon } from "@/utils/Icons";
-export default function ProfileBtn() {
+export default function AuthBtn() {
   return (
     <Button
       type="button"
-      func={() => redirect("/profile")}
-      style={styles.profile_btn}
+      func={() => redirect("/auth/log-in")}
+      style={styles.auth_btn}
+      title="Log Out"
       width={40}
-      icon={userIcon}
     />
   );
 }

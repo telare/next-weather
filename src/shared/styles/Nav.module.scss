@@ -102,10 +102,12 @@
   gap: 4%;
 }
 
-.profile_btn {
+.auth_btn {
   @include global_btn_mixins.btn();
-  border-color: none;
   height: 50px;
+  width: 15%;
+  font-size: 16px;
+  border: solid;
 }
 .theme_btn {
   @include global_btn_mixins.btn();
@@ -113,5 +115,4 @@
   height: 50px;
   border: none;
   outline: none;
-  
 }

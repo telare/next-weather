@@ -7,10 +7,10 @@ export default function SignUpPage() {
   const signUpSchema = object({
     name: string().min(2, "At least 2 symbols").max(7, "Maximum 7 symbols"),
     email: string()
-      .email("Invalid email address" )
+      .email("Invalid email address")
       .required("Email is required"),
     password: string()
-      .min(4,"At least 4 symbols")
+      .min(4, "At least 4 symbols")
       .max(10, "Maximum 10 symbols"),
   });
   const title: React.ReactElement = (

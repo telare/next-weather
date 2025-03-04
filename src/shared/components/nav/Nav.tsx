@@ -1,7 +1,7 @@
 "use client";
 import ThemeToggleBtn from "shared/components/btns/ThemeToggleBtn";
 import Search from "./Search";
-import ProfileBtn from "../btns/ProfileBtn";
+import LogOutBtn from "../btns/LogOutBtn";
 import Links from "./Links";
 import styles from "@shared/styles/Nav.module.scss";
 import GitBtn from "../btns/GitBtn";
@@ -13,7 +13,7 @@ export default function Nav() {
         <Search />
         <ThemeToggleBtn />
         <GitBtn />
-        <ProfileBtn />
+        <LogOutBtn />
       </div>
     </div>
   );
