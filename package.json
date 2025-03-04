@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "static": "next build & next export",
     "lint": "next lint",
     "prepare": "husky"
   },
   "dependencies": {
+    "@capacitor/core": "^7.0.1",
     "@heroui/skeleton": "^2.2.9",
     "@hookform/resolvers": "^4.0.0",
     "@prisma/client": "^6.3.1",
@@ -46,6 +48,7 @@
     "yup": "^1.6.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "^7.0.1",
     "@eslint/eslintrc": "^3",
     "@types/jsonwebtoken": "^9.0.8",
     "@types/leaflet": "^1.9.16",

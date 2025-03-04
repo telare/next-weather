@@ -1,4 +1,8 @@
-import Map from "./Map";
+"use client";
+import dynamic from "next/dynamic";
+const Map = dynamic(() => import("./Map"), {
+  ssr: false, 
+});
 import TopRatedCities from "./TopRatedCities";
 import WeekForecast from "./WeekForecast";
 import styles from "./styles/Footer.module.scss";
