@@ -13,32 +13,33 @@ export default function Search() {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
   const debouncedValue = useDebounce({ value: inputValue, timeOut: 2000 });
-  function handleKeyDown(e: KeyboardEvent) {
-    if (e.code === "KeyF" && e.ctrlKey) {
-      e.preventDefault();
-      if (pathname === "/home") {
-        router.push(pathname + "/search");
-      }
-      if (pathname === "/home/search") {
-        router.back();
-      }
-    }
-  }
 
   useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.code === "KeyF" && e.ctrlKey) {
+        e.preventDefault();
+        if (pathname === "/home") {
+          router.push(pathname + "/search");
+        }
+        if (pathname === "/home/search") {
+          router.back();
+        }
+      }
+    }
+
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [router]);
 
   useEffect(() => {
     if (debouncedValue) {
       try {
         axios
           .get(`/api/geocode?city=${debouncedValue}`)
-          .then((resp) => dispatch(setCityName(resp.data)))
-          .then(() => router.back());
+          .then((resp) => dispatch(setCityName(resp.data)));
+        // .then(() => router.back());
       } catch (e: unknown) {
         //redirect to error page
         throw new Error(e as string);

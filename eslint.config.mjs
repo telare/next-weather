@@ -17,10 +17,9 @@ const eslintConfig = [
       semi: ["warn"],
       quotes: ["error", "double"],
       "prefer-arrow-callback": "error",
-
       "sonarjs/no-implicit-dependencies": "off",
-
       "no-console": "error",
+      "react-hooks/exhaustive-deps": "off",
     },
   }),
 ];

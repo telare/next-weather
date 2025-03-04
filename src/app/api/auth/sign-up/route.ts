@@ -8,7 +8,16 @@ export async function POST(req: Request) {
   const userData: User | undefined = await req.json();
   if (userData && req.method === "POST") {
     try {
-      const user_hashed_pass = bcrypt.hashSync(userData.password, 10);
+      const user_hashed_pass = await bcrypt.hash(userData.password, 10);
+      const isUserInfo = await prisma.user.findUnique({
+        where: { email: (userData as User).email },
+      });
+      if (isUserInfo) {
+        return NextResponse.json(
+          { message: "User already exists" },
+          { status: 409 }
+        );
+      }
       await prisma.user.create({
         data: {
           id: userData.id,
@@ -36,13 +45,7 @@ export async function POST(req: Request) {
         sameSite: "lax",
         path: "/",
       });
-      return NextResponse.json(
-        {
-          message: "User registered",
-          token: token,
-        },
-        { status: 201 }
-      );
+      return NextResponse.json({ message: "User registered" }, { status: 201 });
     } catch (e) {
       return NextResponse.json({ message: `Error: ${e}` }, { status: 500 });
     } finally {

@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { User } from "@/shared/types/User";
 import { useRouter } from "next/navigation";
+import { customToast } from "../Toast/Toast";
 type FormProps = {
   schema: ObjectSchema<FieldValues, AnyObject>;
   title: React.ReactElement;
@@ -40,12 +41,19 @@ export default function Form({ schema, title, type }: FormProps) {
           },
           body: JSON.stringify(userData),
         });
-        const result = await res;
-        if (result.status === 201) {
+        const result = await res.json();
+        if (res.status === 201) {
+          customToast(
+            "Sign up approved, welcome",
+            "Now you can use all features.",
+            "success"
+          );
           router.push("/home");
+        } else {
+          customToast("Sign up failed", result.message, "error");
         }
       } catch (e: unknown) {
-        //redirect to error page
+        customToast("Error happenned", "Someting failed", "error");
         throw new Error(e as string);
       }
     }
@@ -64,12 +72,22 @@ export default function Form({ schema, title, type }: FormProps) {
         isUserVerifed: boolean;
       } = await res.json();
       if (userData.isUserVerifed === true) {
+        customToast(
+          "Log in approved, welcome",
+          "Now you can use all features.",
+          "success"
+        );
         router.push("/home");
       } else {
+        customToast("Log in failed, try again", "Invalid credentials", "error");
         router.push("/auth/sign-up");
       }
     } catch (e: unknown) {
-      //redirect to error page
+      customToast(
+        "Error happenned",
+        "Someting failed during the procces",
+        "error"
+      );
       throw new Error(e as string);
     }
   }
