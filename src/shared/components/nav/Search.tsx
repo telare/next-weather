@@ -38,8 +38,8 @@ export default function Search() {
       try {
         axios
           .get(`/api/geocode?city=${debouncedValue}`)
-          .then((resp) => dispatch(setCityName(resp.data)));
-        // .then(() => router.back());
+          .then((resp) => dispatch(setCityName(resp.data)))
+          .then(() => router.back());
       } catch (e: unknown) {
         //redirect to error page
         throw new Error(e as string);

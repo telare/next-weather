@@ -23,6 +23,7 @@ import {
   Thermometer,
   Eye,
   CalendarDays,
+  XIcon,
 
   UsersRound,
   Moon,
@@ -57,3 +58,5 @@ export const userIcon = <UsersRound />;
 export const lightThemeIcon = <SunDim />;
 export const nightThemeIcon = <Moon />;
 export const githubIcon = <Github/>;
+
+export const closeIcon = <XIcon />;

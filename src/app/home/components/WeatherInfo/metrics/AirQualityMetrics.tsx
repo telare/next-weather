@@ -3,8 +3,14 @@ import MetricCart from "@/shared/components/Carts/MetricCart";
 import styles from "../../../styles/WeatherInfo.module.scss";
 import { useContext } from "react";
 import { DataContext } from "@/providers/data-provider";
-import { humidityIcon, pressureIcon, thermometerIcon, visibilityIcon } from "@/utils/Icons";
+import {
+  humidityIcon,
+  pressureIcon,
+  thermometerIcon,
+  visibilityIcon,
+} from "@/utils/Icons";
 import { descriptionBuilder } from "@/utils/descriptionbuilder";
+import { Skeleton } from "@/components/ui/skeleton";
 export default function AirQualityMetrics() {
   const weather = useContext(DataContext);
   if (weather.isError) {
@@ -19,7 +25,10 @@ export default function AirQualityMetrics() {
           icon={humidityIcon}
           size="standart"
           mainInfo={`${weather.data.currentWeather.other.humidity} %`}
-          description={descriptionBuilder({title:"humidity", value:weather.data.currentWeather.other.humidity})}
+          description={descriptionBuilder({
+            title: "humidity",
+            value: weather.data.currentWeather.other.humidity,
+          })}
         />
 
         {/* pressure cart */}
@@ -28,7 +37,10 @@ export default function AirQualityMetrics() {
           icon={pressureIcon}
           size="standart"
           mainInfo={`${weather.data.currentWeather.other.pressure} Pa`}
-          description={descriptionBuilder({title:"pressure", value: weather.data.currentWeather.other.pressure})}
+          description={descriptionBuilder({
+            title: "pressure",
+            value: weather.data.currentWeather.other.pressure,
+          })}
         />
 
         {/* visibility cart */}
@@ -36,8 +48,11 @@ export default function AirQualityMetrics() {
           title="Visibility"
           icon={visibilityIcon}
           size="standart"
-          mainInfo={`${weather.data.currentWeather.other.visibility/ 100} %`}
-          description={descriptionBuilder({title:"visibility", value: weather.data.currentWeather.other.visibility})}
+          mainInfo={`${weather.data.currentWeather.other.visibility / 100} %`}
+          description={descriptionBuilder({
+            title: "visibility",
+            value: weather.data.currentWeather.other.visibility,
+          })}
         />
 
         {/* feels like cart */}
@@ -46,7 +61,10 @@ export default function AirQualityMetrics() {
           icon={thermometerIcon}
           size="standart"
           mainInfo={`${Math.floor(weather.data.currentWeather.temperature.feels_like)}°`}
-          description={descriptionBuilder({title:"feelslike", value: weather.data.currentWeather.temperature.feels_like})}
+          description={descriptionBuilder({
+            title: "feelslike",
+            value: weather.data.currentWeather.temperature.feels_like,
+          })}
         />
       </div>
     );

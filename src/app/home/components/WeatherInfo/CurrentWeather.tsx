@@ -8,11 +8,19 @@ import Clock from "@/app/home/components/WeatherInfo/Clock";
 import Image from "next/image";
 import { windIcon } from "@/utils/Icons";
 import { descriptionBuilder } from "@/utils/descriptionbuilder";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function CurrentWeather() {
   const weather = useContext(DataContext);
   if (weather.isError) {
     throw new Error("401 - unathorized. Log in or sign up please");
+  }
+  if (weather.isLoading) {
+    return (
+      <div className={styles.current_weather__con}>
+        <Skeleton>Loading...</Skeleton>
+      </div>
+    );
   }
   if (!weather.isError && weather.data) {
     const windRenderComponent = (
@@ -80,4 +88,5 @@ export default function CurrentWeather() {
       </div>
     );
   }
+  return <div className={styles.current_weather__con}></div>;
 }

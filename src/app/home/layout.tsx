@@ -10,7 +10,7 @@ export default function HomeLayout({
   searchModal: React.ReactNode;
 }) {
   return (
-    <div style={{ backgroundColor: "inherit", border: "inherit" }}>
+    <div style={{ backgroundColor: "inherit", border: "inherit", width:"80%" }}>
       <TanStackProvider>
         <GlobalStore>
         {searchModal}
