@@ -1,0 +1,14 @@
+@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/div_mixin" as global_mixins;
+@keyframes loading {
+  from {
+    background-color: gray;
+  }
+  to {
+  }
+}
+
+.main__con {
+  @include global_mixins.div-style();
+  animation: loading 1.5s infinite;
+}

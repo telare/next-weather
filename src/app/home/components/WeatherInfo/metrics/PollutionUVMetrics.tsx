@@ -6,19 +6,13 @@ import { DataContext } from "@/providers/data-provider";
 import { lightThemeIcon, pollutionIcon } from "@/utils/Icons";
 import { descriptionBuilder } from "@/utils/descriptionbuilder";
 import UvPollutionProgressBar from "@/shared/components/ProgressBar/UvPollutionProgressBar";
-import { Skeleton } from "@/components/ui/skeleton";
+import Skeleton from "@/shared/components/Skeletons/Skeleton";
 export default function PollutionUV() {
   const weather = useContext(DataContext);
   if (weather.isError) {
     throw new Error("401 - unathorized. Log in or sign up please");
   }
-  if (weather.isLoading) {
-    return (
-      <Skeleton className={styles.metric__con}>
-        Loading...
-      </Skeleton>
-    );
-  }
+  if (weather.isLoading)return <Skeleton className={styles.metric__con}/>;
 
   if (!weather.isError && weather.data) {
     return (

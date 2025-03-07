@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { Layout } from "@/shared/types/Layout";
 import React from "react";
 import "@shared/styles/global.scss";
+// import "./globals.css";
 import { Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 

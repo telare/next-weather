@@ -11,9 +11,13 @@ import "leaflet/dist/leaflet.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, setCityName } from "@/providers/global-store";
 import L from "leaflet";
+import { useContext } from "react";
+import { DataContext } from "@/providers/data-provider";
+import Skeleton from "@/shared/components/Skeletons/Skeleton";
 
 export default function Map() {
   const { value } = useSelector((state: RootState) => state.cityName);
+  const weather = useContext(DataContext);
   const dispatch = useDispatch();
   const { lat, lon } = value;
   const customIcon = L.icon({
@@ -40,6 +44,8 @@ export default function Map() {
     map.flyTo([Number(lat), Number(lon)]);
     return null;
   }
+  if (weather.isLoading) return <Skeleton className={styles.left__col_map} />;
+
   return (
     <div className={styles.left__col_map}>
       <MapContainer

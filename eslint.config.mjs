@@ -14,7 +14,7 @@ const eslintConfig = [
     extends: ["next/core-web-vitals", "next/typescript", "prettier"],
     plugins: ["sonarjs"],
     rules: {
-      semi: ["warn"],
+      semi: ["error"],
       quotes: ["error", "double"],
       "prefer-arrow-callback": "error",
       "sonarjs/no-implicit-dependencies": "off",

@@ -5,11 +5,13 @@ import { useContext } from "react";
 import { DataContext } from "@/providers/data-provider";
 import { weatherIconPicker } from "@/utils/weatherIconPicker";
 import { descriptionBuilder } from "@/utils/descriptionbuilder";
+import Skeleton from "@/shared/components/Skeletons/Skeleton";
 export default function WeekForecast() {
   const weather = useContext(DataContext);
   if (weather.isError) {
     throw new Error("401 - unathorized. Log in or sign up please");
   }
+  if (weather.isLoading) return <Skeleton className={styles.left__col_forecast} />;
   if (!weather.isError && weather.data) {
     return (
       <div className={styles.left__col_forecast}>
@@ -31,5 +33,4 @@ export default function WeekForecast() {
       </div>
     );
   }
-  return <div className={styles.left__col_forecast}></div>;
 }
