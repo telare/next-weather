@@ -8,12 +8,12 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "postinstall": "if [ \"$VERCEL\" != \"1\" ]; then husky install; fi"
+    "postinstall": "prisma generate && if [ \"$VERCEL\" != \"1\" ]; then husky install; fi"
   },
   "dependencies": {
     "@heroui/skeleton": "^2.2.9",
     "@hookform/resolvers": "^4.0.0",
-    "@prisma/client": "^6.3.1",
+    "@prisma/client": "^6.5.0",
     "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-dropdown-menu": "^2.1.6",
     "@radix-ui/react-visually-hidden": "^1.1.2",
