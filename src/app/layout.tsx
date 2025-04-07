@@ -13,6 +13,10 @@ const space_grotesk = Space_Grotesk({
 export default function RootLayout({ children }: Layout) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="apple-mobile-web-app-title" content="NextWeather" />
+        {/* <link rel="icon" href="/img/favicon.png" /> */}
+      </head>
       <body
         style={{
           border: "none",
@@ -28,7 +32,7 @@ export default function RootLayout({ children }: Layout) {
           disableTransitionOnChange
         >
           {children}
-          <Toaster position="top-right"/>
+          <Toaster position="top-right" />
         </ThemeProvider>
       </body>
     </html>

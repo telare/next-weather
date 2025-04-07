@@ -16,7 +16,7 @@ export default function Links() {
             Home
           </Link>
         </li>
-        <li>
+        {/* <li>
           <Link
             href="/favorite"
             className={
@@ -27,7 +27,7 @@ export default function Links() {
           >
             Favorite
           </Link>
-        </li>
+        </li> */}
       </ul>
     </div>
   );

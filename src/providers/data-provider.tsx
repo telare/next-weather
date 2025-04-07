@@ -45,33 +45,65 @@ export default function DataProvider({ children }: Layout) {
         const currentWeatherResp = await axios.get(
           `/api/current-weather?lon=${cityName.lon}&lat=${cityName.lat}`
         );
-        const currentWeatherData = currentWeatherResp.data;
+        // const currentWeatherData = currentWeatherResp.data;
 
         const pollutionResp = await axios.get(
           `/api/current-weather/pollution?lon=${cityName.lon}&lat=${cityName.lat}`
         );
-        const pollutionData = pollutionResp.data;
+        // const pollutionData = pollutionResp.data;
 
         const uvResp = await axios.get(
           `/api/current-weather/uv-index?lon=${cityName.lon}&lat=${cityName.lat}`
         );
-        const uvData = uvResp.data;
+        // const uvData = uvResp.data;
 
         const weekForecastResp = await axios.get(
           `/api/current-weather/week-forecast?lon=${cityName.lon}&lat=${cityName.lat}`
         );
-        const weekForecastData = weekForecastResp.data;
-        const weatherData = {
-          currentWeather: currentWeatherData,
-          other: {
-            pollution: pollutionData,
-            uv: uvData,
-            weekForecast: weekForecastData,
-          },
-        };
+        // const weekForecastData = weekForecastResp.data;
+
+        const weatherData = Promise.all([
+          currentWeatherResp,
+          pollutionResp,
+          uvResp,
+          weekForecastResp,
+        ])
+          .then(
+            async ([
+              currentWeatherResp,
+              pollutionResp,
+              uvResp,
+              weekForecastResp,
+            ]) => {
+              const currentWeatherData = currentWeatherResp.data;
+              const pollutionData = pollutionResp.data;
+              const uvData = uvResp.data;
+              const weekForecastData = weekForecastResp.data;
+              return {
+                currentWeather: currentWeatherData,
+                other: {
+                  pollution: pollutionData,
+                  uv: uvData,
+                  weekForecast: weekForecastData,
+                },
+              };
+            }
+          )
+          .catch((error) => {
+            throw new Error("Error in fetching data", error);
+          });
+        // const weatherData = {
+        //   currentWeather: currentWeatherData,
+        //   other: {
+        //     pollution: pollutionData,
+        //     uv: uvData,
+        //     weekForecast: weekForecastData,
+        //   },
+        // };
         return weatherData;
       } else {
-        throw new Error("Latitude and Longitude are required");
+        // throw new Error("Latitude and Longitude are required");
+        return undefined;
       }
     } catch (e: unknown) {
       throw new Error(e as string);
