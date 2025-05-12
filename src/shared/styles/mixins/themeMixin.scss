@@ -1,0 +1,11 @@
+@use "@shared/styles/variables/variables.module" as globalVariables;
+@mixin theme-toggle($currentTheme: light) {
+  @if $currentTheme == light {
+    background-color: white;
+    color: black;
+  }
+  @if $currentTheme == dark {
+    background-color: black;
+    color: white;
+  }
+}

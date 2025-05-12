@@ -1,14 +1,14 @@
-@use "@shared/styles/mixins/div_mixin" as global_mixins;
-@use "@shared/styles/variables/variables.module" as global_variables;
-.main__con {
-  @include global_mixins.section-div-style();
+@use "@shared/styles/mixins/divMixin" as global_mixins;
+@use "@shared/styles/variables/variables.module" as globalVariables;
+.wrapper {
+  @include global_mixins.sectionDiv();
   // height: 600px;
   gap: 2%;
 }
 
 // current weather
 .current_weather__con {
-  @include global_mixins.big-div-style();
+  @include global_mixins.bigDiv();
   padding: 20px;
   justify-content: center;
   flex-direction: column;
@@ -16,13 +16,13 @@
 }
 
 .current_weather__con_header {
-  @include global_mixins.large-div-style();
+  @include global_mixins.largeDiv();
   justify-content: space-between;
   border: none;
   width: 90%;
 }
 .current_weather__con_current_temp {
-  @include global_mixins.div-style();
+  @include global_mixins.baseDiv();
   width: 90%;
   height: 40%;
   flex-direction: column;
@@ -32,7 +32,7 @@
   }
 
   div:nth-child(1) {
-    @include global_mixins.div-style();
+    @include global_mixins.baseDiv();
     width: 100%;
     border: none;
     height: 30%;
@@ -40,7 +40,7 @@
     align-items: flex-end;
   }
   div:nth-child(2) {
-    @include global_mixins.div-style();
+    @include global_mixins.baseDiv();
     width: 100%;
     border: none;
     height: 50%;
@@ -48,14 +48,14 @@
 }
 
 .current_weather__con_footer {
-  @include global_mixins.div-style();
+  @include global_mixins.baseDiv();
   width: 90%;
   gap: 10%;
   border: none;
   justify-content: space-between;
 }
 .wind__compass_con {
-  @include global_mixins.div-style();
+  @include global_mixins.baseDiv();
   width: 100%;
   height: 100%;
   border: none;
@@ -75,7 +75,7 @@
 
 // metrics
 .metrics__main_con {
-  @include global_mixins.large-div-style();
+  @include global_mixins.largeDiv();
   height: 90%;
   width: 60%;
   flex-direction: column;
@@ -83,7 +83,7 @@
 }
 
 .metric__con {
-  @include global_mixins.large-div-style();
+  @include global_mixins.largeDiv();
   border: none;
   height: 50%;
   display: flex;

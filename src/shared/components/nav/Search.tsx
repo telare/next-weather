@@ -47,7 +47,7 @@ export default function Search() {
     }
   }, [debouncedValue, dispatch, router]);
   return (
-    <div className={styles.search_main__con}>
+    <div className={styles.search_wrapper}>
       <input
         type="text"
         placeholder="Search Here..."

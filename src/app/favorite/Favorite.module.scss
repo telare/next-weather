@@ -1,5 +1,5 @@
-@use "@shared/styles/variables/variables.module" as global_variables;
-.main__con {
+@use "@shared/styles/variables/variables.module" as globalVariables;
+.wrapper {
   justify-content: center;
   align-items: center;
   display: flex;

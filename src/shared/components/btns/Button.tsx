@@ -2,6 +2,7 @@ import Image from "next/image";
 
 type Button = {
   title?: string;
+  alt: string;
   type: "submit" | "reset" | "button" | undefined;
   image?: {
     src: string;
@@ -10,7 +11,7 @@ type Button = {
   };
   icon?: React.ReactElement;
 
-  func: () => void;
+  func?: () => void;
   width?: string | number;
   style?: string;
 };
@@ -21,12 +22,13 @@ export default function Button({
   icon,
   type,
   style,
+  alt
 }: Button) {
   return (
     <button onClick={func} type={type} className={style}>
-      {image && (
+      {image && ( 
         <Image
-          alt="img"
+          alt={`${alt} button`}
           src={image.src}
           width={image.width}
           height={image.height}

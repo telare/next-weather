@@ -23,9 +23,9 @@ export default function SignUpPage() {
     </div>
   );
   return (
-    <div className={styles.main__con}>
-      <div className={styles.form__con}>
-        <div className={styles.themeBtn__con}>
+    <div className={styles.wrapper}>
+      <div className={styles.formCon}>
+        <div className={styles.navThemeBtnCon}>
           <ThemeToggleBtn />
         </div>
         <Form schema={signUpSchema} title={title} type="sign-up" />

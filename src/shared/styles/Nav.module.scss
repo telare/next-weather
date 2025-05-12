@@ -1,9 +1,9 @@
-@use "@shared/styles/mixins/div_mixin.scss" as global_div_mixins;
-@use "@shared/styles/mixins/btn_mixin.scss" as global_btn_mixins;
-@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/divMixin.scss" as globalDivMixins;
+@use "@shared/styles/mixins/btnMixin.scss" as globalBtnMixins;
+@use "@shared/styles/variables/variables.module" as globalVariables;
 // nav
-.nav_main__con {
-  @include global_div_mixins.large-div-style();
+.navCon {
+  @include globalDivMixins.largeDiv();
   height: 5%;
   width: 100%;
   display: grid;
@@ -12,7 +12,7 @@
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 }
-.nav_child__con {
+.navContent {
   display: flex;
   grid-area: 1 / 2 / 2 / 3;
   justify-content: flex-end;
@@ -20,9 +20,8 @@
   column-gap: 20px;
   padding-right: 15px;
 }
-//   Links
-.links_main__con {
-  @include global_div_mixins.large-div-style();
+.navLinksCon {
+  @include globalDivMixins.largeDiv();
   border: none;
   height: 90%;
   width: 100%;
@@ -45,21 +44,21 @@
       color: black;
     }
   }
-}
-.links_link {
-  all: unset;
-}
-.links_link__active {
-  all: unset;
-  text-decoration: underline;
-  text-decoration-color: white;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 2px;
+
+  .link {
+    all: unset;
+    &Active {
+      all: unset;
+      text-decoration: underline;
+      text-decoration-color: white;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 2px;
+    }
+  }
 }
 
-//   Search
-.search_main__con {
-  @include global_div_mixins.large-div-style();
+.search_wrapper {
+  @include globalDivMixins.largeDiv();
   font-size: 16px;
   justify-content: flex-start;
   height: 30px;
@@ -86,14 +85,14 @@
   justify-content: center;
   align-items: center;
   div {
-    @include global_div_mixins.div-style();
+    @include globalDivMixins.baseDiv();
     border-width: 2px;
     height: 20%;
   }
 }
 
-.git_btn {
-  @include global_btn_mixins.btn();
+.navGitBtn {
+  @include globalBtnMixins.btn();
   width: 150px;
   height: 50px;
   font-size: 16px;
@@ -102,15 +101,15 @@
   gap: 4%;
 }
 
-.auth_btn {
-  @include global_btn_mixins.btn();
+.navLogOutBtn {
+  @include globalBtnMixins.btn();
   height: 50px;
   width: 15%;
   font-size: 16px;
   border: solid;
 }
-.theme_btn {
-  @include global_btn_mixins.btn();
+.navThemeBtn {
+  @include globalBtnMixins.btn();
   width: 50px;
   height: 50px;
   border: none;

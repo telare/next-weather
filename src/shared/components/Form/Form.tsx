@@ -9,13 +9,14 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { User } from "@/shared/types/User";
 import { useRouter } from "next/navigation";
+import { handleAuthentication } from "./utils/utils";
 import { customToast } from "../Toast/Toast";
-type FormProps = {
+export type AuthFormProps = {
   schema: ObjectSchema<FieldValues, AnyObject>;
   title: React.ReactElement;
   type: "log-in" | "sign-up";
 };
-export default function Form({ schema, title, type }: FormProps) {
+export default function Form({ schema, title, type }: AuthFormProps) {
   const router = useRouter();
   const pathname = usePathname();
   type Form = InferType<typeof schema>;
@@ -24,81 +25,21 @@ export default function Form({ schema, title, type }: FormProps) {
   });
   const fields: string[] = Object.keys(schema.fields);
   const { handleSubmit } = methods;
-
-  async function signUp(data: Form): Promise<void> {
-    if ("name" in data && "email" in data && "password" in data) {
-      const userData: User = {
-        id: self.crypto.randomUUID(),
-        name: (data as User).name,
-        email: (data as User).email,
-        password: (data as User).password,
-      };
-      try {
-        const res = await fetch("/api/auth/sign-up", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData),
-        });
-        const result = await res.json();
-        if (res.status === 201) {
-          customToast(
-            "Sign up approved, welcome",
-            "Now you can use all features.",
-            "success"
-          );
-          router.push("/home");
-        } else {
-          customToast("Sign up failed", result.message, "error");
-        }
-      } catch (e: unknown) {
-        customToast("Error happenned", "Someting failed", "error");
-        throw new Error(e as string);
-      }
-    }
-  }
-
-  async function logIn(data: Form): Promise<void> {
-    try {
-      const res = await fetch("/api/auth/log-in", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
+  function onSubmit(data: Form) {
+    handleAuthentication(data as User, type)
+      .then((res) => {
+        customToast("Authentication passed, wellcome", res, "success");
+        return router.push("/home");
+      })
+      .catch((e) => {
+        customToast("Authentication failed", e, "error");
+        return router.push("/auth/sign-up");
       });
-      const userData: {
-        isUserVerifed: boolean;
-      } = await res.json();
-      if (userData.isUserVerifed === true) {
-        customToast(
-          "Log in approved, welcome",
-          "Now you can use all features.",
-          "success"
-        );
-        router.push("/home");
-      } else {
-        customToast("Log in failed, try again", "Invalid credentials", "error");
-        router.push("/auth/sign-up");
-      }
-    } catch (e: unknown) {
-      customToast(
-        "Error happenned",
-        "Someting failed during the procces",
-        "error"
-      );
-      throw new Error(e as string);
-    }
   }
-
   return (
     <FormProvider {...methods}>
-      <form
-        className={styles.main__con}
-        onSubmit={handleSubmit(type === "log-in" ? logIn : signUp)}
-      >
-        <div className={styles.title}>{title}</div>
+      <form className={styles.formCon} onSubmit={handleSubmit(onSubmit)}>
+        <div className={styles.formHeader}>{title}</div>
 
         {fields.map((field, i) => (
           <FormField
@@ -111,13 +52,13 @@ export default function Form({ schema, title, type }: FormProps) {
 
         <Button
           title="Continue"
-          func={type === "log-in" ? () => logIn : () => signUp}
+          alt="Continue"
           width={50}
           type="submit"
-          style={styles.main__btn}
+          style={styles.submitBtn}
         />
       </form>
-      <div className={styles.link__con}>
+      <div className={styles.navigationLinks}>
         {pathname === "/auth/sign-up" ? (
           <p>
             Already have account?<Link href="/auth/log-in">Log In</Link>

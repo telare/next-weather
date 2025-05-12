@@ -7,9 +7,9 @@ import styles from "@shared/styles/Nav.module.scss";
 import GitBtn from "../btns/GitBtn";
 export default function Nav() {
   return (
-    <div className={styles.nav_main__con} tabIndex={0}>
+    <div className={styles.navCon} tabIndex={0}>
       <Links />
-      <div className={styles.nav_child__con}>
+      <div className={styles.navContent}>
         <Search />
         <ThemeToggleBtn />
         <GitBtn />

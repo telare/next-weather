@@ -1,7 +1,7 @@
-@use "@shared/styles/mixins/div_mixin" as global_div_mixin;
-@use "@shared/styles/mixins/btn_mixin" as global_btn_mixin;
-.main__con {
-  @include global_div_mixin.section-div-style();
+@use "@shared/styles/mixins/divMixin" as globalDivMixin;
+@use "@shared/styles/mixins/btnMixin" as globalBtnMixin;
+.errorCon {
+  @include globalDivMixin.sectionDiv();
   flex-direction: column;
   border: none;
   h2 {
@@ -9,8 +9,8 @@
   }
   
 }
-.reset_btn {
-  @include global_btn_mixin.btn();
+.resetBtn {
+  @include globalBtnMixin.btn();
   width: 10%;
   height: 7%;
   @media (prefers-color-scheme: 'dark') {

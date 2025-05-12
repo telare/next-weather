@@ -12,14 +12,13 @@ export default function FormField({ name, type, placeholder }: FormField) {
     formState: { errors },
   } = useFormContext();
   return (
-    <div className={styles.field__con}>
+    <div className={styles.formField}>
       <input
         placeholder={placeholder.charAt(0).toUpperCase() + placeholder.slice(1)}
         type={type}
         {...register(name)}
-        className={styles.field}
       />
-      <div>{errors[name]?.message && <p>{errors[name]?.message.toString()}</p>}</div>
+      <div className={styles.errorMessage}>{errors[name]?.message && <p>{errors[name]?.message.toString()}</p>}</div>
     </div>
   );
 }

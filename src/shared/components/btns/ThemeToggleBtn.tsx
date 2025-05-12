@@ -14,25 +14,25 @@ export default function ThemeToggleBtn() {
     return (
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
-          <button className={styles.theme_btn}>
+          <button className={styles.navThemeBtn}>
             {theme === "dark" ? nightThemeIcon : lightThemeIcon}
           </button>
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="dropdown-content">
+        <DropdownMenu.Content className="dropdownContent">
           <DropdownMenu.Item
-            className="dropdown-item"
+            className="dropdownItem"
             onSelect={() => setTheme("light")}
           >
             Light
           </DropdownMenu.Item>
           <DropdownMenu.Item
-            className="dropdown-item"
+            className="dropdownItem"
             onSelect={() => setTheme("dark")}
           >
             Dark
           </DropdownMenu.Item>
           <DropdownMenu.Item
-            className="dropdown-item"
+            className="dropdownItem"
             onSelect={() => setTheme("system")}
           >
             System

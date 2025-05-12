@@ -1,7 +1,7 @@
-@use "@shared/styles/mixins/div_mixin" as global_div_mixins;
-@use "@shared/styles/mixins/btn_mixin" as global_btn_mixins;
-.main__con {
-  @include global_div_mixins.div-style();
+@use "@shared/styles/mixins/divMixin" as globalDivMixins;
+@use "@shared/styles/mixins/btnMixin" as globalBtnMixins;
+.modalCon {
+  @include globalDivMixins.baseDiv();
   position: fixed;
   top: 0;
   left: 0;
@@ -14,12 +14,12 @@
   overflow: hidden;
   box-sizing: border-box;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   border: none;
 }
 
-.close_btn {
-  @include global_btn_mixins.btn();
+.closeBtn{
+  @include globalBtnMixins.btn();
   background-color: transparent;
   width: 50px;
   height: 50px;

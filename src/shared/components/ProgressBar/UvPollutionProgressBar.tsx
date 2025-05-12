@@ -4,10 +4,10 @@ type ProgressBarProps = {
 };
 export default function UvPollutionProgressBar({ value }: ProgressBarProps) {
   return (
-    <div className={styles.main__con}>
+    <div className={styles.progressBarCon}>
       <div
-        className={styles.progress__element}
-        style={{ marginLeft:`${value - 5}%` }}
+        className={styles.progressBarElement}
+        style={{ marginLeft: `${value - 5}%` }}
       ></div>
     </div>
   );

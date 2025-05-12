@@ -4,13 +4,13 @@ import { usePathname } from "next/navigation";
 export default function Links() {
   const pathName = usePathname();
   return (
-    <div className={styles.links_main__con}>
+    <div className={styles.navLinksCon}>
       <ul>
         <li>
           <Link
             href="/home"
             className={
-              pathName === "/home" ? styles.links_link__active : styles.links_link
+              pathName === "/home" ? styles.linkActive : styles.link
             }
           >
             Home
@@ -21,8 +21,8 @@ export default function Links() {
             href="/favorite"
             className={
               pathName === "/favorite"
-                ? styles.links_link__active
-                : styles.links_link
+                ? styles.linkActive
+                : styles.link
             }
           >
             Favorite

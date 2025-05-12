@@ -1,21 +1,22 @@
-@use "@shared/styles/variables/variables.module" as global_variables;
-@use "@shared/styles/mixins/div_mixin" as global_mixins;
-.main__con {
-  height: 100vh;
+@use "@shared/styles/variables/variables.module" as globalVariables;
+@use "@shared/styles/mixins/divMixin" as global_mixins;
+.wrapper {
+  height: 100dvh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+
   color:inherit;
 }
-.form__con {
-  @include global_mixins.div-style();
-  height: 90vh;
-  width: 90vw;
+.formCon{
+  @include global_mixins.baseDiv();
+  height: 90dvh;
+  width: 90dvw;
   flex-direction: column;
 }
-.themeBtn__con {
-  @include global_mixins.large-div-style();
+.navThemeBtnCon{
+  @include global_mixins.largeDiv();
   justify-content: flex-end;
   border: none;
 }

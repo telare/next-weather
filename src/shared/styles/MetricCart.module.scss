@@ -1,44 +1,48 @@
-@use "@shared/styles/variables/variables.module" as global_variables;
-@use "@shared/styles/mixins/div_mixin" as global_mixins;
-.main__con {
-  @include global_mixins.standart-div-style();
+@use "@shared/styles/variables/variables.module" as globalVariables;
+@use "@shared/styles/mixins/divMixin" as globalMixins;
+
+.container {
+  @include globalMixins.standardDiv();
   padding: 20px 5px;
   flex-direction: column;
 }
-.main__con_large {
-  @include global_mixins.div-style();
+
+.containerLarge {
+  @include globalMixins.baseDiv();
   width: 420px;
   flex-direction: column;
   height: 180px;
 }
-.main__con_header {
-  @include global_mixins.large-div-style();
+
+.header {
+  @include globalMixins.largeDiv();
   height: 10%;
   width: 90%;
   border: none;
   justify-content: flex-start;
   gap: 5%;
+  
   h3 {
     font-size: 20px;
     font-weight: 500;
   }
 }
 
-.main__con_render_component {
-  @include global_mixins.small-div-style();
+.content {
+  @include globalMixins.smallDiv();
   width: 90%;
   padding: 10px;
   justify-content: flex-start;
-
   border: none;
+
   h2 {
     font-size: 40px;
     font-weight: 500;
   }
 }
 
-.main__con_footer {
-  @include global_mixins.large-div-style();
+.footer {
+  @include globalMixins.largeDiv();
   width: 90%;
   height: 20%;
   border: none;

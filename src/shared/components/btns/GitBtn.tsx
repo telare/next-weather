@@ -8,9 +8,10 @@ export default function GitBtn() {
   return (
     <Button
       type="button"
+      alt="GitHub"
       title="Source code"
       func={() => router.push("https://github.com/telare/next-weather")}
-      style={styles.git_btn}
+      style={styles.navGitBtn}
       width={40}
       icon={githubIcon}
     />

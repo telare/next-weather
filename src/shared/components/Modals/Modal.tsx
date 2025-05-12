@@ -20,7 +20,7 @@ export default function Modal({ children, onOpenChange }: Layout & ModalProps) {
   return (
     <Dialog defaultOpen={true} modal={true} onOpenChange={onOpenChange}>
       <DialogOverlay>
-        <DialogContent className={styles.main__con}>
+        <DialogContent className={styles.modalCon}>
           <VisuallyHidden>
             <DialogTitle></DialogTitle>
             <DialogDescription />
@@ -28,9 +28,10 @@ export default function Modal({ children, onOpenChange }: Layout & ModalProps) {
           {children}
             <Button
               type="button"
+              alt="Close modal"
               icon={closeIcon}
               func={onOpenChange}
-              style={styles.close_btn}
+              style={styles.closeBtn}
             />
         </DialogContent>
       </DialogOverlay>

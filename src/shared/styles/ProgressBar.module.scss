@@ -1,8 +1,8 @@
-@use "@shared/styles/mixins/div_mixin" as global_div_mixins;
-@use "@shared/styles/variables/variables.module" as global_variables;
+@use "@shared/styles/mixins/divMixin" as globalDivMixins;
+@use "@shared/styles/variables/variables.module" as globalVariables;
 
-.main__con {
-  @include global_div_mixins.div-style();
+.progressBarCon {
+  @include globalDivMixins.baseDiv();
   width: 100%;
   height: 3%;
   border:none;
@@ -10,8 +10,8 @@
   justify-content: flex-start;
 }
 
-.progress__element {
-  @include global_div_mixins.div-style();
+.progressBarElement {
+  @include globalDivMixins.baseDiv();
   width: 1%;
   border-radius: 20px;
   height: 100%;

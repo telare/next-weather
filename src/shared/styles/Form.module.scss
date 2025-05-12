@@ -1,16 +1,18 @@
-@use "@shared/styles/variables/variables.module" as global_variables;
-@use "@shared/styles/mixins/div_mixin" as global_div_mixins;
-@use "@shared/styles/mixins/btn_mixin" as global_btn_mixins;
-.main__con {
-  @include global_div_mixins.div-style();
+@use "@shared/styles/variables/variables.module" as globalVariables;
+@use "@shared/styles/mixins/divMixin" as globalDivMixins;
+@use "@shared/styles/mixins/btnMixin" as globalBtnMixins;
+
+.formCon {
+  @include globalDivMixins.baseDiv();
   width: 30%;
   height: 70%;
   flex-direction: column;
   padding: 2%;
   gap: 2%;
 }
-.title {
-  @include global_div_mixins.div-style();
+
+.formHeader {
+  @include globalDivMixins.baseDiv();
   width: 76%;
   height: 27%;
   border: none;
@@ -24,23 +26,25 @@
     text-align: center;
   }
 }
-.field__con {
-  @include global_div_mixins.large-div-style();
+
+.formField {
+  @include globalDivMixins.largeDiv();
   height: 14%;
   flex-direction: column;
   border: none;
   padding: 0;
   align-items: baseline;
   gap: 5%;
+
   input {
-    @include global_div_mixins.div-style();
+    @include globalDivMixins.baseDiv();
     width: 91%;
     height: 20%;
     padding: 4%;
   }
-  // error con
-  div:nth-child(2) {
-    @include global_div_mixins.div-style();
+
+  .errorMessage {
+    @include globalDivMixins.baseDiv();
     justify-content: flex-start;
     height: 5%;
     border: none;
@@ -51,14 +55,14 @@
   }
 }
 
-.main__btn {
-  @include global_btn_mixins.btn();
+.submitBtn {
+  @include globalBtnMixins.btn();
   width: 30%;
   height: 10%;
 }
 
-.link__con {
-  @include global_div_mixins.large-div-style();
+.navigationLinks {
+  @include globalDivMixins.largeDiv();
   height: 5vh;
   border: none;
 }

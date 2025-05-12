@@ -9,14 +9,15 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   return (
-    <div className={styles.main__con}>
+    <div className={styles.errorCon}>
       <h2>Something went wrong!</h2>
       <p>Error message: {error.message}</p>
       <Button
+        alt="Try again"
         func={() => redirect("/auth/log-in")}
         title="Try again"
         type="button"
-        style={styles.reset_btn}
+        style={styles.resetBtn}
       />
     </div>
   );

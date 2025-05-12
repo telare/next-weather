@@ -8,7 +8,7 @@ import WeekForecast from "./WeekForecast";
 import styles from "./styles/Footer.module.scss";
 export default function Footer() {
   return (
-    <div className={styles.main__con}>
+    <div className={styles.wrapper}>
       <div className={styles.left__col}>
         <WeekForecast />
         <Map />

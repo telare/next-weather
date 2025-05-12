@@ -1,5 +1,5 @@
 "use client";
-import styles from "../../styles/MetricCart.module.scss";
+import styles from "@shared/styles/MetricCart.module.scss";
 type MetricCart = {
   title?: string;
   description: string;
@@ -20,17 +20,17 @@ export default function MetricCart({
   return (
     <div
       className={
-        size === "standart" ? styles.main__con : styles.main__con_large
+        size === "standart" ? styles.container : styles.containerLarge
       }
     >
-      <div className={styles.main__con_header}>
+      <div className={styles.header}>
         {icon && icon}
         <h3>{title}</h3>
       </div>
-      <div className={styles.main__con_render_component}>
+      <div className={styles.content}>
         {renderComponent ? renderComponent : mainInfo}
       </div>
-      <div className={styles.main__con_footer}>
+      <div className={styles.footer}>
         <p>{description}</p>
       </div>
     </div>

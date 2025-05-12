@@ -1,6 +1,6 @@
-@use "@shared/styles/mixins/div_mixin" as global_div_mixin;
+@use "@shared/styles/mixins/divMixin" as globalDivMixin;
 .clock_main_clock {
-  @include global_div_mixin.large-div-style();
+  @include globalDivMixin.largeDiv();
   justify-content: space-between;
   border: none;
   width: 90%;

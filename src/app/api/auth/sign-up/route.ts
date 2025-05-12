@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { User } from "@/shared/types/User";
 import { NextResponse } from "next/server";
 import prisma from "@/app/clients/prismaClient";
+
 export async function POST(req: Request) {
   const userData: User | undefined = await req.json();
   if (userData && req.method === "POST") {
@@ -45,13 +46,13 @@ export async function POST(req: Request) {
         sameSite: "lax",
         path: "/",
       });
-      return NextResponse.json({ message: "User registered" }, { status: 201 });
+      return NextResponse.json({ message: "Successfully created account"}, { status: 201 });
     } catch (e) {
-      return NextResponse.json({ message: `Error: ${e}` }, { status: 500 });
+      return NextResponse.json({ message: `${e}` }, { status: 500 });
     } finally {
       await prisma.$disconnect();
     }
   } else {
-    return NextResponse.json({ message: "Bad request" }, { status: 500 });
+    return NextResponse.json({ message: "Bad request" }, { status: 400 });
   }
 }

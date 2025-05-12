@@ -20,14 +20,14 @@ export default function CurrentWeather() {
     const windRenderComponent = (
       <div className={styles.wind__compass_con}>
         <Image
-          alt="wind-compass"
+          alt="Wind direction compass"
           src={"/img/compass_body.svg"}
           width={300}
           height={300}
           className={styles.wind__compass_body}
         />
         <Image
-          alt="compass-arrow"
+          alt={`Wind direction arrow pointing ${weather.data.currentWeather.wind.deg}°`}
           src={"/img/compass_arrow.svg"}
           width={300}
           height={300}

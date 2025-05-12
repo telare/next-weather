@@ -4,7 +4,7 @@ import WeatherMain from "./components/WeatherInfo/WeatherInfo";
 import Footer from "./components/footer/Footer";
 export default function HomePage() {
   return (
-    <div className={styles.main__con}>
+    <div className={styles.wrapper}>
       <Nav />
       <WeatherMain />
       <Footer />

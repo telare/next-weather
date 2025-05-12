@@ -1,5 +1,5 @@
-@use "@shared/styles/variables/variables.module" as global_variables;
-@use "@shared/styles/mixins/div_mixin" as global_mixins;
+@use "@shared/styles/variables/variables.module" as globalVariables;
+@use "@shared/styles/mixins/divMixin" as global_mixins;
 @keyframes loading {
   from {
     background-color: gray;
@@ -8,7 +8,7 @@
   }
 }
 
-.main__con {
-  @include global_mixins.div-style();
+.wrapper {
+  @include global_mixins.baseDiv();
   animation: loading 1.5s infinite;
 }
