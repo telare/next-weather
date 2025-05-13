@@ -1,1 +1,1 @@
-https://next-weather-telares-projects.vercel.app/home
+https://next-weather-telares-projects.vercel.app
