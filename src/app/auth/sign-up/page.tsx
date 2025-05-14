@@ -1,8 +1,8 @@
 "use client";
 import styles from "../auth.module.scss";
-import Form from "@/shared/components/Form/Form";
+import Form from "@shared/components/Form/Form";
 import { object, string } from "yup";
-import ThemeToggleBtn from "@/shared/components/btns/ThemeToggleBtn";
+import ThemeToggleBtn from "@shared/components/btns/ThemeToggleBtn";
 export default function SignUpPage() {
   const signUpSchema = object({
     name: string().min(2, "At least 2 symbols").max(7, "Maximum 7 symbols"),

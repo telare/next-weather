@@ -1,7 +1,7 @@
 @use "@shared/styles/mixins/divMixin" as globalDivMixin;
 @use "@shared/styles/mixins/btnMixin" as globalBtnMixin;
 .errorCon {
-  @include globalDivMixin.sectionDiv();
+  @include globalDivMixin.div(section);
   flex-direction: column;
   border: none;
   h2 {

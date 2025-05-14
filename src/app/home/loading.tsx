@@ -1,16 +1,16 @@
-import Skeleton from "@/shared/components/Skeletons/Skeleton";
+import Skeleton from "@shared/components/Skeletons/Skeleton";
 import styles from "./styles/Home.module.scss";
-import nav_styles from "@shared/styles/Nav.module.scss";
-import main_styles from "./styles/WeatherInfo.module.scss";
+import navStyles from "@shared/styles/Nav.module.scss";
+import mainStyles from "./styles/WeatherInfo.module.scss";
 export default function Loading() {
   return (
-    <Skeleton className={styles.wrapper}>
+    <Skeleton className={styles.homeCon}>
       {/* nav */}
-      <Skeleton className={nav_styles.navCon} />
+      <Skeleton className={navStyles.navCon} />
       {/* main */}
-      <Skeleton className={main_styles.wrapper} />
+      <Skeleton className={mainStyles.containerMain} />
       {/* Footer */}
-      <Skeleton className={main_styles.wrapper} />
+      <Skeleton className={mainStyles.containerMain} />
     </Skeleton>
   );
 }

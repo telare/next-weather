@@ -1,4 +1,4 @@
-import { Weather } from "@/shared/types/Weather";
+import { Weather } from "@shared/types/Weather";
 import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {

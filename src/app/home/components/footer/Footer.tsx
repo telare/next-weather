@@ -1,21 +1,21 @@
 "use client";
 import dynamic from "next/dynamic";
-const Map = dynamic(() => import("./Map"), {
-  ssr: false, 
+const WeatherMap = dynamic(() => import("./WeatherMap"), {
+  ssr: false,
 });
+import styles from "./styles/Footer.module.scss";
 import TopRatedCities from "./TopRatedCities";
 import WeekForecast from "./WeekForecast";
-import styles from "./styles/Footer.module.scss";
 export default function Footer() {
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.left__col}>
+    <div className={styles.footerCon}>
+      <div className={styles.mainColumn}>
         <WeekForecast />
-        <Map />
+        <WeatherMap />
       </div>
-      <div className={styles.right__col}>
+      <aside className={styles.asideColumn}>
         <TopRatedCities />
-      </div>
+      </aside>
     </div>
   );
 }

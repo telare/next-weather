@@ -2,26 +2,26 @@
 @use "@shared/styles/mixins/divMixin" as globalMixins;
 
 .container {
-  @include globalMixins.standardDiv();
+  @include globalMixins.div(standard);
   padding: 20px 5px;
   flex-direction: column;
 }
 
 .containerLarge {
-  @include globalMixins.baseDiv();
+  @include globalMixins.div();
   width: 420px;
   flex-direction: column;
   height: 180px;
 }
 
 .header {
-  @include globalMixins.largeDiv();
+  @include globalMixins.div(large);
   height: 10%;
   width: 90%;
   border: none;
   justify-content: flex-start;
   gap: 5%;
-  
+
   h3 {
     font-size: 20px;
     font-weight: 500;
@@ -29,7 +29,7 @@
 }
 
 .content {
-  @include globalMixins.smallDiv();
+  @include globalMixins.div(small);
   width: 90%;
   padding: 10px;
   justify-content: flex-start;
@@ -42,7 +42,7 @@
 }
 
 .footer {
-  @include globalMixins.largeDiv();
+  @include globalMixins.div(large);
   width: 90%;
   height: 20%;
   border: none;

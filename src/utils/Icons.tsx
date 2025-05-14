@@ -2,13 +2,12 @@ import {
   Github,
   Search,
   Command,
-  
+  MoveUp,
   Navigation,
   Sunset,
   Sunrise,
   Wind,
   SprayCan,
-
   SunDim,
   CloudDrizzle,
   CloudRain,
@@ -16,7 +15,7 @@ import {
   CloudSun,
   Cloudy,
   CloudLightning,
-  CloudFog, 
+  CloudFog,
   Shell,
   Gauge,
   Droplets,
@@ -24,7 +23,6 @@ import {
   Eye,
   CalendarDays,
   XIcon,
-
   UsersRound,
   Moon,
 } from "lucide-react";
@@ -37,7 +35,6 @@ export const sunSetIcon = <Sunset />;
 export const sunRiseIcon = <Sunrise />;
 export const windIcon = <Wind />;
 
-
 export const cloudDrizzleIcon = <CloudDrizzle />;
 export const cloudRainIcon = <CloudRain />;
 export const snowFlakeIcon = <Snowflake />;
@@ -48,7 +45,6 @@ export const thunderstormIcon = <CloudLightning />;
 export const cloudfogIcon = <CloudFog />;
 export const sandIcon = <Shell />;
 
-
 export const pollutionIcon = <SprayCan />;
 
 export const humidityIcon = <Droplets />;
@@ -57,6 +53,7 @@ export const calendarIcon = <CalendarDays />;
 export const userIcon = <UsersRound />;
 export const lightThemeIcon = <SunDim />;
 export const nightThemeIcon = <Moon />;
-export const githubIcon = <Github/>;
+export const githubIcon = <Github />;
+export const windDirectionIcon = <MoveUp />;
 
 export const closeIcon = <XIcon />;

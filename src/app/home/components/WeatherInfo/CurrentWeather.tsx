@@ -1,47 +1,48 @@
 "use client";
 import styles from "../../styles/WeatherInfo.module.scss";
-import MetricCart from "@/shared/components/Carts/MetricCart";
-import { DataContext } from "@/providers/data-provider";
+import MetricCart from "@shared/components/Carts/MetricCart";
+import { DataContext } from "@/providers/dataProvider/dataProvider";
 import { useContext } from "react";
 import { weatherIconPicker } from "@/utils/weatherIconPicker";
 import Clock from "@/app/home/components/WeatherInfo/Clock";
 import Image from "next/image";
-import { windIcon } from "@/utils/Icons";
-import { descriptionBuilder } from "@/utils/descriptionbuilder";
-import Skeleton from "@/shared/components/Skeletons/Skeleton";
+import { windDirectionIcon, windIcon } from "@/utils/Icons";
+import { descriptionBuilder } from "@/utils/descriptionBuilder";
+import Skeleton from "@shared/components/Skeletons/Skeleton";
+
 export default function CurrentWeather() {
   const weather = useContext(DataContext);
-  if (weather.isError) {
-    throw new Error("401 - unathorized. Log in or sign up please");
+  if (weather.isError.status) {
+    throw new Error(weather.isError.message);
   }
-  if (weather.isLoading)return <Skeleton className={styles.current_weather__con} />;
-
-  if (!weather.isError && weather.data) {
+  if (weather.isLoading)
+    return <Skeleton className={styles.weatherCurrentCon} />;
+  if (!weather.isError.status && weather.data) {
     const windRenderComponent = (
-      <div className={styles.wind__compass_con}>
+      <div className={styles.compassCon}>
         <Image
           alt="Wind direction compass"
           src={"/img/compass_body.svg"}
           width={300}
           height={300}
-          className={styles.wind__compass_body}
+          className={styles.compassBody}
         />
-        <Image
-          alt={`Wind direction arrow pointing ${weather.data.currentWeather.wind.deg}°`}
-          src={"/img/compass_arrow.svg"}
-          width={300}
-          height={300}
-          className={styles.wind__compass_arrow}
+        <div
+          className={styles.compassArrow}
           style={{
             transform: `rotate(${weather.data.currentWeather.wind.deg}deg)`,
           }}
-        />
+        >
+          {windDirectionIcon}
+        </div>
       </div>
     );
     return (
-      <div className={styles.current_weather__con}>
-        <Clock />
-        <div className={styles.current_weather__con_current_temp}>
+      <div className={styles.weatherCurrentCon}>
+        <div className={styles.weatherHeader}>
+          <Clock />
+        </div>
+        <div className={styles.temperatureCon}>
           <div>
             <h3>
               {weather.data.currentWeather.name &&
@@ -54,7 +55,7 @@ export default function CurrentWeather() {
             )}°`}</h1>
           </div>
         </div>
-        <div className={styles.current_weather__con_footer}>
+        <div className={styles.weatherFooter}>
           <MetricCart
             title={weather.data.currentWeather.weather.descr}
             size="standart"
@@ -82,5 +83,5 @@ export default function CurrentWeather() {
       </div>
     );
   }
-  return <div className={styles.current_weather__con}></div>;
+  return <div className={styles.weatherCurrentCon}></div>;
 }

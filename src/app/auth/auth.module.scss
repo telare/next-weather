@@ -1,5 +1,5 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
-@use "@shared/styles/mixins/divMixin" as global_mixins;
+@use "@shared/styles/mixins/divMixin" as globalDivMixins;
 .wrapper {
   height: 100dvh;
   width: 100%;
@@ -10,13 +10,13 @@
   color:inherit;
 }
 .formCon{
-  @include global_mixins.baseDiv();
+  @include globalDivMixins.div();
   height: 90dvh;
   width: 90dvw;
   flex-direction: column;
 }
 .navThemeBtnCon{
-  @include global_mixins.largeDiv();
+  @include globalDivMixins.div(large);
   justify-content: flex-end;
   border: none;
 }

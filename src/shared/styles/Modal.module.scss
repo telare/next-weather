@@ -2,6 +2,7 @@
 @use "@shared/styles/mixins/btnMixin" as globalBtnMixins;
 .modalCon {
   @include globalDivMixins.baseDiv();
+  @include globalDivMixins.div();
   position: fixed;
   top: 0;
   left: 0;

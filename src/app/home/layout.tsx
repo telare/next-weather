@@ -1,6 +1,6 @@
-import TanStackProvider from "../../providers/TanStackProvider";
-import DataProvider from "@/providers/data-provider";
-import GlobalStore from "@/providers/global-store";
+import DataProvider from "@/providers/dataProvider/dataProvider";
+import StoreProvider from "@/providers/globalStore";
+import QueryProvider from "@/providers/queryProvider";
 
 export default function HomeLayout({
   children,
@@ -10,15 +10,17 @@ export default function HomeLayout({
   searchModal: React.ReactNode;
 }) {
   return (
-    <div style={{ backgroundColor: "inherit", border: "inherit", width:"80%" }}>
-      <TanStackProvider>
-        <GlobalStore>
-        {searchModal}
+    <div
+      style={{ backgroundColor: "inherit", border: "inherit", width: "80%" }}
+    >
+      <QueryProvider>
+        <StoreProvider>
+          {searchModal}
           <DataProvider>
             <div>{children}</div>
           </DataProvider>
-        </GlobalStore>
-      </TanStackProvider>
+        </StoreProvider>
+      </QueryProvider>
     </div>
   );
 }

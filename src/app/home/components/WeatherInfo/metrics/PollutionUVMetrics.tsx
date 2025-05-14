@@ -1,22 +1,22 @@
 "use client";
-import MetricCart from "@/shared/components/Carts/MetricCart";
+import MetricCart from "@shared/components/Carts/MetricCart";
 import styles from "../../../styles/WeatherInfo.module.scss";
 import { useContext } from "react";
-import { DataContext } from "@/providers/data-provider";
+import { DataContext } from "@/providers/dataProvider/dataProvider";
 import { lightThemeIcon, pollutionIcon } from "@/utils/Icons";
-import { descriptionBuilder } from "@/utils/descriptionbuilder";
-import UvPollutionProgressBar from "@/shared/components/ProgressBar/UvPollutionProgressBar";
-import Skeleton from "@/shared/components/Skeletons/Skeleton";
+import { descriptionBuilder } from "@/utils/descriptionBuilder";
+import UvPollutionProgressBar from "@shared/components/ProgressBar/UvPollutionProgressBar";
+import Skeleton from "@shared/components/Skeletons/Skeleton";
 export default function PollutionUV() {
   const weather = useContext(DataContext);
-  if (weather.isError) {
-    throw new Error("401 - unathorized. Log in or sign up please");
+  if (weather.isError.status) {
+    throw new Error(weather.isError.message);
   }
-  if (weather.isLoading)return <Skeleton className={styles.metric__con}/>;
+  if (weather.isLoading)return <Skeleton className={styles.metricItems}/>;
 
-  if (!weather.isError && weather.data) {
+  if (!weather.isError.status&& weather.data) {
     return (
-      <div className={styles.metric__con}>
+      <div className={styles.metricItems}>
         {/* pollution cart */}
         <MetricCart
           title="Air Pollution"

@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/shared/components/btns/Button";
+import Button from "@shared/components/btns/Button";
 import styles from "@shared/styles/ErrorPage.module.scss";
 import { redirect } from "next/navigation";
 export default function ErrorPage({

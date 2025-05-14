@@ -1,5 +1,5 @@
-import { ThemeProvider } from "@/providers/theme-provider";
-import { Layout } from "@/shared/types/Layout";
+import { ThemeProvider } from "@/providers/themeProvider";
+import { Layout } from "@shared/types/Layout";
 import React from "react";
 import "@shared/styles/global.scss";
 // import "./globals.css";

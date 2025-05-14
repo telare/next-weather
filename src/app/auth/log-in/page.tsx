@@ -1,8 +1,8 @@
 "use client";
-import Form from "@/shared/components/Form/Form";
+import Form from "@shared/components/Form/Form";
 import styles from "../auth.module.scss";
 import { object, string } from "yup";
-import ThemeToggleBtn from "@/shared/components/btns/ThemeToggleBtn";
+import ThemeToggleBtn from "@shared/components/btns/ThemeToggleBtn";
 export default function LogInPage() {
   const logInSchema = object({
     email: string()

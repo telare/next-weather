@@ -23,7 +23,7 @@ export default function Clock() {
   }, [date]);
 
   return (
-    <div className={styles.clock_main_clock}>
+    <div className={styles.clockCon}>
       <p>{time.date}</p>
       <p>{time.time}</p>
     </div>

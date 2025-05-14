@@ -1,7 +1,8 @@
 @use "@shared/styles/mixins/divMixin" as globalDivMixin;
-.clock_main_clock {
-  @include globalDivMixin.largeDiv();
+.clockCon {
+  @include globalDivMixin.div(largeDiv);
+  height: 100%;
+  width: 100%;
   justify-content: space-between;
   border: none;
-  width: 90%;
 }

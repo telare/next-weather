@@ -1,11 +1,11 @@
-import { Weather } from "@/shared/types/Weather";
+import { Weather } from "@shared/types/Weather";
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const lat = req.nextUrl.searchParams.get("lat");
   const lon = req.nextUrl.searchParams.get("lon");
-
+  const dailyNoonIndexes = [0, 8, 16, 24, 32];
   try {
     const res = await axios.get(
       `https://api.openweathermap.org/data/2.5/forecast?lon=${lon}&lat=${lat}&appid=${process.env.WEATHER_API_KEY}`
@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
             },
             i: number
           ) => {
-            if (i === 0 || i === 8 || i === 16 || i === 24 || i === 32) {
+            if (dailyNoonIndexes.includes(i)) {
               return {
                 dt_txt: list.dt_txt,
                 weather: {

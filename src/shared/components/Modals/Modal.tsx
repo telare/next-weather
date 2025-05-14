@@ -6,7 +6,7 @@ import {
   DialogOverlay,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Layout } from "@/shared/types/Layout";
+import { Layout } from "@shared/types/Layout";
 import styles from "@shared/styles/Modal.module.scss";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import Button from "../btns/Button";

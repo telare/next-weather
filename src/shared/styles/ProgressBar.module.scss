@@ -2,7 +2,7 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
 
 .progressBarCon {
-  @include globalDivMixins.baseDiv();
+  @include globalDivMixins.div();
   width: 100%;
   height: 3%;
   border:none;
@@ -11,7 +11,7 @@
 }
 
 .progressBarElement {
-  @include globalDivMixins.baseDiv();
+  @include globalDivMixins.div();
   width: 1%;
   border-radius: 20px;
   height: 100%;

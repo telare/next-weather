@@ -1,11 +1,11 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/themeMixin" as globalThemeMixin;
 body {
-  @include globalThemeMixin.theme-toggle($currentTheme: light);
+  @include globalThemeMixin.themeToggle($currentTheme: light);
   font-size: globalVariables.$baseFontSize;
   font-weight: globalVariables.$baseFontWeight;
 }
 
 .dark body {
-  @include globalThemeMixin.theme-toggle($currentTheme: dark);
+  @include globalThemeMixin.themeToggle($currentTheme: dark);
 }

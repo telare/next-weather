@@ -1,20 +1,20 @@
 "use client";
-import MetricCart from "@/shared/components/Carts/MetricCart";
+import MetricCart from "@shared/components/Carts/MetricCart";
 import styles from "./styles/Footer.module.scss";
 import { useContext } from "react";
-import { DataContext } from "@/providers/data-provider";
+import { DataContext } from "@/providers/dataProvider/dataProvider";
 import { weatherIconPicker } from "@/utils/weatherIconPicker";
-import { descriptionBuilder } from "@/utils/descriptionbuilder";
-import Skeleton from "@/shared/components/Skeletons/Skeleton";
+import Skeleton from "@shared/components/Skeletons/Skeleton";
+import { descriptionBuilder } from "@/utils/descriptionBuilder";
 export default function WeekForecast() {
   const weather = useContext(DataContext);
-  if (weather.isError) {
-    throw new Error("401 - unathorized. Log in or sign up please");
+  if (weather.isError.status) {
+    throw new Error(weather.isError.message);
   }
-  if (weather.isLoading) return <Skeleton className={styles.left__col_forecast} />;
-  if (!weather.isError && weather.data) {
+  if (weather.isLoading) return <Skeleton className={styles.forecastSection} />;
+  if (!weather.isError.status&& weather.data) {
     return (
-      <div className={styles.left__col_forecast}>
+      <div className={styles.forecastSection}>
         {weather.data &&
           weather.data.other.weekForecast &&
           weather.data.other.weekForecast.map((day, i) => (

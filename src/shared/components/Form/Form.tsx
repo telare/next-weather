@@ -7,7 +7,7 @@ import FormField from "./FormField";
 import Button from "../btns/Button";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { User } from "@/shared/types/User";
+import { User } from "@shared/types/User";
 import { useRouter } from "next/navigation";
 import { handleAuthentication } from "./utils/utils";
 import { customToast } from "../Toast/Toast";

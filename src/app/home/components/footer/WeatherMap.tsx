@@ -9,17 +9,17 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState, setCityName } from "@/providers/global-store";
+import { RootState, updateLocation } from "@/providers/globalStore";
 import L from "leaflet";
 import { useContext } from "react";
-import { DataContext } from "@/providers/data-provider";
-import Skeleton from "@/shared/components/Skeletons/Skeleton";
+import { DataContext } from "@/providers/dataProvider/dataProvider";
+import Skeleton from "@shared/components/Skeletons/Skeleton";
 
-export default function Map() {
-  const { value } = useSelector((state: RootState) => state.cityName);
+export default function WeatherMap() {
+  const defaultLocation = useSelector((state: RootState) => state.location.value);
   const weather = useContext(DataContext);
   const dispatch = useDispatch();
-  const { lat, lon } = value;
+  const { lat, lon } = defaultLocation;
   const customIcon = L.icon({
     iconUrl: "/img/marker.png",
     iconSize: [32, 32],
@@ -29,10 +29,10 @@ export default function Map() {
     const map = useMapEvent("click", (e) => {
       map.setView([e.latlng.lat, e.latlng.lng], map.getZoom());
       dispatch(
-        setCityName({
+        updateLocation({
           lat: `${e.latlng.lat}`,
           lon: `${e.latlng.lng}`,
-          name: "",
+          cityName: "",
         })
       );
     });
@@ -44,22 +44,18 @@ export default function Map() {
     map.flyTo([Number(lat), Number(lon)]);
     return null;
   }
-  if (weather.isLoading) return <Skeleton className={styles.left__col_map} />;
-
+  if (weather.isLoading) return <Skeleton className={styles.mapSection} />;
   return (
-    <div className={styles.left__col_map}>
+    <div className={styles.mapSection}>
       <MapContainer
         center={[Number(lat), Number(lon)]}
         zoom={13}
-        style={{ width: "100%", height: "100%" }}
+        className={styles.map}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <MapClickHandler />
         <MapFly />
-        <Marker
-          position={[Number(lat), Number(lon)]}
-          icon={customIcon}
-        ></Marker>
+        <Marker position={[Number(lat), Number(lon)]} icon={customIcon} />
       </MapContainer>
     </div>
   );

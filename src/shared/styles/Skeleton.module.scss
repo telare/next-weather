@@ -1,5 +1,5 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
-@use "@shared/styles/mixins/divMixin" as global_mixins;
+@use "@shared/styles/mixins/divMixin" as globalDivMixins;
 @keyframes loading {
   from {
     background-color: gray;
@@ -8,7 +8,7 @@
   }
 }
 
-.wrapper {
-  @include global_mixins.baseDiv();
+.skeletonCon {
+  border: solid;
   animation: loading 1.5s infinite;
 }

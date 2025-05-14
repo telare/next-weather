@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
-import { User } from "@/shared/types/User";
+import { User } from "@shared/types/User";
 import { NextResponse } from "next/server";
 import prisma from "@/app/clients/prismaClient";
 

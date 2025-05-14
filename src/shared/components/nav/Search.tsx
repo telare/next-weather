@@ -1,6 +1,6 @@
 "use client";
 import styles from "@shared/styles/Nav.module.scss";
-import { setCityName } from "@/providers/global-store";
+import { updateLocation } from "@/providers/globalStore";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import useDebounce from "@/hooks/useDebounce";
@@ -38,7 +38,7 @@ export default function Search() {
       try {
         axios
           .get(`/api/geocode?city=${debouncedValue}`)
-          .then((resp) => dispatch(setCityName(resp.data)))
+          .then((resp) => dispatch(updateLocation(resp.data)))
           .then(() => router.back());
       } catch (e: unknown) {
         //redirect to error page
@@ -47,7 +47,7 @@ export default function Search() {
     }
   }, [debouncedValue, dispatch, router]);
   return (
-    <div className={styles.search_wrapper}>
+    <div className={styles.searchCon}>
       <input
         type="text"
         placeholder="Search Here..."
@@ -58,8 +58,8 @@ export default function Search() {
         }}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <div className={styles.search_shortcuts__con}>
-        {commandIcon}
+      <div className={styles.searchShortCut}>
+        <div>{commandIcon}</div>
         <div>F</div>
       </div>
     </div>

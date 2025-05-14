@@ -1,4 +1,4 @@
-import { Layout } from "@/shared/types/Layout";
+import { Layout } from "@shared/types/Layout";
 
 export default function layout({ children }: Layout) {
   return (
