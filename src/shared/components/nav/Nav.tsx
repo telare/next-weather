@@ -1,5 +1,5 @@
 "use client";
-import ThemeToggleBtn from "shared/components/btns/ThemeToggleBtn";
+import ThemeToggleBtn from "@shared/components/btns/ThemeToggleBtn";
 import Search from "./Search";
 import LogOutBtn from "../btns/LogOutBtn";
 import Links from "./Links";

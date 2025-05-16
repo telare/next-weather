@@ -10,33 +10,26 @@ export default function ThemeToggleBtn() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  const themeValues = ["light", "dark"];
   if (isMounted) {
     return (
       <DropdownMenu.Root>
         <DropdownMenu.Trigger asChild>
-          <button className={styles.navThemeBtn}>
+          <button className={styles.themeBtn}>
             {theme === "dark" ? nightThemeIcon : lightThemeIcon}
           </button>
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="dropdownContent">
-          <DropdownMenu.Item
-            className="dropdownItem"
-            onSelect={() => setTheme("light")}
-          >
-            Light
-          </DropdownMenu.Item>
-          <DropdownMenu.Item
-            className="dropdownItem"
-            onSelect={() => setTheme("dark")}
-          >
-            Dark
-          </DropdownMenu.Item>
-          <DropdownMenu.Item
-            className="dropdownItem"
-            onSelect={() => setTheme("system")}
-          >
-            System
-          </DropdownMenu.Item>
+        <DropdownMenu.Content className={styles.themeBtnContent}>
+          {themeValues.map((value, i) => (
+            <DropdownMenu.Item
+              key={i}
+              className={styles.themeBtnContentItem}
+              onSelect={() => setTheme(value)}
+            >
+              {value[0].toUpperCase() + value.slice(1)}
+            </DropdownMenu.Item>
+          ))}
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     );

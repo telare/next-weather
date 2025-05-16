@@ -84,7 +84,7 @@
   gap: 7%;
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   div {
     @include globalDivMixins.div();
     padding: 0;
@@ -110,10 +110,40 @@
   font-size: 16px;
   border: solid;
 }
-.navThemeBtn {
+.themeBtn {
   @include globalBtnMixins.btn();
   width: 50px;
   height: 50px;
   border: none;
   outline: none;
+}
+.themeBtnContent {
+  @include globalDivMixins.div();
+  font-size: 1.25rem;
+  flex-direction: column;
+  width: 150px;
+  height: auto;
+  padding: 0.75rem;
+  row-gap: 0.5rem;
+  border-color: globalVariables.$baseBackColorDark;
+  background-color: globalVariables.$baseBackColor;
+  color: globalVariables.$baseFontColorDark;
+  :global(html.dark) & {
+    background-color: globalVariables.$baseBackColorDark;
+    border-color: globalVariables.$baseBackColor;
+    color: globalVariables.$baseFontColor;
+  }
+}
+
+.themeBtnContentItem {
+  @include globalBtnMixins.btn();
+  background-color: globalVariables.$baseBackColor;
+  color: globalVariables.$baseFontColor;
+  border-color: inherit;
+  width: 90%;
+  height: auto;
+  :global(html.dark) & {
+    background-color: globalVariables.$baseBackColorDark;
+    color: globalVariables.$baseFontColorDark;
+  }
 }
