@@ -2,8 +2,8 @@
 
 @mixin baseDiv() {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items:center;
   background-color: inherit;
 
   border: solid;
@@ -38,7 +38,7 @@
   height: 600px;
 }
 
-@mixin div($type:standard) {
+@mixin div($type: standard) {
   @include baseDiv();
   @if $type == small {
     @include smallDiv();

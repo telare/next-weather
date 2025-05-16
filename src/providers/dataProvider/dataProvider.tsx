@@ -21,12 +21,14 @@ export default function DataProvider({ children }: Layout) {
     isLoading: isWeatherLoading,
     isError,
   } = useQuery({
-    queryKey: ["weather", { lat: location.lat, lon: location.lon }],
-    queryFn: () =>
+    queryKey: ["weather", location.lat, location.lon],
+    queryFn: () => 
       queryFunc({
         coordinates: { lon: location.lon, lat: location.lat },
         setErrorMessage,
       }),
+    retry: 1,
+    staleTime: 1000 * 60 * 10, // 10 minutes
   });
 
   return (
