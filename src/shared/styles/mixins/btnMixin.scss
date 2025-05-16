@@ -9,9 +9,18 @@
 
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   background-color: inherit;
 
   font-size: inherit;
   font-family: inherit;
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1);
+  outline: none;
+  &:hover {
+    outline: none;
+    transition: transform 0.1s ease-in-out;
+    transform: scale(1.05);
+  }
+  
 }
