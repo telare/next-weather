@@ -1,6 +1,6 @@
 @use "@shared/styles/mixins/divMixin.scss" as globalDivMixins;
 @use "@shared/styles/variables/variables.module" as globalVariables;
-
+@use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
 .footerCon {
   @include globalDivMixins.div(section);
   height: 800px;
@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:center;
+  align-items: center;
 }
 .forecastSection {
   @include globalDivMixins.div(large);
@@ -53,9 +53,9 @@
     div {
       @include globalDivMixins.div();
       justify-content: flex-start;
-      border-width: 1px;
       width: 90%;
       height: 15%;
+      @include globalTransformMixin.transformMixin();
     }
   }
 }

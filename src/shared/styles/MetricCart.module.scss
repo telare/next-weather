@@ -1,16 +1,15 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/divMixin" as globalMixins;
-
+@use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
 .container {
   @include globalMixins.div(standard);
   padding: 20px 5px;
   flex-direction: column;
+  @include globalTransformMixin.transformMixin();
 }
 
 .containerLarge {
-  @include globalMixins.div();
   width: 420px;
-  flex-direction: column;
   height: 180px;
 }
 

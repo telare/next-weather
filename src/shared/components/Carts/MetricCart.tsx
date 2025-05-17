@@ -20,7 +20,9 @@ export default function MetricCart({
   return (
     <div
       className={
-        size === "standart" ? styles.container : styles.containerLarge
+        size === "standart"
+          ? styles.container
+          : [styles.container, styles.containerLarge].join(" ")
       }
     >
       <div className={styles.header}>

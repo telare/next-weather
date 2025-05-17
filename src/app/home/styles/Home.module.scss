@@ -1,11 +1,10 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
+@use "@shared/styles/mixins/divMixin.scss" as globalDivMixins;
 .homeCon {
+  @include globalDivMixins.div();
   width: 100%;
-  height: 100%;
-  display: flex;
-  margin: 0;
+  height: auto;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   border: inherit;
 }

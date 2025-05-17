@@ -1,0 +1,8 @@
+@mixin transformMixin() {
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1);
+  &:hover {
+    transition: transform 0.3s ease-in-out;
+    transform: scale(1.05);
+  }
+}

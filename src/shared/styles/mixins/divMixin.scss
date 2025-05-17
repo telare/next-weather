@@ -3,15 +3,21 @@
 @mixin baseDiv() {
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   background-color: inherit;
 
-  border: solid;
-  border-radius: 10px;
+  border-style: solid;
+  border-color: globalVariables.$baseBackColorDark;
+  border-width: globalVariables.$baseBorderWidth;
+  border-radius: globalVariables.$baseBorderRadius;
   font-size: inherit;
   font-family: inherit;
   color: inherit;
   padding: 10px;
+
+  :global(html.dark) & {
+    border-color: globalVariables.$baseBackColor;
+  }
 }
 
 @mixin smallDiv() {

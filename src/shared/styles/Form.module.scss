@@ -29,11 +29,13 @@
 
 .formField {
   @include globalDivMixins.div(large);
-  height: 14%;
+  min-height: 14%;
+  height: auto;
   flex-direction: column;
+  justify-content: start;
   border: none;
+
   padding: 0;
-  align-items: baseline;
   gap: 5%;
 
   input {
