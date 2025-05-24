@@ -21,12 +21,10 @@ export default function LogInPage() {
   );
   return (
     <div className={styles.wrapper}>
-      <div className={styles.formCon}>
-        <div className={styles.navThemeBtnCon}>
-          <ThemeToggleBtn />
-        </div>
-        <Form schema={logInSchema} title={title} type="log-in" />
+      <div className={styles.themeBtnCon}>
+        <ThemeToggleBtn />
       </div>
+      <Form schema={logInSchema} title={title} type="log-in" />
     </div>
   );
 }

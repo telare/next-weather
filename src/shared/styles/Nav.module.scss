@@ -5,21 +5,21 @@
 // nav
 .navCon {
   @include globalDivMixins.div(large);
-  height: 5%;
+  height: auto;
   max-height: 5%;
   width: 100%;
   display: grid;
-  padding: 2rem;
+  padding: 0.75rem 0;
   column-gap: 20%;
-  grid-template-columns: 10% 65% ;
+  grid-template-columns: 10% 65%;
   grid-template-areas: "navLinksCon navContent";
 }
 
 .navLinksCon {
   @include globalDivMixins.div();
-  // border: none;
+  border: none;
   height: 100%;
-  width: 100%;
+  width: auto;
   grid-area: navLinksCon;
   font-size: 18px;
 
@@ -33,6 +33,11 @@
 
     li {
       @include globalDivMixins.div();
+      @include globalTransformMixin.transformMixin();
+      height: auto;
+      padding: 0.3rem 0.5rem;
+      width: auto;
+      transition-property: all;
       border: none;
       border-radius: 4px;
 
@@ -43,6 +48,8 @@
       &:hover {
         background-color: globalVariables.$baseBackColorDark;
         color: globalVariables.$baseFontColorDark;
+        transition-property: background-color, color;
+
         :global(html.dark) & {
           background-color: globalVariables.$baseBackColor;
           color: globalVariables.$baseFontColor;
@@ -58,17 +65,18 @@
 
 .searchCon {
   @include globalDivMixins.div();
+  padding: 0;
   font-size: 16px;
   justify-content: flex-start;
   height: 100%;
   width: 100%;
   gap: 5%;
+  padding: 0.5rem 0.3rem;
   input {
     all: unset;
-    height: 30px;
+    height: 100%;
     background-color: inherit;
     color: inherit;
-    border: none;
     font-family: inherit;
     width: 70%;
   }
@@ -76,24 +84,25 @@
 }
 
 .searchShortCut {
-  height: inherit;
-  width: auto;
-  max-width: 30%;
+  @include globalDivMixins.div();
+  border: none;
+  padding: 0;
   gap: 7%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 30%;
   div {
     @include globalDivMixins.div();
     padding: 0;
+    width: 50%;
     height: 100%;
   }
 }
 
 .navGitBtn {
   @include globalBtnMixins.btn();
-  width: 150px;
-  height: 100%;
+  width: auto;
+  min-width: 10.625rem;
   font-size: 16px;
   text-decoration: none;
   display: flex;
@@ -102,54 +111,23 @@
 
 .navLogOutBtn {
   @include globalBtnMixins.btn();
-  height: 100%;
   width: 15%;
   font-size: 16px;
-}
-.themeBtn {
-  @include globalBtnMixins.btn();
-  width: 50px;
-  height: 100%;
-  outline: none;
-}
-.themeBtnContent {
-  @include globalDivMixins.div();
-  z-index: 100;
-  font-size: 1.25rem;
-  flex-direction: column;
-  width: 150px;
-  height: auto;
-  padding: 0.75rem;
-  row-gap: 0.5rem;
-  border-color: globalVariables.$baseBackColorDark;
-  background-color: globalVariables.$baseBackColor;
-  color: globalVariables.$baseFontColorDark;
-  :global(html.dark) & {
-    background-color: globalVariables.$baseBackColorDark;
-    border-color: globalVariables.$baseBackColor;
-    color: globalVariables.$baseFontColor;
-  }
-
-  .themeBtnContentItem {
-    @include globalBtnMixins.btn();
-    background-color: globalVariables.$baseBackColor;
-    color: globalVariables.$baseFontColor;
-    border-color: inherit;
-    width: 90%;
-    height: auto;
-    :global(html.dark) & {
-      background-color: globalVariables.$baseBackColorDark;
-      color: globalVariables.$baseFontColorDark;
-    }
-  }
 }
 
 .navContent {
   @include globalDivMixins.div();
   grid-area: navContent;
-  padding: 1rem;
+  padding: 0;
+  border: none;
+  padding: 1rem 0.3rem;
   height: 100%;
   width: 100%;
   justify-content: flex-end;
   column-gap: 20px;
+
+  & button {
+    height: 100%;
+    width: auto;
+  }
 }

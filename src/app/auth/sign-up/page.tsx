@@ -24,12 +24,10 @@ export default function SignUpPage() {
   );
   return (
     <div className={styles.wrapper}>
-      <div className={styles.formCon}>
-        <div className={styles.navThemeBtnCon}>
-          <ThemeToggleBtn />
-        </div>
-        <Form schema={signUpSchema} title={title} type="sign-up" />
+      <div className={styles.themeBtnCon}>
+        <ThemeToggleBtn />
       </div>
+      <Form schema={signUpSchema} title={title} type="sign-up" />
     </div>
   );
 }

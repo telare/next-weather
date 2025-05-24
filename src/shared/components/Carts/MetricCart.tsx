@@ -2,7 +2,7 @@
 import styles from "@shared/styles/MetricCart.module.scss";
 type MetricCart = {
   title?: string;
-  description: string;
+  description: string | React.ReactNode;
   icon?: React.ReactElement;
   border?: boolean;
   size: "standart" | "large";
@@ -30,10 +30,10 @@ export default function MetricCart({
         <h3>{title}</h3>
       </div>
       <div className={styles.content}>
-        {renderComponent ? renderComponent : mainInfo}
+        {renderComponent ? renderComponent : <p>{mainInfo}</p>}
       </div>
       <div className={styles.footer}>
-        <p>{description}</p>
+        {typeof description === "string" ? <p>{description}</p> : description}
       </div>
     </div>
   );

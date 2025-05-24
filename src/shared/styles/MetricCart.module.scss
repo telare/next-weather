@@ -3,8 +3,18 @@
 @use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
 .container {
   @include globalMixins.div(standard);
-  padding: 20px 5px;
+  // padding: 20px 5px;
+  padding: 0.5rem 0.3125rem;
+  line-break: anywhere;
   flex-direction: column;
+  display: grid;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+
+  grid-template-rows: 20% 50% 30%;
+  grid-template-columns: 1fr;
   @include globalTransformMixin.transformMixin();
 }
 
@@ -14,13 +24,14 @@
 }
 
 .header {
-  @include globalMixins.div(large);
-  height: 10%;
-  width: 90%;
+  @include globalMixins.div();
+  min-height: 10%;
+  grid-area: header;
+  height: 100%;
+  width: 100%;
   border: none;
   justify-content: flex-start;
   gap: 5%;
-
   h3 {
     font-size: 20px;
     font-weight: 500;
@@ -29,27 +40,30 @@
 
 .content {
   @include globalMixins.div(small);
-  width: 90%;
-  padding: 10px;
+  grid-area: content;
+  height: 100%;
+  width: 100%;
   justify-content: flex-start;
   border: none;
-
-  h2 {
-    font-size: 40px;
-    font-weight: 500;
+  svg {
+    width: 90%;
+    height: 90%; 
+  }
+  p{
+    font-size: 2rem;
   }
 }
 
 .footer {
-  @include globalMixins.div(large);
-  width: 90%;
-  height: 20%;
+  @include globalMixins.div();
+  grid-area: footer;
+  width: 100%;
+  height: 100%;
   border: none;
   justify-content: flex-start;
-
   p {
     line-height: 1;
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 400;
   }
 }

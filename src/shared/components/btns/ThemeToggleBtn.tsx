@@ -1,5 +1,5 @@
 "use client";
-import styles from "@shared/styles/Nav.module.scss";
+import styles from "@shared/styles/ThemeBtn.module.scss";
 import { useTheme } from "next-themes";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { lightThemeIcon, nightThemeIcon } from "@/utils/Icons";
