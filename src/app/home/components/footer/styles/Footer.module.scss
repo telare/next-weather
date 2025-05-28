@@ -3,7 +3,8 @@
 @use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
 .footerCon {
   @include globalDivMixins.div(section);
-  height: 800px;
+  height: 50rem; // 800px
+  align-items: start;
   gap: 5%;
 }
 
@@ -11,24 +12,24 @@
   @include globalDivMixins.div();
   border: none;
   width: 80%;
-  gap: 5%;
-  height: 90%;
+  padding: 0;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 .forecastSection {
   @include globalDivMixins.div();
   width: 100%;
-  height: 45%;
+  height: 40%;
   column-gap: 2%;
 }
 .mapSection {
   @include globalDivMixins.div(big);
   @include globalTransformMixin.transformMixin();
   padding: 0;
-  height: 45%;
+  height: 50%;
   .map {
     width: 100%;
     height: 100%;
@@ -37,24 +38,25 @@
 }
 .asideColumn {
   @include globalDivMixins.div();
-  height: 90%;
+  height: auto;
   width: 20%;
   align-items: baseline;
   .cityList {
     @include globalDivMixins.div();
     border: none;
-    height: 50%;
+    height: 100%;
+    padding: 0;
     width: 100%;
-    gap: 2%;
+    gap: 0.5rem;
     flex-direction: column;
     h3 {
-      font-size: 20px;
+      font-size: 2rem; // 20px
     }
     div {
       @include globalDivMixins.div();
       justify-content: flex-start;
-      width: 90%;
-      height: 15%;
+      width: 100%;
+      height: 100%;
       @include globalTransformMixin.transformMixin();
     }
   }

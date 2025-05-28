@@ -3,6 +3,7 @@
 .homeCon {
   @include globalDivMixins.div();
   width: 100%;
+  row-gap: 0.9375rem; // 15px;
   height: auto;
   flex-direction: column;
   justify-content: flex-start;

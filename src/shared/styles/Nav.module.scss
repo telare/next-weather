@@ -8,8 +8,8 @@
   @include globalDivMixins.div();
   height: 6rem;
   width: 100%;
-  padding: 1rem 0;
-  justify-content: space-around;
+  padding: 1rem 1.2rem;
+  justify-content: space-between;
   display: grid;
   grid-template-rows: 100%;
   grid-template-columns: 25% 65%;
@@ -29,7 +29,7 @@
     width: 100%;
     height: 100%;
     list-style-type: none;
-    gap: 30px;
+    gap: 1.875rem; // 30px
 
     li {
       @include globalDivMixins.div();
@@ -39,7 +39,7 @@
       width: auto;
       transition-property: all;
       border: none;
-      border-radius: 4px;
+      border-radius: 0.25rem; // 4px
 
       width: auto;
       height: auto;
@@ -52,7 +52,7 @@
 
         @include globalDarkModeMixin.darkModeMixin(
           globalVariables.$baseFontColor,
-          globalVariables.$baseBackColor,
+          globalVariables.$baseBackColor
         );
       }
     }
@@ -73,7 +73,7 @@
   justify-content: flex-end;
   column-gap: 1.25rem;
 
-  & button {
+  button {
     height: 100%;
     width: auto;
   }
@@ -87,7 +87,7 @@
   height: 100%;
   width: 100%;
   gap: 5%;
-  padding: 0.5rem 0.3rem;
+  padding: 0.5rem 0.7rem;
   input {
     all: unset;
     height: 100%;
@@ -107,10 +107,11 @@
   height: 100%;
   width: 100%;
   max-width: 30%;
+  justify-content: flex-end;
   div {
     @include globalDivMixins.div();
     padding: 0;
-    width: 50%;
+    width: 30%;
     height: 100%;
   }
 }
@@ -122,7 +123,7 @@
   column-gap: 1rem;
   border: none;
   width: auto;
-  & button {
+  button {
     @include globalBtnMixins.btn();
     height: 100%;
     width: auto;

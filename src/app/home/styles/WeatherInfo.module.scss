@@ -9,7 +9,8 @@
 // Current weather section
 .weatherCurrentCon {
   @include globalDivMixins.div(big);
-  height: 90%;
+  height: 100%;
+  width: 100%;
   padding: 1.25rem; // 20px 16px base
   justify-content: center;
   flex-direction: column;
@@ -96,8 +97,8 @@
 // Metrics section
 .metricsCon {
   @include globalDivMixins.div(large);
-  height: 90%;
-  width: 60%;
+  height: 100%;
+  width: 100%;
   flex-direction: column;
   gap: 2%;
 }
@@ -107,6 +108,6 @@
   border: none;
   height: 50%;
   display: flex;
-  width: 99%;
+  width: 100%;
   gap: 2%;
 }

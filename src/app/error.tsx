@@ -10,8 +10,10 @@ export default function ErrorPage({
 }) {
   return (
     <div className={styles.errorCon}>
-      <h2>Something went wrong!</h2>
-      <p>Error message: {error.message}</p>
+      <div className={styles.errorTextCon}>
+        <h1>Something went wrong!</h1>
+        <p>Error message: {error.message}</p>
+      </div>
       <Button
         alt="Try again"
         func={() => redirect("/auth/log-in")}

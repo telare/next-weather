@@ -4,19 +4,27 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
 
 .errorCon {
-  @include globalDivMixin.div(section);
+  @include globalDivMixin.div();
+  flex-direction: column;
+  row-gap: 2rem;
+  width: 100dvw;
+  height: 100dvh;
+  border: none;
+}
+.errorTextCon {
+  @include globalDivMixin.div();
   flex-direction: column;
   border: none;
-  h2 {
-    margin: 0;
+  width: auto;
+  height: auto;
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
   }
 }
 .resetBtn {
   @include globalBtnMixin.btn();
   width: 10%;
   height: 7%;
-  background-color: black;
-  color: white;
-
   @include globalDarkModeMixin.darkModeMixin();
 }
