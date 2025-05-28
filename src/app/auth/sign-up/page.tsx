@@ -14,13 +14,13 @@ export default function SignUpPage() {
       .max(10, "Maximum 10 symbols"),
   });
   const title: React.ReactElement = (
-    <div>
-      <h2>
+    <>
+      <h1>
         Start Your Journey
         <br /> With Us
-      </h2>
+      </h1>
       <p>Register with your data</p>
-    </div>
+    </>
   );
   return (
     <div className={styles.wrapper}>

@@ -14,10 +14,10 @@ export default function LogInPage() {
   });
 
   const title: React.ReactElement = (
-    <div>
-      <h2>Wellcome Back!</h2>
+    <>
+      <h1>Wellcome Back!</h1>
       <p>Log In in with your data</p>
-    </div>
+    </>
   );
   return (
     <div className={styles.wrapper}>

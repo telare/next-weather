@@ -4,43 +4,33 @@
 
 .formCon {
   @include globalDivMixins.div();
-
   width: auto;
   height: auto;
   flex-direction: column;
   padding: 1rem 2rem;
-  row-gap: 1rem;
-  display: grid;
-  grid-template-rows: 30% 1fr 1fr;
-  grid-template-columns: 1fr;
-  grid-template-areas:
-    "header"
-    "fields"
-    "footer";
+  row-gap: 2rem;
 }
 
 .formHeader {
   @include globalDivMixins.div();
-  grid-area: header;
   width: 100%;
   height: 100%;
   border: none;
+  flex-direction: column;
 
-  h2 {
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
     text-align: center;
-    margin: 0;
   }
   p {
-    margin: 0;
     text-align: center;
   }
 }
 
 .formFieldsCon {
   @include globalDivMixins.div();
-  grid-area: fields;
   padding: 0;
-
   width: 100%;
   height: 100%;
   flex-direction: column;
@@ -79,7 +69,6 @@
 .formFooter {
   @include globalDivMixins.div();
   padding: 0;
-  grid-area: footer;
   width: 100%;
   height: 100%;
   row-gap: 0.5rem;
@@ -98,5 +87,13 @@
     width: auto;
     padding: 0;
     border: none;
+    p{
+      a{
+        color:rgb(150, 132, 132);
+        &::before {
+          content: " | ";
+        }
+      }
+    }
   }
 }
