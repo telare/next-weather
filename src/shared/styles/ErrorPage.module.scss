@@ -1,5 +1,8 @@
 @use "@shared/styles/mixins/divMixin" as globalDivMixin;
 @use "@shared/styles/mixins/btnMixin" as globalBtnMixin;
+@use "@shared/styles/mixins/darkModeMixin" as globalDarkModeMixin;
+@use "@shared/styles/variables/variables.module" as globalVariables;
+
 .errorCon {
   @include globalDivMixin.div(section);
   flex-direction: column;
@@ -7,18 +10,13 @@
   h2 {
     margin: 0;
   }
-  
 }
 .resetBtn {
   @include globalBtnMixin.btn();
   width: 10%;
   height: 7%;
-  @media (prefers-color-scheme: 'dark') {
-    background-color: white;
-    color: black;
-  }
-  @media (prefers-color-scheme: 'white') {
-    background-color: black;
-    color: white;
-  }
+  background-color: black;
+  color: white;
+
+  @include globalDarkModeMixin.darkModeMixin();
 }

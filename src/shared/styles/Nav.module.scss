@@ -2,6 +2,7 @@
 @use "@shared/styles/mixins/btnMixin.scss" as globalBtnMixins;
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
+@use "@shared/styles/mixins/darkModeMixin" as globalDarkModeMixin;
 // nav
 .navCon {
   @include globalDivMixins.div();
@@ -49,10 +50,10 @@
         color: globalVariables.$baseFontColorDark;
         transition-property: background-color, color;
 
-        :global(html.dark) & {
-          background-color: globalVariables.$baseBackColor;
-          color: globalVariables.$baseFontColor;
-        }
+        @include globalDarkModeMixin.darkModeMixin(
+          globalVariables.$baseFontColor,
+          globalVariables.$baseBackColor,
+        );
       }
     }
   }
@@ -127,16 +128,15 @@
     width: auto;
     font-size: 16px;
     text-decoration: none;
-    &:nth-child(1){
+    &:nth-child(1) {
       min-width: 4rem;
     }
-    &:nth-child(2){
+    &:nth-child(2) {
       min-width: 11rem;
       column-gap: 5%;
     }
-    &:nth-child(3){
+    &:nth-child(3) {
       min-width: 6rem;
     }
   }
-  
 }

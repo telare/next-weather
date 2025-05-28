@@ -1,0 +1,17 @@
+@use "@shared/styles/variables/variables.module" as globalVariables;
+@mixin darkModeMixin(
+  $background-color: globalVariables.$baseBackColorDark,
+  $text-color: globalVariables.$baseFontColorDark,
+  $border-color: globalVariables.$baseBorderColorDark
+) {
+  :global(html.dark) & {
+    background-color: $background-color;
+    color: $text-color;
+    border-color: $border-color;
+  }
+}
+
+//   @media (prefers-color-scheme: dark) {
+//     background-color: map.get(globalVariables.$darkModeColors, "background");
+//     color: map.get(globalVariables.$darkModeColors, "text");
+//   }

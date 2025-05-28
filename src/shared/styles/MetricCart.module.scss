@@ -19,8 +19,8 @@
 }
 
 .containerLarge {
-  width: 420px;
-  height: 180px;
+  width: 26.25rem; // 420px
+  height: 11.25rem; // 180px
 }
 
 .header {
@@ -33,7 +33,7 @@
   justify-content: flex-start;
   gap: 5%;
   h3 {
-    font-size: 20px;
+    font-size: 1.25rem; // 20px
     font-weight: 500;
   }
 }

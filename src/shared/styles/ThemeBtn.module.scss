@@ -1,6 +1,7 @@
 @use "@shared/styles/mixins/divMixin.scss" as globalDivMixins;
 @use "@shared/styles/mixins/btnMixin.scss" as globalBtnMixins;
 @use "@shared/styles/variables/variables.module" as globalVariables;
+@use "@shared/styles/mixins/darkModeMixin" as globalDarkModeMixin;
 .themeBtn {
   @include globalBtnMixins.btn();
   width: 100%;
@@ -9,34 +10,34 @@
 }
 .themeBtnContent {
   @include globalDivMixins.div();
-  margin-top: 0.2rem;
-  z-index: 100;
-  font-size: 1.25rem;
-  flex-direction: column;
-  //   width: 150px;
   width: auto;
   height: auto;
-  padding: 0.75rem;
+  padding: 0.2rem 1rem;
+  margin-top: 0.2rem;
+  z-index: 100;
+
+  font-size: 1.25rem;
+  flex-direction: column;
+
   row-gap: 0.5rem;
   border-color: globalVariables.$baseBackColorDark;
   background-color: globalVariables.$baseBackColor;
   color: globalVariables.$baseFontColorDark;
-  :global(html.dark) & {
-    background-color: globalVariables.$baseBackColorDark;
-    border-color: globalVariables.$baseBackColor;
-    color: globalVariables.$baseFontColor;
-  }
+  @include globalDarkModeMixin.darkModeMixin(globalVariables.$baseBackColorDark);
 
   .themeBtnContentItem {
     @include globalBtnMixins.btn();
+    padding: 0.2rem 1.5rem;
+    width: 100%;
+    height: auto;
+
     background-color: globalVariables.$baseBackColor;
     color: globalVariables.$baseFontColor;
     border-color: inherit;
-    width: 90%;
-    height: auto;
-    :global(html.dark) & {
-      background-color: globalVariables.$baseBackColorDark;
-      color: globalVariables.$baseFontColorDark;
-    }
+
+    @include globalDarkModeMixin.darkModeMixin(
+      inherit,
+      $border-color: globalVariables.$baseBorderColorDark
+    );
   }
 }

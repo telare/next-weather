@@ -13,7 +13,7 @@
 .progressBarElement {
   @include globalDivMixins.div();
   width: 1%;
-  border-radius: 20px;
+  border-radius: 1.25rem; // 20px
   height: 100%;
   background-color: transparent;
 }
