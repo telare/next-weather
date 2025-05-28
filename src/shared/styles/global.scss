@@ -1,5 +1,7 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/themeMixin" as globalThemeMixin;
+// for reset styles
+@import "tailwindcss";
 body {
   @include globalThemeMixin.themeToggle($currentTheme: light);
   font-size: globalVariables.$baseFontSize;

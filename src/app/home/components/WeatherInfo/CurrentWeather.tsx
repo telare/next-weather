@@ -23,8 +23,7 @@ export default function CurrentWeather() {
         <Image
           alt="Wind direction compass"
           src={"/img/compass_body.svg"}
-          width={300}
-          height={300}
+          fill
           className={styles.compassBody}
         />
         <div

@@ -12,7 +12,7 @@ export default function WeekForecast() {
     throw new Error(weather.isError.message);
   }
   if (weather.isLoading) return <Skeleton className={styles.forecastSection} />;
-  if (!weather.isError.status&& weather.data) {
+  if (!weather.isError.status && weather.data) {
     return (
       <div className={styles.forecastSection}>
         {weather.data &&
@@ -22,10 +22,10 @@ export default function WeekForecast() {
               key={i}
               icon={weatherIconPicker(day.weather.icon)}
               size="standart"
-              description={descriptionBuilder({
+              description={`${descriptionBuilder({
                 title: "feelslike",
                 value: day.temperature.feels_like - 273,
-              })}
+              })}`}
               title={`${day.dt_txt && day.dt_txt.split(" ")[0]}`}
               mainInfo={`${Math.floor(day.temperature.current_temp - 273)}°`}
             />

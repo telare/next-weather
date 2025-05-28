@@ -18,7 +18,11 @@ export default function FormField({ name, type, placeholder }: FormField) {
         type={type}
         {...register(name)}
       />
-      <div className={styles.errorMessage}>{errors[name]?.message && <p>{errors[name]?.message.toString()}</p>}</div>
+      {errors[name] && (
+        <span className={styles.errorMessage}>
+          {errors[name]?.message && <p>{errors[name]?.message.toString()}</p>}
+        </span>
+      )}
     </div>
   );
 }

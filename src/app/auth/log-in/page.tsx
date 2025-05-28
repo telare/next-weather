@@ -14,19 +14,17 @@ export default function LogInPage() {
   });
 
   const title: React.ReactElement = (
-    <div>
-      <h2>Wellcome Back!</h2>
+    <>
+      <h1>Wellcome Back!</h1>
       <p>Log In in with your data</p>
-    </div>
+    </>
   );
   return (
     <div className={styles.wrapper}>
-      <div className={styles.formCon}>
-        <div className={styles.navThemeBtnCon}>
-          <ThemeToggleBtn />
-        </div>
-        <Form schema={logInSchema} title={title} type="log-in" />
+      <div className={styles.themeBtnCon}>
+        <ThemeToggleBtn />
       </div>
+      <Form schema={logInSchema} title={title} type="log-in" />
     </div>
   );
 }

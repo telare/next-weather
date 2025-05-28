@@ -40,35 +40,38 @@ export default function Form({ schema, title, type }: AuthFormProps) {
     <FormProvider {...methods}>
       <form className={styles.formCon} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.formHeader}>{title}</div>
-
-        {fields.map((field, i) => (
-          <FormField
-            key={i}
-            name={field}
-            type={field === "password" ? "password" : "text"}
-            placeholder={field}
+        <div className={styles.formFieldsCon}>
+          {fields.map((field, i) => (
+            <FormField
+              key={i}
+              name={field}
+              type={field === "password" ? "password" : "text"}
+              placeholder={field}
+            />
+          ))}
+        </div>
+        <div className={styles.formFooter}>
+          <Button
+            title="Continue"
+            alt="Continue"
+            width={50}
+            type="submit"
+            style={styles.submitBtn}
           />
-        ))}
-
-        <Button
-          title="Continue"
-          alt="Continue"
-          width={50}
-          type="submit"
-          style={styles.submitBtn}
-        />
+          <div className={styles.navigationLinks}>
+            {pathname === "/auth/sign-up" ? (
+              <p>
+                Already have account?<Link href="/auth/log-in">Log In</Link>
+              </p>
+            ) : (
+              <p>
+                Don&apos;t have account?
+                <Link href="/auth/sign-up">Sign Up</Link>
+              </p>
+            )}
+          </div>
+        </div>
       </form>
-      <div className={styles.navigationLinks}>
-        {pathname === "/auth/sign-up" ? (
-          <p>
-            Already have account?<Link href="/auth/log-in">Log In</Link>
-          </p>
-        ) : (
-          <p>
-            Don&apos;t have account?<Link href="/auth/sign-up">Sign Up</Link>
-          </p>
-        )}
-      </div>
     </FormProvider>
   );
 }
