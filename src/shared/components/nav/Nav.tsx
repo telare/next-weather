@@ -11,9 +11,11 @@ export default function Nav() {
       <Links />
       <div className={styles.navContent}>
         <Search />
-        <ThemeToggleBtn />
-        <GitBtn />
-        <LogOutBtn />
+        <div className={styles.navContentBtns}>
+          <ThemeToggleBtn />
+          <GitBtn />
+          <LogOutBtn />
+        </div>
       </div>
     </div>
   );
