@@ -1,4 +1,9 @@
 //common
+$fontSizes: (
+  "mobile": 18px,
+  "tablet": 22px,
+);
+
 $baseFontSize: 25px;
 $baseFontWeight: 500;
 $baseBorderWidth: 0.1875rem; //3px
@@ -13,4 +18,3 @@ $baseBorderColor: black;
 $baseFontColorDark: white;
 $baseBackColorDark: black;
 $baseBorderColorDark: white;
-

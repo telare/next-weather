@@ -1,11 +1,24 @@
+@use "sass:map";
+
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/themeMixin" as globalThemeMixin;
+@use "@shared/styles/mixins/breakpointsMixin" as breakpointsMixin;
 // for reset styles
 @import "tailwindcss";
 body {
-  @include globalThemeMixin.themeToggle($currentTheme: light);
+  border: none;
+  display: flex;
+  justify-content: center;
   font-size: globalVariables.$baseFontSize;
   font-weight: globalVariables.$baseFontWeight;
+  padding: 0 10%;
+
+  @include globalThemeMixin.themeToggle($currentTheme: light);
+  @each $breakpoint, $fontSize in globalVariables.$fontSizes {
+    @include breakpointsMixin.respond-to($breakpoint) {
+      font-size: $fontSize;
+    }
+  }
 }
 
 .dark body {
