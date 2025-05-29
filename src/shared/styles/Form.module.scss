@@ -1,7 +1,7 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/divMixin" as globalDivMixins;
 @use "@shared/styles/mixins/btnMixin" as globalBtnMixins;
-
+@use "@shared/styles/mixins/breakpointsMixin" as breakpointsMixin;
 .formCon {
   @include globalDivMixins.div();
   width: auto;
@@ -88,11 +88,21 @@
     padding: 0;
     border: none;
     text-align: center;
-    p{
-      a{
-        color:rgb(150, 132, 132);
+    p {
+      a {
+        color: rgb(150, 132, 132);
         &::before {
           content: " | ";
+        }
+      }
+    }
+    @include breakpointsMixin.respond-to("tablet") {
+      p {
+        a {
+          display: block;
+          &::before {
+            content: "";
+          }
         }
       }
     }

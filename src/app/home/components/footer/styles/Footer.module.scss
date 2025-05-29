@@ -32,11 +32,11 @@
   @include globalDivMixins.div();
   width: 100%;
   height: 40%;
-  gap: 2%;
+  // gap: 1rem;
   @include breakpointsMixin.respond-to("tablet") {
     flex-wrap: wrap;
+    justify-content: space-between;
     height: auto;
-    column-gap: 7%;
   }
 }
 .mapSection {
@@ -50,7 +50,8 @@
     border-radius: inherit;
   }
   @include breakpointsMixin.respond-to("tablet") {
-    min-height: 10rem; // 160px
+    min-height: 25rem; // 160px
+    width: 100%;
   }
 }
 .asideColumn {

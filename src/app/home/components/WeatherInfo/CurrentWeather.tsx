@@ -57,7 +57,6 @@ export default function CurrentWeather() {
         <div className={styles.weatherFooter}>
           <MetricCart
             title={weather.data.currentWeather.weather.descr}
-            size="standart"
             renderComponent={weatherIconPicker(
               weather.data.currentWeather.weather.icon
             )}
@@ -70,7 +69,6 @@ export default function CurrentWeather() {
           <MetricCart
             icon={windIcon}
             title="Wind"
-            size="standart"
             renderComponent={windRenderComponent}
             mainInfo={`${weather.data.currentWeather.wind.speed}`}
             description={descriptionBuilder({

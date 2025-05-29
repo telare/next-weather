@@ -19,7 +19,6 @@
   justify-content: center;
   flex-direction: column;
   align-content: flex-end;
-
   .weatherHeader {
     @include globalDivMixins.div(large);
     justify-content: space-between;
@@ -123,9 +122,19 @@
     height: 50%;
     width: 100%;
     gap: 2%;
+    &:nth-child(2){
+      div{
+        width: 100%;
+      }
+    }
     @include breakpointsMixin.respond-to("tablet") {
       flex-wrap: wrap;
+      justify-content: space-between;
       height: auto;
+      &:nth-child(2) {
+        justify-content: center;
+      }
     }
+    
   }
 }

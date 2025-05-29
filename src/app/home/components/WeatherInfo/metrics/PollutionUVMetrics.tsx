@@ -21,7 +21,6 @@ export default function PollutionUV() {
         <MetricCart
           title="Air Pollution"
           icon={pollutionIcon}
-          size="large"
           description={descriptionBuilder({
             title: "pollution",
             value: weather.data.other.pollution,
@@ -38,7 +37,6 @@ export default function PollutionUV() {
         <MetricCart
           icon={lightThemeIcon}
           title="UV index"
-          size="large"
           description={descriptionBuilder({
             title: "uvIndex",
             value: weather.data.other.uv,

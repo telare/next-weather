@@ -21,7 +21,6 @@ export default function WeekForecast() {
             <MetricCart
               key={i}
               icon={weatherIconPicker(day.weather.icon)}
-              size="standart"
               description={`${descriptionBuilder({
                 title: "feelslike",
                 value: day.temperature.feels_like - 273,
