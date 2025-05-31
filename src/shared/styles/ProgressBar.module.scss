@@ -19,6 +19,7 @@
   justify-content: flex-start;
   .progressBarElement {
     @include globalDivMixins.div();
+    width: auto;
     max-width: 1%;
     border-radius: 1.25rem; // 20px
     height: 100%;

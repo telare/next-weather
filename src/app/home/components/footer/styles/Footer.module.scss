@@ -6,6 +6,7 @@
   @include globalDivMixins.div(section);
   height: 50rem; // 800px
   align-content: start;
+  align-items: start;
   gap: 5%;
   @include breakpointsMixin.respond-to("tablet") {
     flex-direction: column;
@@ -59,7 +60,7 @@
   @include globalDivMixins.div();
   height: auto;
   width: 20%;
-  align-content: baseline;
+  text-align: center;
   .cityList {
     @include globalDivMixins.div();
     border: none;
