@@ -1,4 +1,4 @@
-export function descriptionBuilder(metric: {
+export default function descriptionBuilder(metric: {
   title: string;
   value: number;
 }): string {

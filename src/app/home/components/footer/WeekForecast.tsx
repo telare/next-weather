@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { DataContext } from "@/providers/dataProvider/dataProvider";
 import { weatherIconPicker } from "@/utils/weatherIconPicker";
 import Skeleton from "@shared/components/Skeletons/Skeleton";
-import { descriptionBuilder } from "@/utils/descriptionBuilder";
+import  descriptionBuilder from "@/utils/descriptionBuilder";
 export default function WeekForecast() {
   const weather = useContext(DataContext);
   if (weather.isError.status) {

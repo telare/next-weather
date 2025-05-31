@@ -4,7 +4,7 @@ import styles from "../../../styles/WeatherInfo.module.scss";
 import { useContext } from "react";
 import { DataContext } from "@/providers/dataProvider/dataProvider";
 import { lightThemeIcon, pollutionIcon } from "@/utils/Icons";
-import { descriptionBuilder } from "@/utils/descriptionBuilder";
+import descriptionBuilder  from "@/utils/descriptionBuilder";
 import UvPollutionProgressBar from "@shared/components/ProgressBar/UvPollutionProgressBar";
 import Skeleton from "@shared/components/Skeletons/Skeleton";
 export default function PollutionUV() {

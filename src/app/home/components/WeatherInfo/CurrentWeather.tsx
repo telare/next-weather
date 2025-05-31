@@ -7,7 +7,7 @@ import { weatherIconPicker } from "@/utils/weatherIconPicker";
 import Clock from "@/app/home/components/WeatherInfo/Clock";
 import Image from "next/image";
 import { windDirectionIcon, windIcon } from "@/utils/Icons";
-import { descriptionBuilder } from "@/utils/descriptionBuilder";
+import descriptionBuilder  from "@/utils/descriptionBuilder";
 import Skeleton from "@shared/components/Skeletons/Skeleton";
 
 export default function CurrentWeather() {

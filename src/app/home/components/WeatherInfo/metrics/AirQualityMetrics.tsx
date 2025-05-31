@@ -9,7 +9,7 @@ import {
   thermometerIcon,
   visibilityIcon,
 } from "@/utils/Icons";
-import { descriptionBuilder } from "@/utils/descriptionBuilder";
+import descriptionBuilder  from "@/utils/descriptionBuilder";
 import Skeleton from "@shared/components/Skeletons/Skeleton";
 export default function AirQualityMetrics() {
   const weather = useContext(DataContext);
