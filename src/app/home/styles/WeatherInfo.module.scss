@@ -3,7 +3,7 @@
 @use "@shared/styles/mixins/breakpointsMixin" as breakpointsMixin;
 .containerMain {
   @include globalDivMixins.div(section);
-  gap: 2%;
+  gap: 1rem;
   @include breakpointsMixin.respond-to("tablet") {
     flex-wrap: wrap;
     height: auto;
@@ -15,7 +15,7 @@
   @include globalDivMixins.div(big);
   height: 100%;
   width: 100%;
-  padding: 1.25rem; // 20px 16px base
+  padding: 0.625rem; // 20px 16px base
   justify-content: center;
   flex-direction: column;
   align-content: flex-end;
@@ -24,6 +24,17 @@
     justify-content: space-between;
     border: none;
     width: 100%;
+    .clockCon {
+      @include globalDivMixins.div(largeDiv);
+      height: 100%;
+      width: 100%;
+      justify-content: space-between;
+      border: none;
+      @include breakpointsMixin.respond-to("mobile") {
+        flex-direction: column;
+        height: auto;
+      }
+    }
   }
 
   .temperatureCon {
@@ -36,16 +47,15 @@
     h1,
     h3 {
       display: -webkit-box;
+      -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
       line-clamp: 1;
-      -webkit-box-orient: vertical;
       overflow: hidden;
+
+      text-align: center;
     }
     h1 {
       font-size: 4.6875rem; // 75px
-    }
-    h3 {
-      margin: 0;
     }
 
     div:nth-child(n) {
@@ -64,6 +74,14 @@
     div:nth-child(2) {
       height: 70%;
     }
+
+    @include breakpointsMixin.respond-to("mobile") {
+      h1,
+      h3 {
+        display: block;
+        line-break: strict;
+      }
+    }
   }
 
   .weatherFooter {
@@ -73,10 +91,9 @@
     width: 100%;
     padding: 0;
     border: none;
-    justify-content: space-between;
     @include breakpointsMixin.respond-to("mobile") {
-      flex-wrap: wrap;
-      height: auto;
+      flex-direction: column;
+      gap: 1rem;
     }
   }
 
@@ -112,18 +129,15 @@
   height: 100%;
   width: 100%;
   flex-direction: column;
-  gap: 2%;
-  @include breakpointsMixin.respond-to("tablet") {
-    height: auto;
-  }
   .metricItems {
     @include globalDivMixins.div();
     border: none;
     height: 50%;
     width: 100%;
-    gap: 2%;
-    &:nth-child(2){
-      div{
+    gap: 1rem;
+    padding: 0;
+    &:nth-child(2) {
+      div {
         width: 100%;
       }
     }
@@ -135,6 +149,9 @@
         justify-content: center;
       }
     }
-    
+  }
+  @include breakpointsMixin.respond-to("tablet") {
+    row-gap: 1rem;
+    height: auto;
   }
 }

@@ -1,5 +1,5 @@
 "use client";
-import styles from "@shared/styles/Clock.module.scss";
+import styles from "../../styles/WeatherInfo.module.scss";
 import { useEffect, useState } from "react";
 export default function Clock() {
   const [date, setDate] = useState<Date>(() => {
