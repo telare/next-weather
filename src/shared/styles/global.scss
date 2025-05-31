@@ -11,7 +11,7 @@ body {
   justify-content: center;
   font-size: globalVariables.$baseFontSize;
   font-weight: globalVariables.$baseFontWeight;
-  padding: 0 10%;
+  padding: 0 10% !important; // !important to override Tailwind's padding
 
   @include globalThemeMixin.themeToggle($currentTheme: light);
   @each $breakpoint, $fontSize in globalVariables.$fontSizes {

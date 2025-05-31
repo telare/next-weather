@@ -7,7 +7,6 @@
 // nav
 .navCon {
   @include globalDivMixins.div();
-  // position: relative;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -78,17 +77,17 @@
   height: 100%;
   padding: 0;
   border: none;
-  visibility: hidden;
+  display: none;
   z-index: -1000;
   @include breakpointsMixin.respond-to("tablet") {
-    visibility: visible;
+    display: flex;
     z-index: 999;
   }
 }
 
 .navContent {
   @include globalDivMixins.div();
-
+  border: none;
   height: 100%;
   width: auto;
   padding: 0;
@@ -173,7 +172,7 @@
     right: 1rem;
     z-index: -1000;
     flex-direction: column;
-    visibility: hidden;
+    display: none;
     border: solid;
 
     .navContentBtns {
@@ -188,8 +187,8 @@
       }
     }
     &[aria-expanded="true"] {
+      display: flex;
       z-index: 1000;
-      visibility: visible;
     }
   }
 }

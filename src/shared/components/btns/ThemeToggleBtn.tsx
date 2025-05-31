@@ -14,13 +14,13 @@ export default function ThemeToggleBtn() {
   const themeValues = ["light", "dark"];
   if (isMounted) {
     return (
-      <DropdownMenu.Root>
+      <DropdownMenu.Root modal={false}>
         <DropdownMenu.Trigger asChild>
           <button className={styles.themeBtn}>
             {theme === "dark" ? nightThemeIcon : lightThemeIcon}
           </button>
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className={styles.themeBtnContent}>
+        <DropdownMenu.Content className={styles.themeBtnContent} >
           {themeValues.map((value, i) => (
             <DropdownMenu.Item
               key={i}

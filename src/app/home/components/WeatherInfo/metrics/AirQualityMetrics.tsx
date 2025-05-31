@@ -17,7 +17,7 @@ export default function AirQualityMetrics() {
     throw new Error(weather.isError.message);
   }
   if (weather.isLoading) return <Skeleton className={styles.metricItems} />;
-  if (!weather.isError.status&& weather.data) {
+  if (!weather.isError.status && weather.data) {
     return (
       <div className={styles.metricItems}>
         {/* humidity cart*/}

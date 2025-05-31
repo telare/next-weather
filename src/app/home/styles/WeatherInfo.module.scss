@@ -4,8 +4,12 @@
 .containerMain {
   @include globalDivMixins.div(section);
   gap: 1rem;
+  display: grid;
+  grid-template-columns: 40% 60%;
   @include breakpointsMixin.respond-to("tablet") {
+    display: flex;
     flex-wrap: wrap;
+    grid-template-columns: 40% 60%;
     height: auto;
   }
 }
@@ -18,7 +22,6 @@
   padding: 0.625rem; // 20px 16px base
   justify-content: center;
   flex-direction: column;
-  align-content: flex-end;
   .weatherHeader {
     @include globalDivMixins.div(large);
     justify-content: space-between;
@@ -68,7 +71,7 @@
       height: auto;
       max-height: 30%;
       justify-content: flex-start;
-      align-items: flex-end;
+      align-content: flex-end;
     }
 
     div:nth-child(2) {
@@ -89,7 +92,6 @@
     justify-content: space-between;
     height: auto;
     width: 100%;
-    padding: 0;
     border: none;
     @include breakpointsMixin.respond-to("mobile") {
       flex-direction: column;
@@ -128,6 +130,7 @@
   @include globalDivMixins.div(large);
   height: 100%;
   width: 100%;
+  gap: 1rem;
   flex-direction: column;
   .metricItems {
     @include globalDivMixins.div();
@@ -137,17 +140,13 @@
     gap: 1rem;
     padding: 0;
     &:nth-child(2) {
-      div {
+      & > div {
         width: 100%;
       }
     }
     @include breakpointsMixin.respond-to("tablet") {
       flex-wrap: wrap;
-      justify-content: space-between;
       height: auto;
-      &:nth-child(2) {
-        justify-content: center;
-      }
     }
   }
   @include breakpointsMixin.respond-to("tablet") {
