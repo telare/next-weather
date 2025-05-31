@@ -7,7 +7,10 @@
 // nav
 .navCon {
   @include globalDivMixins.div();
-  position: relative;
+  // position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   height: 6rem;
   width: 100%;
   padding: 1rem 1.2rem;
@@ -170,6 +173,7 @@
     right: 1rem;
     z-index: -1000;
     flex-direction: column;
+    visibility: hidden;
     border: solid;
 
     .navContentBtns {
@@ -185,6 +189,7 @@
     }
     &[aria-expanded="true"] {
       z-index: 1000;
+      visibility: visible;
     }
   }
 }
