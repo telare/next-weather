@@ -19,14 +19,13 @@ export default function WeekForecast() {
           weather.data.other.weekForecast &&
           weather.data.other.weekForecast.map((day, i) => (
             <MetricCart
+              title={`${day.dt_txt && day.dt_txt.split(" ")[0]}`}
               key={i}
               icon={weatherIconPicker(day.weather.icon)}
-              size="standart"
               description={`${descriptionBuilder({
                 title: "feelslike",
                 value: day.temperature.feels_like - 273,
               })}`}
-              title={`${day.dt_txt && day.dt_txt.split(" ")[0]}`}
               mainInfo={`${Math.floor(day.temperature.current_temp - 273)}°`}
             />
           ))}

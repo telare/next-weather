@@ -17,14 +17,13 @@ export default function AirQualityMetrics() {
     throw new Error(weather.isError.message);
   }
   if (weather.isLoading) return <Skeleton className={styles.metricItems} />;
-  if (!weather.isError.status&& weather.data) {
+  if (!weather.isError.status && weather.data) {
     return (
       <div className={styles.metricItems}>
         {/* humidity cart*/}
         <MetricCart
           title="Humidity"
           icon={humidityIcon}
-          size="standart"
           mainInfo={`${weather.data.currentWeather.other.humidity} %`}
           description={descriptionBuilder({
             title: "humidity",
@@ -36,7 +35,6 @@ export default function AirQualityMetrics() {
         <MetricCart
           title="Pressure"
           icon={pressureIcon}
-          size="standart"
           mainInfo={`${weather.data.currentWeather.other.pressure} Pa`}
           description={descriptionBuilder({
             title: "pressure",
@@ -48,7 +46,6 @@ export default function AirQualityMetrics() {
         <MetricCart
           title="Visibility"
           icon={visibilityIcon}
-          size="standart"
           mainInfo={`${weather.data.currentWeather.other.visibility / 100} %`}
           description={descriptionBuilder({
             title: "visibility",
@@ -60,7 +57,6 @@ export default function AirQualityMetrics() {
         <MetricCart
           title="Feels like"
           icon={thermometerIcon}
-          size="standart"
           mainInfo={`${Math.floor(weather.data.currentWeather.temperature.feels_like)}°`}
           description={descriptionBuilder({
             title: "feelslike",

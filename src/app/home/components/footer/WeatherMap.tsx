@@ -11,13 +11,11 @@ import "leaflet/dist/leaflet.css";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState, updateLocation } from "@/providers/globalStore";
 import L from "leaflet";
-import { useContext } from "react";
-import { DataContext } from "@/providers/dataProvider/dataProvider";
-import Skeleton from "@shared/components/Skeletons/Skeleton";
 
 export default function WeatherMap() {
-  const defaultLocation = useSelector((state: RootState) => state.location.value);
-  const weather = useContext(DataContext);
+  const defaultLocation = useSelector(
+    (state: RootState) => state.location.value
+  );
   const dispatch = useDispatch();
   const { lat, lon } = defaultLocation;
   const customIcon = L.icon({
@@ -44,7 +42,6 @@ export default function WeatherMap() {
     map.flyTo([Number(lat), Number(lon)]);
     return null;
   }
-  if (weather.isLoading) return <Skeleton className={styles.mapSection} />;
   return (
     <div className={styles.mapSection}>
       <MapContainer

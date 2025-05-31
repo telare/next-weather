@@ -5,7 +5,6 @@ type MetricCart = {
   description: string | React.ReactNode;
   icon?: React.ReactElement;
   border?: boolean;
-  size: "standart" | "large";
   renderComponent?: React.ReactElement;
   mainInfo?: string;
 };
@@ -13,18 +12,11 @@ export default function MetricCart({
   title,
   description,
   icon,
-  size,
   renderComponent,
   mainInfo,
 }: MetricCart) {
   return (
-    <div
-      className={
-        size === "standart"
-          ? styles.container
-          : [styles.container, styles.containerLarge].join(" ")
-      }
-    >
+    <div className={styles.container}>
       <div className={styles.header}>
         {icon && icon}
         <h3>{title}</h3>

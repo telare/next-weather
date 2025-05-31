@@ -10,17 +10,11 @@ export default function HomeLayout({
   searchModal: React.ReactNode;
 }) {
   return (
-    <div
-      style={{ backgroundColor: "inherit", border: "inherit", width: "80%" }}
-    >
-      <QueryProvider>
-        <StoreProvider>
-          {searchModal}
-          <DataProvider>
-            <div>{children}</div>
-          </DataProvider>
-        </StoreProvider>
-      </QueryProvider>
-    </div>
+    <QueryProvider>
+      <StoreProvider>
+        {searchModal}
+        <DataProvider>{children}</DataProvider>
+      </StoreProvider>
+    </QueryProvider>
   );
 }

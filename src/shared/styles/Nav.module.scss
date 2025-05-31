@@ -3,9 +3,13 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
 @use "@shared/styles/mixins/darkModeMixin" as globalDarkModeMixin;
+@use "@shared/styles/mixins/breakpointsMixin" as breakpointsMixin;
 // nav
 .navCon {
   @include globalDivMixins.div();
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   height: 6rem;
   width: 100%;
   padding: 1rem 1.2rem;
@@ -14,6 +18,9 @@
   grid-template-rows: 100%;
   grid-template-columns: 25% 65%;
   column-gap: 0;
+  @include breakpointsMixin.respond-to("tablet") {
+    grid-template-columns: 1fr auto;
+  }
 }
 
 .navLinksCon {
@@ -63,81 +70,125 @@
   }
 }
 
+.hamburgerLogo {
+  @include globalDivMixins.div();
+  width: auto;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 0;
+  border: none;
+  display: none;
+  z-index: -1000;
+  @include breakpointsMixin.respond-to("tablet") {
+    display: flex;
+    z-index: 999;
+  }
+}
+
 .navContent {
   @include globalDivMixins.div();
+  border: none;
   height: 100%;
   width: auto;
   padding: 0;
-  border: none;
 
   justify-content: flex-end;
-  column-gap: 1.25rem;
+  gap: 1.25rem;
 
   button {
     height: 100%;
     width: auto;
   }
-}
 
-.searchCon {
-  @include globalDivMixins.div();
-  padding: 0;
-  font-size: 16px;
-  justify-content: flex-start;
-  height: 100%;
-  width: 100%;
-  gap: 5%;
-  padding: 0.5rem 0.7rem;
-  input {
-    all: unset;
-    height: 100%;
-    background-color: inherit;
-    color: inherit;
-    font-family: inherit;
-    width: 70%;
-  }
-  @include globalTransformMixin.transformMixin();
-}
-
-.searchShortCut {
-  @include globalDivMixins.div();
-  border: none;
-  padding: 0;
-  gap: 7%;
-  height: 100%;
-  width: 100%;
-  max-width: 30%;
-  justify-content: flex-end;
-  div {
+  .searchCon {
     @include globalDivMixins.div();
     padding: 0;
-    width: 30%;
-    height: 100%;
-  }
-}
-
-.navContentBtns {
-  @include globalDivMixins.div();
-  padding: 0;
-  height: 100%;
-  column-gap: 1rem;
-  border: none;
-  width: auto;
-  button {
-    @include globalBtnMixins.btn();
-    height: 100%;
-    width: auto;
     font-size: 16px;
-    text-decoration: none;
-    &:nth-child(1) {
-      min-width: 4rem;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    gap: 5%;
+    padding: 0.5rem 0.7rem;
+    input {
+      all: unset;
+      height: 100%;
+      background-color: inherit;
+      color: inherit;
+      font-family: inherit;
+      width: 70%;
     }
-    &:nth-child(2) {
-      min-width: 11rem;
-      column-gap: 5%;
+    @include globalTransformMixin.transformMixin();
+  }
+
+  .searchShortCut {
+    @include globalDivMixins.div();
+    border: none;
+    padding: 0;
+    gap: 7%;
+    height: 100%;
+    width: 100%;
+    max-width: 30%;
+    justify-content: flex-end;
+    div {
+      @include globalDivMixins.div();
+      padding: 0;
+      width: 30%;
+      height: 100%;
     }
-    &:nth-child(3) {
-      min-width: 6rem;
+  }
+
+  .navContentBtns {
+    @include globalDivMixins.div();
+    padding: 0;
+    height: 100%;
+    gap: 1rem;
+    border: none;
+    width: auto;
+    button {
+      @include globalBtnMixins.btn();
+      height: 100%;
+      width: auto;
+      font-size: 16px;
+      text-decoration: none;
+      &:nth-child(1) {
+        min-width: 4rem;
+      }
+      &:nth-child(2) {
+        min-width: 11rem;
+        column-gap: 5%;
+      }
+      &:nth-child(3) {
+        min-width: 6rem;
+      }
+    }
+  }
+
+  @include breakpointsMixin.respond-to("tablet") {
+    position: absolute;
+    height: auto;
+    width: 50dvw;
+    padding: 1rem 1.2rem;
+    top: calc(100% - 1rem);
+    right: 1rem;
+    z-index: -1000;
+    flex-direction: column;
+    display: none;
+    border: solid;
+
+    .navContentBtns {
+      flex-direction: column;
+    }
+    .searchCon {
+      input {
+        width: 100%;
+      }
+      .searchShortCut {
+        display: none;
+      }
+    }
+    &[aria-expanded="true"] {
+      display: flex;
+      z-index: 1000;
     }
   }
 }

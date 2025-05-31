@@ -16,14 +16,7 @@ export default function RootLayout({ children }: Layout) {
         <meta name="apple-mobile-web-app-title" content="NextWeather" />
         {/* <link rel="icon" href="/img/favicon.png" /> */}
       </head>
-      <body
-        style={{
-          border: "none",
-          display: "flex",
-          justifyContent: "center",
-        }}
-        className={space_grotesk.className}
-      >
+      <body className={space_grotesk.className}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

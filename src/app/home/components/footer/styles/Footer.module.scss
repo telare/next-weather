@@ -1,11 +1,19 @@
 @use "@shared/styles/mixins/divMixin.scss" as globalDivMixins;
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
+@use "@shared/styles/mixins/breakpointsMixin" as breakpointsMixin;
 .footerCon {
   @include globalDivMixins.div(section);
   height: 50rem; // 800px
+  align-content: start;
   align-items: start;
   gap: 5%;
+  @include breakpointsMixin.respond-to("tablet") {
+    flex-direction: column;
+    align-content: center;
+    height: auto;
+    row-gap: 2rem;
+  }
 }
 
 .mainColumn {
@@ -14,16 +22,24 @@
   width: 80%;
   padding: 0;
   height: 100%;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  @include breakpointsMixin.respond-to("tablet") {
+    row-gap: 2rem;
+    width: 100%;
+  }
 }
 .forecastSection {
   @include globalDivMixins.div();
   width: 100%;
   height: 40%;
-  column-gap: 2%;
+  gap: 1rem;
+  @include breakpointsMixin.respond-to("tablet") {
+    flex-wrap: wrap;
+    column-gap: 0;
+    justify-content: space-around;
+    height: auto;
+  }
 }
 .mapSection {
   @include globalDivMixins.div(big);
@@ -35,12 +51,16 @@
     height: 100%;
     border-radius: inherit;
   }
+  @include breakpointsMixin.respond-to("tablet") {
+    min-height: 25rem; // 160px
+    width: 100%;
+  }
 }
 .asideColumn {
   @include globalDivMixins.div();
   height: auto;
   width: 20%;
-  align-items: baseline;
+  text-align: center;
   .cityList {
     @include globalDivMixins.div();
     border: none;
@@ -59,5 +79,8 @@
       height: 100%;
       @include globalTransformMixin.transformMixin();
     }
+  }
+  @include breakpointsMixin.respond-to("tablet") {
+    width: auto;
   }
 }
