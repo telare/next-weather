@@ -38,7 +38,7 @@ export default function Form({ schema, title, type }: AuthFormProps) {
   }
   return (
     <FormProvider {...methods}>
-      <form className={styles.formCon} onSubmit={handleSubmit(onSubmit)}>
+      <form className={styles.formCon} onSubmit={handleSubmit(onSubmit)} role="form">
         <div className={styles.formHeader}>{title}</div>
         <div className={styles.formFieldsCon}>
           {fields.map((field, i) => (
