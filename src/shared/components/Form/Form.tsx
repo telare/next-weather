@@ -56,7 +56,7 @@ export default function Form({ schema, title, type }: AuthFormProps) {
             alt="Continue"
             width={50}
             type="submit"
-            style={styles.submitBtn}
+            className={styles.submitBtn}
           />
           <div className={styles.navigationLinks}>
             {pathname === "/auth/sign-up" ? (

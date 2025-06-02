@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function Nav() {
   const [isOpen, setOpen] = useState<boolean>(false);
   return (
-    <div className={styles.navCon} tabIndex={0}>
+    <div className={styles.navCon}>
       <Links />
       <div className={styles.hamburgerLogo}>
         <Hamburger toggled={isOpen} toggle={setOpen} />

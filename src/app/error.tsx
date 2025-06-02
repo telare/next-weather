@@ -19,7 +19,7 @@ export default function ErrorPage({
         func={() => redirect("/auth/log-in")}
         title="Try again"
         type="button"
-        style={styles.resetBtn}
+        className={styles.resetBtn}
       />
     </div>
   );

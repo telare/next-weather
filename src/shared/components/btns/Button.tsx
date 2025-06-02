@@ -3,7 +3,6 @@ import Image from "next/image";
 type Button = {
   title?: string;
   alt: string;
-  type: "submit" | "reset" | "button" | undefined;
   image?: {
     src: string;
     width: number | `${number}`;
@@ -13,19 +12,19 @@ type Button = {
 
   func?: () => void;
   width?: string | number;
-  style?: string;
+  className?: string;
 };
 export default function Button({
   title,
   func,
   image,
   icon,
-  type,
-  style,
-  alt
-}: Button) {
+  alt,
+  className,
+  ...rest
+}: Button & Partial<HTMLButtonElement>) {
   return (
-    <button onClick={func} type={type} className={style}>
+    <button onClick={func} className={className} {...rest}>
       {image && ( 
         <Image
           alt={`${alt} button`}
