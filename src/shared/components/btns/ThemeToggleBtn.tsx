@@ -16,11 +16,19 @@ export default function ThemeToggleBtn() {
     return (
       <DropdownMenu.Root modal={false}>
         <DropdownMenu.Trigger asChild>
-          <button className={styles.themeBtn}>
+          <button
+            className={styles.themeBtn}
+            aria-label={
+              theme === "dark"
+                ? "Switch to light theme"
+                : "Switch to dark theme"
+            }
+            aria-pressed={theme === "dark"}
+          >
             {theme === "dark" ? nightThemeIcon : lightThemeIcon}
           </button>
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className={styles.themeBtnContent} >
+        <DropdownMenu.Content className={styles.themeBtnContent}>
           {themeValues.map((value, i) => (
             <DropdownMenu.Item
               key={i}

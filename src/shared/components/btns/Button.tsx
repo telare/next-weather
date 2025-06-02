@@ -1,42 +1,50 @@
 import Image from "next/image";
+import { ButtonHTMLAttributes, JSX } from "react";
 
 type Button = {
-  title?: string;
-  alt: string;
+  text?: string;
   image?: {
     src: string;
     width: number | `${number}`;
     height: number | `${number}`;
+    alt: string;
   };
-  icon?: React.ReactElement;
+  icon?: JSX.Element;
+  ariaLabel?: string;
 
   func?: () => void;
   width?: string | number;
   className?: string;
 };
 export default function Button({
-  title,
+  text,
   func,
   image,
   icon,
-  alt,
+  ariaLabel,
   className,
   ...rest
-}: Button & Partial<HTMLButtonElement>) {
+}: Button & ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button onClick={func} className={className} {...rest}>
-      {image && ( 
+    <button
+      onClick={func}
+      className={className}
+      aria-label={ariaLabel ? ariaLabel : text}
+      {...rest}
+    >
+      {image && (
         <Image
-          alt={`${alt} button`}
+          alt={`${image.alt} button image`}
           src={image.src}
           width={image.width}
           height={image.height}
         />
       )}
 
+      {/* {Icon && <Icon aria-hidden="true" focusable="false" />} */}
       {icon && icon}
 
-      {title && title}
+      {text && text}
     </button>
   );
 }

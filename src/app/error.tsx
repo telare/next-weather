@@ -15,9 +15,8 @@ export default function ErrorPage({
         <p>Error message: {error.message}</p>
       </div>
       <Button
-        alt="Try again"
         func={() => redirect("/auth/log-in")}
-        title="Try again"
+        text="Try again"
         type="button"
         className={styles.resetBtn}
       />

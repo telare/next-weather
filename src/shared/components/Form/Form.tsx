@@ -52,8 +52,7 @@ export default function Form({ schema, title, type }: AuthFormProps) {
         </div>
         <div className={styles.formFooter}>
           <Button
-            title="Continue"
-            alt="Continue"
+            text="Continue"
             width={50}
             type="submit"
             className={styles.submitBtn}
