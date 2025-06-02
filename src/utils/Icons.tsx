@@ -26,34 +26,38 @@ import {
   UsersRound,
   Moon,
 } from "lucide-react";
+import { ElementType } from "react";
 
-export const searchIcon = <Search />;
-export const commandIcon = <Command />;
-export const navigationIcon = <Navigation />;
-export const thermometerIcon = <Thermometer />;
-export const sunSetIcon = <Sunset />;
-export const sunRiseIcon = <Sunrise />;
-export const windIcon = <Wind />;
+function accessibleWrapper(Icon: ElementType) {
+  return <Icon aria-hidden="true" focusable={false} />;
+}
 
-export const cloudDrizzleIcon = <CloudDrizzle />;
-export const cloudRainIcon = <CloudRain />;
-export const snowFlakeIcon = <Snowflake />;
-export const cloudSunIcon = <CloudSun />;
-export const cloudyRainIcon = <Cloudy />;
-export const pressureIcon = <Gauge />;
-export const thunderstormIcon = <CloudLightning />;
-export const cloudfogIcon = <CloudFog />;
-export const sandIcon = <Shell />;
+export const searchIcon = accessibleWrapper(Search);
+export const commandIcon = accessibleWrapper(Command);
+export const navigationIcon = accessibleWrapper(Navigation);
+export const thermometerIcon = accessibleWrapper(Thermometer);
+export const sunSetIcon = accessibleWrapper(Sunset);
+export const sunRiseIcon = accessibleWrapper(Sunrise);
+export const windIcon = accessibleWrapper(Wind);
 
-export const pollutionIcon = <SprayCan />;
+export const cloudDrizzleIcon = accessibleWrapper(CloudDrizzle);
+export const cloudRainIcon = accessibleWrapper(CloudRain);
+export const snowFlakeIcon = accessibleWrapper(Snowflake);
+export const cloudSunIcon = accessibleWrapper(CloudSun);
+export const cloudyRainIcon = accessibleWrapper(Cloudy);
+export const pressureIcon = accessibleWrapper(Gauge);
+export const thunderstormIcon = accessibleWrapper(CloudLightning);
+export const cloudfogIcon = accessibleWrapper(CloudFog);
+export const sandIcon = accessibleWrapper(Shell);
 
-export const humidityIcon = <Droplets />;
-export const visibilityIcon = <Eye />;
-export const calendarIcon = <CalendarDays />;
-export const userIcon = <UsersRound />;
-export const lightThemeIcon = <SunDim />;
-export const nightThemeIcon = <Moon />;
-export const githubIcon = <Github />;
-export const windDirectionIcon = <MoveUp />;
+export const pollutionIcon = accessibleWrapper(SprayCan);
+export const humidityIcon = accessibleWrapper(Droplets);
+export const visibilityIcon = accessibleWrapper(Eye);
 
-export const closeIcon = <XIcon />;
+export const calendarIcon = accessibleWrapper(CalendarDays);
+export const userIcon = accessibleWrapper(UsersRound);
+export const lightThemeIcon = accessibleWrapper(SunDim);
+export const nightThemeIcon = accessibleWrapper(Moon);
+export const githubIcon = accessibleWrapper(Github);
+export const windDirectionIcon = accessibleWrapper(MoveUp);
+export const closeIcon = accessibleWrapper(XIcon);

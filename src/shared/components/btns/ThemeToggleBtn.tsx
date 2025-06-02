@@ -23,6 +23,7 @@ export default function ThemeToggleBtn() {
                 ? "Switch to light theme"
                 : "Switch to dark theme"
             }
+            // aria-expanded={}
             aria-pressed={theme === "dark"}
           >
             {theme === "dark" ? nightThemeIcon : lightThemeIcon}

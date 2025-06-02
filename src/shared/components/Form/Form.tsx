@@ -38,8 +38,12 @@ export default function Form({ schema, title, type }: AuthFormProps) {
   }
   return (
     <FormProvider {...methods}>
-      <form className={styles.formCon} onSubmit={handleSubmit(onSubmit)}>
-        <div className={styles.formHeader}>{title}</div>
+      <form
+        className={styles.formCon}
+        onSubmit={handleSubmit(onSubmit)}
+        aria-labelledby="form-header"
+      >
+        <header id="form-header">{title}</header>
         <div className={styles.formFieldsCon}>
           {fields.map((field, i) => (
             <FormField
