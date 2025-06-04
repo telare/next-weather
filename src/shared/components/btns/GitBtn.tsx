@@ -8,6 +8,7 @@ export default function GitBtn() {
   return (
     <Button
       type="button"
+      text="Source Code"
       ariaLabel="View source code on GitHub"
       func={() => router.push("https://github.com/telare/next-weather")}
       className={styles.navGitBtn}

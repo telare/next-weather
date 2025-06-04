@@ -47,10 +47,19 @@ export default function Search() {
     }
   }, [debouncedValue, dispatch, router]);
   return (
-    <div className={styles.searchCon}>
+    <search
+      className={styles.searchCon}
+      role="search" // for legacy support
+      aria-label="City search" // Keep this for now, though it might become redundant over time
+    >
+      <label htmlFor="citySearch" className={styles.searchLabel}>
+        Search for a city
+      </label>
       <input
-        type="text"
+        type="search"
+        id="citySearch"
         placeholder="Search Here..."
+        aria-describedby="searchShortcut"
         onClick={() => {
           if (pathname === "/home") {
             router.push(pathname + "/search");
@@ -58,10 +67,16 @@ export default function Search() {
         }}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <div className={styles.searchShortCut}>
-        <div>{commandIcon}</div>
-        <div>F</div>
+      <div
+        id="searchShortcut"
+        className={styles.searchShortCut}
+        aria-label="Search shortcut, press Command + F"
+        title="Press Command + F to search for a city"
+      >
+        <kbd aria-label="Control key">{commandIcon}</kbd>
+        <span>+</span>
+        <kbd aria-label="F key">F</kbd>
       </div>
-    </div>
+    </search>
   );
 }

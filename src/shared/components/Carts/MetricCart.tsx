@@ -5,28 +5,29 @@ type MetricCart = {
   description: string | React.ReactNode;
   icon?: React.ReactElement;
   border?: boolean;
-  renderComponent?: React.ReactElement;
-  mainInfo?: string;
+  mainInfo?: React.ReactNode;
 };
 export default function MetricCart({
   title,
   description,
   icon,
-  renderComponent,
   mainInfo,
 }: MetricCart) {
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+    <article
+      className={styles.metricCardContainer}
+      aria-label={`${title} metric card`}
+    >
+      <header>
         {icon && icon}
         <h3>{title}</h3>
+      </header>
+      <div className={styles.metricCardContent} aria-label="metric card content">
+        {mainInfo}
       </div>
-      <div className={styles.content}>
-        {renderComponent ? renderComponent : <p>{mainInfo}</p>}
-      </div>
-      <div className={styles.footer}>
+      <footer>
         {typeof description === "string" ? <p>{description}</p> : description}
-      </div>
-    </div>
+      </footer>
+    </article>
   );
 }

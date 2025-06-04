@@ -28,49 +28,40 @@
   border: none;
   height: 100%;
   width: auto;
-  font-size: 18px;
+  list-style-type: none;
+  gap: 1.875rem; // 30px
 
-  ul {
+  li {
     @include globalDivMixins.div();
+    @include globalTransformMixin.transformMixin();
+    height: auto;
+    padding: 0.3rem 0.5rem;
+    width: auto;
+    transition-property: all;
     border: none;
-    width: 100%;
-    height: 100%;
-    list-style-type: none;
-    gap: 1.875rem; // 30px
+    border-radius: 0.25rem; // 4px
 
-    li {
-      @include globalDivMixins.div();
-      @include globalTransformMixin.transformMixin();
-      height: auto;
-      padding: 0.3rem 0.5rem;
-      width: auto;
-      transition-property: all;
-      border: none;
-      border-radius: 0.25rem; // 4px
+    width: auto;
+    height: auto;
+    cursor: pointer;
 
-      width: auto;
-      height: auto;
-      cursor: pointer;
+    &:hover {
+      background-color: globalVariables.$baseBackColorDark;
+      color: globalVariables.$baseFontColorDark;
+      transition-property: background-color, color;
 
-      &:hover {
-        background-color: globalVariables.$baseBackColorDark;
-        color: globalVariables.$baseFontColorDark;
-        transition-property: background-color, color;
-
-        @include globalDarkModeMixin.darkModeMixin(
-          globalVariables.$baseFontColor,
-          globalVariables.$baseBackColor
-        );
-      }
+      @include globalDarkModeMixin.darkModeMixin(
+        globalVariables.$baseFontColor,
+        globalVariables.$baseBackColor
+      );
     }
   }
-
   .link {
     all: unset;
   }
 }
 
-.hamburgerLogo {
+.hamburger {
   @include globalDivMixins.div();
   width: auto;
   justify-content: flex-end;
@@ -102,6 +93,7 @@
 
   .searchCon {
     @include globalDivMixins.div();
+    position: relative;
     padding: 0;
     font-size: 16px;
     justify-content: flex-start;
@@ -117,6 +109,14 @@
       font-family: inherit;
       width: 70%;
     }
+    .searchLabel {
+      z-index: -1000;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      position: absolute;
+    }
     @include globalTransformMixin.transformMixin();
   }
 
@@ -129,7 +129,7 @@
     width: 100%;
     max-width: 30%;
     justify-content: flex-end;
-    div {
+    kbd {
       @include globalDivMixins.div();
       padding: 0;
       width: 30%;

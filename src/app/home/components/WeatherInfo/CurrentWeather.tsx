@@ -7,7 +7,7 @@ import { weatherIconPicker } from "@/utils/weatherIconPicker";
 import Clock from "@/app/home/components/WeatherInfo/Clock";
 import Image from "next/image";
 import { windDirectionIcon, windIcon } from "@/utils/Icons";
-import descriptionBuilder  from "@/utils/descriptionBuilder";
+import descriptionBuilder from "@/utils/descriptionBuilder";
 import Skeleton from "@shared/components/Skeletons/Skeleton";
 
 export default function CurrentWeather() {
@@ -57,7 +57,7 @@ export default function CurrentWeather() {
         <div className={styles.weatherFooter}>
           <MetricCart
             title={weather.data.currentWeather.weather.descr}
-            renderComponent={weatherIconPicker(
+            mainInfo={weatherIconPicker(
               weather.data.currentWeather.weather.icon
             )}
             description={`Low: ${Math.floor(
@@ -69,8 +69,7 @@ export default function CurrentWeather() {
           <MetricCart
             icon={windIcon}
             title="Wind"
-            renderComponent={windRenderComponent}
-            mainInfo={`${weather.data.currentWeather.wind.speed}`}
+            mainInfo={windRenderComponent}
             description={descriptionBuilder({
               title: "wind",
               value: weather.data.currentWeather.wind.speed,
