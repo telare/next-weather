@@ -22,7 +22,7 @@ export default function MetricCart({
         {icon && icon}
         <h3>{title}</h3>
       </header>
-      <div className={styles.metricCardContent} aria-label="metric card content">
+      <div className={styles.metricCardContent}>
         {mainInfo}
       </div>
       <footer>

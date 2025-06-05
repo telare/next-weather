@@ -1,5 +1,5 @@
 "use client";
-import styles from "./styles/Footer.module.scss";
+import styles from "./styles/WeatherInsights.module.scss";
 import {
   MapContainer,
   Marker,
@@ -43,16 +43,27 @@ export default function WeatherMap() {
     return null;
   }
   return (
-    <div className={styles.mapSection}>
+    <div
+      className={styles.mapSection}
+      aria-label="weather-map section"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       <MapContainer
         center={[Number(lat), Number(lon)]}
         zoom={13}
         className={styles.map}
+        aria-label="Weather map showing current location"
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <MapClickHandler />
         <MapFly />
-        <Marker position={[Number(lat), Number(lon)]} icon={customIcon} />
+        <Marker
+          position={[Number(lat), Number(lon)]}
+          icon={customIcon}
+          alt="map marker"
+          aria-label={`Current position: ${Number(lat)} latitude, ${Number(lon)} longitude`}
+        />
       </MapContainer>
     </div>
   );

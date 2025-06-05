@@ -36,25 +36,31 @@ export default function CurrentWeather() {
         </div>
       </div>
     );
+    const currentWeatherInfoID = "current-weather-information";
     return (
-      <div className={styles.weatherCurrentCon}>
-        <div className={styles.weatherHeader}>
+      <div className={styles.weatherCurrentCon} aria-label="Current weather">
+        <header>
           <Clock />
-        </div>
-        <div className={styles.temperatureCon}>
-          <div>
+        </header>
+        <section
+          className={styles.temperatureCon}
+          aria-describedby={currentWeatherInfoID}
+          aria-atomic="true"
+          aria-live="polite"
+        >
+          <div aria-label="Current location" id={currentWeatherInfoID}>
             <h3>
               {weather.data.currentWeather.name &&
                 weather.data.currentWeather.name}
             </h3>
           </div>
-          <div>
+          <div aria-label="Current temperature">
             <h1>{`${Math.floor(
               weather.data.currentWeather.temperature.current_temp
             )}°`}</h1>
           </div>
-        </div>
-        <div className={styles.weatherFooter}>
+        </section>
+        <footer>
           <MetricCart
             title={weather.data.currentWeather.weather.descr}
             mainInfo={weatherIconPicker(
@@ -75,9 +81,8 @@ export default function CurrentWeather() {
               value: weather.data.currentWeather.wind.speed,
             })}
           />
-        </div>
+        </footer>
       </div>
     );
   }
-  return <div className={styles.weatherCurrentCon}></div>;
 }

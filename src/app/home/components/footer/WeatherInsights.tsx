@@ -4,13 +4,13 @@ const WeatherMap = dynamic(() => import("./WeatherMap"), {
   ssr: false,
   loading: () => <Skeleton className={styles.mapSection} />,
 });
-import styles from "./styles/Footer.module.scss";
+import styles from "./styles/WeatherInsights.module.scss";
 import TopRatedCities from "./TopRatedCities";
 import WeekForecast from "./WeekForecast";
 import Skeleton from "@/shared/components/Skeletons/Skeleton";
-export default function Footer() {
+export default function WeatherInsights() {
   return (
-    <div className={styles.footerCon}>
+    <section className={styles.weatherInsightsCon}>
       <div className={styles.mainColumn}>
         <WeekForecast />
         <WeatherMap />
@@ -18,6 +18,6 @@ export default function Footer() {
       <aside className={styles.asideColumn}>
         <TopRatedCities />
       </aside>
-    </div>
+    </section>
   );
 }

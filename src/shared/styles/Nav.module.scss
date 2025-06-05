@@ -56,9 +56,6 @@
       );
     }
   }
-  .link {
-    all: unset;
-  }
 }
 
 .hamburger {
@@ -102,7 +99,6 @@
     gap: 5%;
     padding: 0.5rem 0.7rem;
     input {
-      all: unset;
       height: 100%;
       background-color: inherit;
       color: inherit;

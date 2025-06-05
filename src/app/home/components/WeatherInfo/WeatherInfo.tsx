@@ -3,9 +3,9 @@ import CurrentWeather from "./CurrentWeather";
 import styles from "../../styles/WeatherInfo.module.scss";
 export default function WeatherMain() {
   return (
-    <div className={styles.containerMain}>
+    <section className={styles.containerMain}>
       <CurrentWeather />
       <Additional />
-    </div>
+    </section>
   );
 }

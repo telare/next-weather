@@ -1,6 +1,6 @@
 "use client";
 import MetricCart from "@shared/components/Carts/MetricCart";
-import styles from "./styles/Footer.module.scss";
+import styles from "./styles/WeatherInsights.module.scss";
 import { useContext } from "react";
 import { DataContext } from "@/providers/dataProvider/dataProvider";
 import { weatherIconPicker } from "@/utils/weatherIconPicker";
@@ -14,7 +14,7 @@ export default function WeekForecast() {
   if (weather.isLoading) return <Skeleton className={styles.forecastSection} />;
   if (!weather.isError.status && weather.data) {
     return (
-      <div className={styles.forecastSection}>
+      <div className={styles.forecastSection} aria-label="week-forecast">
         {weather.data &&
           weather.data.other.weekForecast &&
           weather.data.other.weekForecast.map((day, i) => (
