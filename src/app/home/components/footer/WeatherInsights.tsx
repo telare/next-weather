@@ -10,7 +10,7 @@ import WeekForecast from "./WeekForecast";
 import Skeleton from "@/shared/components/Skeletons/Skeleton";
 export default function WeatherInsights() {
   return (
-    <section className={styles.weatherInsightsCon}>
+    <section className={styles.weatherInsightsCon} aria-label="Weather insights section">
       <div className={styles.mainColumn}>
         <WeekForecast />
         <WeatherMap />

@@ -21,8 +21,8 @@ export default function CurrentWeather() {
     const windRenderComponent = (
       <div className={styles.compassCon}>
         <Image
-          alt="Wind direction compass"
-          src={"/img/compass_body.svg"}
+          alt={`Wind direction compass pointing ${weather.data.currentWeather.wind.deg} degrees`}
+          src="/img/compass_body.svg"
           fill
           className={styles.compassBody}
         />
@@ -36,32 +36,39 @@ export default function CurrentWeather() {
         </div>
       </div>
     );
-    const currentWeatherInfoID = "current-weather-information";
     return (
-      <div className={styles.weatherCurrentCon} aria-label="Current weather">
+      <div
+        className={styles.weatherCurrentCon}
+        aria-label={`Current weather in ${weather.data.currentWeather.name}`}
+      >
         <header>
           <Clock />
         </header>
         <section
           className={styles.temperatureCon}
-          aria-describedby={currentWeatherInfoID}
-          aria-atomic="true"
-          aria-live="polite"
+          aria-label={`Weather details for ${weather.data.currentWeather.name}`}
         >
-          <div aria-label="Current location" id={currentWeatherInfoID}>
+          <div aria-label={`Location: ${weather.data.currentWeather.name}`}>
             <h3>
               {weather.data.currentWeather.name &&
                 weather.data.currentWeather.name}
             </h3>
           </div>
-          <div aria-label="Current temperature">
+          <div
+            aria-label={`Current temperature is ${Math.floor(
+              weather.data.currentWeather.temperature.current_temp
+            )} degrees`}
+          >
             <h1>{`${Math.floor(
               weather.data.currentWeather.temperature.current_temp
             )}°`}</h1>
           </div>
         </section>
-        <footer>
+        <footer
+          aria-label={`Weather details for ${weather.data.currentWeather.name}`}
+        >
           <MetricCart
+            ariaLabel="Current weather conditions"
             title={weather.data.currentWeather.weather.descr}
             mainInfo={weatherIconPicker(
               weather.data.currentWeather.weather.icon
@@ -73,6 +80,7 @@ export default function CurrentWeather() {
             )}`}
           />
           <MetricCart
+            ariaLabel="Current wind conditions"
             icon={windIcon}
             title="Wind"
             mainInfo={windRenderComponent}

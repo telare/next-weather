@@ -28,27 +28,39 @@ import {
 } from "lucide-react";
 import { ElementType } from "react";
 
-function accessibleWrapper(Icon: ElementType) {
-  return <Icon aria-hidden="true" focusable={false} />;
+function accessibleWrapper(Icon: ElementType, label?: string) {
+  return (
+    <Icon
+      aria-hidden="true"
+      focusable={false}
+      aria-label={label ? label : ""}
+    />
+  );
 }
 
 export const searchIcon = accessibleWrapper(Search);
 export const commandIcon = accessibleWrapper(Command);
 export const navigationIcon = accessibleWrapper(Navigation);
 export const thermometerIcon = accessibleWrapper(Thermometer);
-export const sunSetIcon = accessibleWrapper(Sunset);
-export const sunRiseIcon = accessibleWrapper(Sunrise);
-export const windIcon = accessibleWrapper(Wind);
+export const sunSetIcon = accessibleWrapper(Sunset, "Sunset Icon");
+export const sunRiseIcon = accessibleWrapper(Sunrise, "Sunrise Icon");
+export const windIcon = accessibleWrapper(Wind, "Wind Icon");
 
-export const cloudDrizzleIcon = accessibleWrapper(CloudDrizzle);
-export const cloudRainIcon = accessibleWrapper(CloudRain);
-export const snowFlakeIcon = accessibleWrapper(Snowflake);
-export const cloudSunIcon = accessibleWrapper(CloudSun);
-export const cloudyRainIcon = accessibleWrapper(Cloudy);
-export const pressureIcon = accessibleWrapper(Gauge);
-export const thunderstormIcon = accessibleWrapper(CloudLightning);
-export const cloudfogIcon = accessibleWrapper(CloudFog);
-export const sandIcon = accessibleWrapper(Shell);
+export const cloudDrizzleIcon = accessibleWrapper(
+  CloudDrizzle,
+  "Cloud Drizzle Icon"
+);
+export const cloudRainIcon = accessibleWrapper(CloudRain, "Cloud Rain Icon");
+export const snowFlakeIcon = accessibleWrapper(Snowflake, "Snowflake Icon");
+export const cloudSunIcon = accessibleWrapper(CloudSun, "Cloud Sun Icon");
+export const cloudyRainIcon = accessibleWrapper(Cloudy, "Cloudy Rain Icon");
+export const pressureIcon = accessibleWrapper(Gauge, "Pressure Icon");
+export const thunderstormIcon = accessibleWrapper(
+  CloudLightning,
+  "Thunderstorm Icon"
+);
+export const cloudfogIcon = accessibleWrapper(CloudFog, "Cloud Fog Icon");
+export const sandIcon = accessibleWrapper(Shell, "Sand Icon");
 
 export const pollutionIcon = accessibleWrapper(SprayCan);
 export const humidityIcon = accessibleWrapper(Droplets);

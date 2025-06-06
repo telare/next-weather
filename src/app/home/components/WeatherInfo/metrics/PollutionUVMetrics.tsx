@@ -19,6 +19,7 @@ export default function PollutionUV() {
       <div className={styles.metricItems}>
         {/* pollution cart */}
         <MetricCart
+          ariaLabel="Current air pollution level"
           title="Air Pollution"
           icon={pollutionIcon}
           description={descriptionBuilder({
@@ -36,6 +37,7 @@ export default function PollutionUV() {
 
         {/* uvIndex cart */}
         <MetricCart
+          ariaLabel="Current UV index level"
           icon={lightThemeIcon}
           title="UV index"
           description={descriptionBuilder({

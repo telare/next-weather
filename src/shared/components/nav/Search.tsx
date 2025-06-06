@@ -13,7 +13,7 @@ export default function Search() {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = useState<string>("");
   const debouncedValue = useDebounce({ value: inputValue, timeOut: 2000 });
-
+  const searchInputID = "citySearch";
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.code === "KeyF" && e.ctrlKey) {
@@ -52,12 +52,12 @@ export default function Search() {
       role="search" // for legacy support
       aria-label="City search" // Keep this for now, though it might become redundant over time
     >
-      <label htmlFor="citySearch" className={styles.searchLabel}>
+      <label htmlFor={searchInputID} className={styles.searchLabel}>
         Search for a city
       </label>
       <input
         type="search"
-        id="citySearch"
+        id={searchInputID}
         placeholder="Search Here..."
         aria-describedby="searchShortcut"
         onClick={() => {

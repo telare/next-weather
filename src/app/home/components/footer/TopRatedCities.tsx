@@ -1,7 +1,7 @@
 import styles from "./styles/WeatherInsights.module.scss";
 export default function TopRatedCities() {
   return (
-    <div className={styles.cityList} aria-label="top-rated-cities">
+    <div className={styles.cityList} aria-label="List of top rated cities">
       <h3>Top rated cities</h3>
       <div>
         <p>Tokyo</p>

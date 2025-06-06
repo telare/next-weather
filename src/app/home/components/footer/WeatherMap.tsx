@@ -45,7 +45,7 @@ export default function WeatherMap() {
   return (
     <div
       className={styles.mapSection}
-      aria-label="weather-map section"
+      aria-label="Interactive map section"
       aria-live="polite"
       aria-atomic="true"
     >
@@ -53,7 +53,7 @@ export default function WeatherMap() {
         center={[Number(lat), Number(lon)]}
         zoom={13}
         className={styles.map}
-        aria-label="Weather map showing current location"
+        aria-label="Interactive map showing current location"
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <MapClickHandler />
@@ -61,7 +61,7 @@ export default function WeatherMap() {
         <Marker
           position={[Number(lat), Number(lon)]}
           icon={customIcon}
-          alt="map marker"
+          alt="position marker"
           aria-label={`Current position: ${Number(lat)} latitude, ${Number(lon)} longitude`}
         />
       </MapContainer>

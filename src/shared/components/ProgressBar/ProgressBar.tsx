@@ -4,18 +4,17 @@ type ProgressBarProps = {
   title: string;
 };
 export default function ProgressBar({ value, title }: ProgressBarProps) {
-  const progressDescriptionID = "progress-bar-description";
   return (
     <div
       className={styles.progressBarCon}
       aria-label={`${title} progress bar`}
       aria-live="polite"
       role="progressbar"
-      aria-describedby={progressDescriptionID}
+      aria-describedby={title}
     >
       <div
         className={styles.progressBarElement}
-        id={progressDescriptionID}
+        id={title}
         aria-valuetext={`Value now: ${value}%`}
         aria-valuemin={0} 
         aria-valuemax={100}

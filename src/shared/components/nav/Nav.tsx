@@ -14,7 +14,7 @@ export default function Nav() {
   const isMobile = useMediaQuery("(max-width: 850px)");
   const hamburgerControlsID = "primary-navigation-menu";
   return (
-    <nav className={styles.navCon}>
+    <nav className={styles.navCon} aria-label="Main navigation">
       <Links />
       <button
         className={styles.hamburger}
@@ -30,6 +30,7 @@ export default function Nav() {
         className={styles.navContent}
         aria-hidden={isMobile ? !isOpen : false}
         aria-expanded={isMobile ? isOpen : true}
+        aria-label="Search input and navigation buttons"
       >
         <Search />
         <div className={styles.navContentBtns} aria-label="Navigation buttons">
