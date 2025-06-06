@@ -48,6 +48,7 @@ export default function WeatherMap() {
       aria-label="Interactive map section"
       aria-live="polite"
       aria-atomic="true"
+      role="region"
     >
       <MapContainer
         center={[Number(lat), Number(lon)]}

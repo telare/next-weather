@@ -23,9 +23,9 @@ export default function Clock() {
   }, [date]);
 
   return (
-    <div className={styles.clockCon} aria-label="Current date and time display">
-      <p aria-label="date">{time.date}</p>
-      <p aria-label="time">{time.time}</p>
+    <div className={styles.clockCon} aria-label="Current date and time display" role="status">
+      <p>{time.date}</p>
+      <p>{time.time}</p>
     </div>
   );
 }

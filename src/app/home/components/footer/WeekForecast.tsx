@@ -14,7 +14,7 @@ export default function WeekForecast() {
   if (weather.isLoading) return <Skeleton className={styles.forecastSection} />;
   if (!weather.isError.status && weather.data) {
     return (
-      <div className={styles.forecastSection} aria-label="Week forecast">
+      <div className={styles.forecastSection} aria-label="Week forecast" role="region">
         {weather.data &&
           weather.data.other.weekForecast &&
           weather.data.other.weekForecast.map((day, i) => (

@@ -40,6 +40,7 @@ export default function CurrentWeather() {
       <div
         className={styles.weatherCurrentCon}
         aria-label={`Current weather in ${weather.data.currentWeather.name}`}
+        role="region"
       >
         <header>
           <Clock />

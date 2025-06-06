@@ -29,7 +29,6 @@ export default function Nav() {
         id={hamburgerControlsID}
         className={styles.navContent}
         aria-hidden={isMobile ? !isOpen : false}
-        aria-expanded={isMobile ? isOpen : true}
         aria-label="Search input and navigation buttons"
       >
         <Search />
