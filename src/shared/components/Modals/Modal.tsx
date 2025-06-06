@@ -28,10 +28,10 @@ export default function Modal({ children, onOpenChange }: Layout & ModalProps) {
           {children}
             <Button
               type="button"
-              alt="Close modal"
+              text="Close modal"
               icon={closeIcon}
               func={onOpenChange}
-              style={styles.closeBtn}
+              className={styles.closeBtn}
             />
         </DialogContent>
       </DialogOverlay>

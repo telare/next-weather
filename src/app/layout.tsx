@@ -14,6 +14,7 @@ export default function RootLayout({ children }: Layout) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta name="apple-mobile-web-app-title" content="NextWeather" />
+        <title>NextWeather</title>
         {/* <link rel="icon" href="/img/favicon.png" /> */}
       </head>
       <body className={space_grotesk.className}>

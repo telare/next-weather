@@ -5,10 +5,9 @@ export default function AuthBtn() {
   return (
     <Button
       type="button"
-      alt="Log Out"
       func={() => redirect("/auth/log-in")}
-      style={styles.navLogOutBtn}
-      title="Log Out"
+      className={styles.navLogOutBtn}
+      text="Log Out"
       width={40}
     />
   );

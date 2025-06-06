@@ -7,7 +7,7 @@ import { weatherIconPicker } from "@/utils/weatherIconPicker";
 import Clock from "@/app/home/components/WeatherInfo/Clock";
 import Image from "next/image";
 import { windDirectionIcon, windIcon } from "@/utils/Icons";
-import descriptionBuilder  from "@/utils/descriptionBuilder";
+import descriptionBuilder from "@/utils/descriptionBuilder";
 import Skeleton from "@shared/components/Skeletons/Skeleton";
 
 export default function CurrentWeather() {
@@ -21,8 +21,8 @@ export default function CurrentWeather() {
     const windRenderComponent = (
       <div className={styles.compassCon}>
         <Image
-          alt="Wind direction compass"
-          src={"/img/compass_body.svg"}
+          alt={`Wind direction compass pointing ${weather.data.currentWeather.wind.deg} degrees`}
+          src="/img/compass_body.svg"
           fill
           className={styles.compassBody}
         />
@@ -37,27 +37,40 @@ export default function CurrentWeather() {
       </div>
     );
     return (
-      <div className={styles.weatherCurrentCon}>
-        <div className={styles.weatherHeader}>
+      <div
+        className={styles.weatherCurrentCon}
+        aria-label={`Current weather in ${weather.data.currentWeather.name}`}
+      >
+        <header>
           <Clock />
-        </div>
-        <div className={styles.temperatureCon}>
-          <div>
+        </header>
+        <section
+          className={styles.temperatureCon}
+          aria-label={`Weather details for ${weather.data.currentWeather.name}`}
+        >
+          <div aria-label={`Location: ${weather.data.currentWeather.name}`}>
             <h3>
               {weather.data.currentWeather.name &&
                 weather.data.currentWeather.name}
             </h3>
           </div>
-          <div>
+          <div
+            aria-label={`Current temperature is ${Math.floor(
+              weather.data.currentWeather.temperature.current_temp
+            )} degrees`}
+          >
             <h1>{`${Math.floor(
               weather.data.currentWeather.temperature.current_temp
             )}°`}</h1>
           </div>
-        </div>
-        <div className={styles.weatherFooter}>
+        </section>
+        <footer
+          aria-label={`Weather details for ${weather.data.currentWeather.name}`}
+        >
           <MetricCart
+            ariaLabel="Current weather conditions"
             title={weather.data.currentWeather.weather.descr}
-            renderComponent={weatherIconPicker(
+            mainInfo={weatherIconPicker(
               weather.data.currentWeather.weather.icon
             )}
             description={`Low: ${Math.floor(
@@ -67,18 +80,17 @@ export default function CurrentWeather() {
             )}`}
           />
           <MetricCart
+            ariaLabel="Current wind conditions"
             icon={windIcon}
             title="Wind"
-            renderComponent={windRenderComponent}
-            mainInfo={`${weather.data.currentWeather.wind.speed}`}
+            mainInfo={windRenderComponent}
             description={descriptionBuilder({
               title: "wind",
               value: weather.data.currentWeather.wind.speed,
             })}
           />
-        </div>
+        </footer>
       </div>
     );
   }
-  return <div className={styles.weatherCurrentCon}></div>;
 }

@@ -1,32 +1,30 @@
 "use client";
 import styles from "@shared/styles/MetricCart.module.scss";
 type MetricCart = {
-  title?: string;
+  title: string;
+  ariaLabel: string;
   description: string | React.ReactNode;
   icon?: React.ReactElement;
   border?: boolean;
-  renderComponent?: React.ReactElement;
-  mainInfo?: string;
+  mainInfo?: React.ReactNode;
 };
 export default function MetricCart({
   title,
   description,
   icon,
-  renderComponent,
   mainInfo,
+  ariaLabel,
 }: MetricCart) {
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
+    <article className={styles.metricCardContainer} aria-label={ariaLabel}>
+      <header>
         {icon && icon}
         <h3>{title}</h3>
-      </div>
-      <div className={styles.content}>
-        {renderComponent ? renderComponent : <p>{mainInfo}</p>}
-      </div>
-      <div className={styles.footer}>
+      </header>
+      <div className={styles.metricCardContent}>{mainInfo}</div>
+      <footer>
         {typeof description === "string" ? <p>{description}</p> : description}
-      </div>
-    </div>
+      </footer>
+    </article>
   );
 }
