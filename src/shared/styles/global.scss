@@ -12,7 +12,10 @@ body {
   font-size: globalVariables.$baseFontSize;
   font-weight: globalVariables.$baseFontWeight;
   padding: 0 10% !important; // !important to override Tailwind's padding
-
+  :focus {
+    outline-offset: 0.25rem;
+    outline: 0.19rem solid #4a90e2;
+  }
   @include globalThemeMixin.themeToggle($currentTheme: light);
   @each $breakpoint, $fontSize in globalVariables.$fontSizes {
     @include breakpointsMixin.respond-to($breakpoint) {

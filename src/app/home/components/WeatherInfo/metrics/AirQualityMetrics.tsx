@@ -9,7 +9,7 @@ import {
   thermometerIcon,
   visibilityIcon,
 } from "@/utils/Icons";
-import descriptionBuilder  from "@/utils/descriptionBuilder";
+import descriptionBuilder from "@/utils/descriptionBuilder";
 import Skeleton from "@shared/components/Skeletons/Skeleton";
 export default function AirQualityMetrics() {
   const weather = useContext(DataContext);
@@ -22,6 +22,7 @@ export default function AirQualityMetrics() {
       <div className={styles.metricItems}>
         {/* humidity cart*/}
         <MetricCart
+          ariaLabel="Current humidity"
           title="Humidity"
           icon={humidityIcon}
           mainInfo={`${weather.data.currentWeather.other.humidity} %`}
@@ -33,6 +34,7 @@ export default function AirQualityMetrics() {
 
         {/* pressure cart */}
         <MetricCart
+          ariaLabel="Current pressure"
           title="Pressure"
           icon={pressureIcon}
           mainInfo={`${weather.data.currentWeather.other.pressure} Pa`}
@@ -44,6 +46,7 @@ export default function AirQualityMetrics() {
 
         {/* visibility cart */}
         <MetricCart
+          ariaLabel="Current visibility"
           title="Visibility"
           icon={visibilityIcon}
           mainInfo={`${weather.data.currentWeather.other.visibility / 100} %`}
@@ -55,6 +58,7 @@ export default function AirQualityMetrics() {
 
         {/* feels like cart */}
         <MetricCart
+          ariaLabel="Feels like temperature"
           title="Feels like"
           icon={thermometerIcon}
           mainInfo={`${Math.floor(weather.data.currentWeather.temperature.feels_like)}°`}

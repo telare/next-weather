@@ -2,7 +2,7 @@
 @use "@shared/styles/variables/variables.module" as globalVariables;
 @use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
 @use "@shared/styles/mixins/breakpointsMixin" as breakpointsMixin;
-.footerCon {
+.weatherInsightsCon {
   @include globalDivMixins.div(section);
   height: 50rem; // 800px
   align-content: start;

@@ -7,6 +7,12 @@ export default function Skeleton({
   children?: React.ReactNode | React.ReactNode[];
 }) {
   return (
-    <div className={[className, styles.skeletonCon].join(" ")}>{children}</div>
+    <div
+      className={[className, styles.skeletonCon].join(" ")}
+      aria-label="Content is loading, wait"
+      role="status"
+    >
+      {children}
+    </div>
   );
 }

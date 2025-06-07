@@ -1,13 +1,13 @@
 import Nav from "@shared/components/nav/Nav";
 import styles from "./styles/Home.module.scss";
 import WeatherMain from "./components/WeatherInfo/WeatherInfo";
-import Footer from "./components/footer/Footer";
+import WeatherInsights from "./components/footer/WeatherInsights";
 export default function HomePage() {
   return (
-    <div className={styles.homeCon}>
+    <main className={styles.homeCon} aria-label="Home page main content"> 
       <Nav />
       <WeatherMain />
-      <Footer />
-    </div>
+      <WeatherInsights />
+    </main>
   );
 }

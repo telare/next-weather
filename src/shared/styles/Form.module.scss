@@ -9,99 +9,99 @@
   flex-direction: column;
   padding: 1rem 2rem;
   row-gap: 2rem;
-}
 
-.formHeader {
-  @include globalDivMixins.div();
-  width: 100%;
-  height: 100%;
-  border: none;
-  flex-direction: column;
-
-  h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    text-align: center;
-  }
-  p {
-    text-align: center;
-  }
-}
-
-.formFieldsCon {
-  @include globalDivMixins.div();
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  flex-direction: column;
-  justify-content: start;
-  border: none;
-
-  .formField {
+  header {
     @include globalDivMixins.div();
-
-    border: none;
-    padding: 0;
-    flex-direction: column;
     width: 100%;
-    height: auto;
-    justify-content: start;
-
-    input {
-      @include globalDivMixins.div();
-      padding: 1.5rem 1rem;
-      width: 100%;
-      height: auto;
-      max-height: 20%;
-    }
-    .errorMessage {
-      @include globalDivMixins.div();
-      width: 100%;
-      justify-content: flex-start;
-      height: auto;
-      border: none;
-      color: red;
-      // font-size: 18px;
-    }
-  }
-}
-
-.formFooter {
-  @include globalDivMixins.div();
-  padding: 0;
-  width: 100%;
-  height: 100%;
-  row-gap: 0.5rem;
-  flex-direction: column;
-  border: none;
-  .submitBtn {
-    @include globalBtnMixins.btn();
-    width: auto;
-    height: auto;
-    padding: 0.3rem 2rem;
-    // padding:0;
-  }
-  .navigationLinks {
-    @include globalDivMixins.div();
-    height: auto;
-    width: auto;
-    padding: 0;
+    height: 100%;
     border: none;
-    text-align: center;
+    flex-direction: column;
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+    }
     p {
-      a {
-        color: rgb(150, 132, 132);
-        &::before {
-          content: " | ";
-        }
+      text-align: center;
+    }
+  }
+
+  .formFieldsCon {
+    @include globalDivMixins.div();
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: start;
+    border: none;
+
+    .formField {
+      @include globalDivMixins.div();
+
+      border: none;
+      padding: 0;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      justify-content: start;
+
+      input {
+        @include globalDivMixins.div();
+        padding: 1.5rem 1rem;
+        width: 100%;
+        height: auto;
+        max-height: 20%;
+      }
+      .errorMessage {
+        @include globalDivMixins.div();
+        width: 100%;
+        justify-content: flex-start;
+        height: auto;
+        border: none;
+        color: red;
+        // font-size: 18px;
       }
     }
-    @include breakpointsMixin.respond-to("tablet") {
+  }
+
+  .formFooter {
+    @include globalDivMixins.div();
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    row-gap: 0.5rem;
+    flex-direction: column;
+    border: none;
+    .submitBtn {
+      @include globalBtnMixins.btn();
+      width: auto;
+      height: auto;
+      padding: 0.3rem 2rem;
+      // padding:0;
+    }
+    .navigationLinks {
+      @include globalDivMixins.div();
+      height: auto;
+      width: auto;
+      padding: 0;
+      border: none;
+      text-align: center;
       p {
         a {
-          display: block;
+          color: rgb(150, 132, 132);
           &::before {
-            content: "";
+            content: " | ";
+          }
+        }
+      }
+      @include breakpointsMixin.respond-to("tablet") {
+        p {
+          a {
+            display: block;
+            &::before {
+              content: "";
+            }
           }
         }
       }

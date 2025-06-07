@@ -23,7 +23,7 @@ export default function Clock() {
   }, [date]);
 
   return (
-    <div className={styles.clockCon}>
+    <div className={styles.clockCon} aria-label="Current date and time display" role="status">
       <p>{time.date}</p>
       <p>{time.time}</p>
     </div>
