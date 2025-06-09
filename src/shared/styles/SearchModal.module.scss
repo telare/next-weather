@@ -1,0 +1,8 @@
+@use "@shared/styles/mixins/divMixin" as globalDivMixins;
+.search {
+  @include globalDivMixins.div();
+  padding: 0;
+  width: 100%;
+  height: auto;
+  border: none;
+}

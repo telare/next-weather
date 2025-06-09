@@ -25,14 +25,17 @@ export default function Modal({ children, onOpenChange }: Layout & ModalProps) {
             <DialogTitle></DialogTitle>
             <DialogDescription />
           </VisuallyHidden>
-          {children}
+          <div className={styles.content}>
+            {children}
             <Button
               type="button"
-              text="Close modal"
+              text="Close"
+              ariaLabel="Close modal"
               icon={closeIcon}
               func={onOpenChange}
               className={styles.closeBtn}
             />
+          </div>
         </DialogContent>
       </DialogOverlay>
     </Dialog>

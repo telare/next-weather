@@ -1,5 +1,5 @@
 "use client";
-import styles from "@shared/styles/Nav.module.scss";
+import styles from "@shared/styles/Search.module.scss";
 import { updateLocation } from "@/providers/globalStore";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";

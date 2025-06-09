@@ -1,0 +1,46 @@
+@use "@shared/styles/mixins/divMixin" as globalDivMixins;
+@use "@shared/styles/mixins/transformMixin" as globalTransformMixin;
+.searchCon {
+  @include globalDivMixins.div();
+  position: relative;
+  padding: 0;
+  font-size: 16px;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100%;
+  gap: 5%;
+  padding: 0.5rem 0.7rem;
+  input {
+    height: 100%;
+    color: inherit;
+    font-family: inherit;
+    width: 70%;
+  }
+  .searchLabel {
+    z-index: -1000;
+    padding: 0;
+    white-space: nowrap;
+    border: 0;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    position: absolute;
+  }
+  @include globalTransformMixin.transformMixin();
+  .searchShortCut {
+    @include globalDivMixins.div();
+    border: none;
+    padding: 0;
+    gap: 7%;
+    height: 100%;
+    width: 100%;
+    max-width: 30%;
+    kbd {
+      @include globalDivMixins.div();
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
