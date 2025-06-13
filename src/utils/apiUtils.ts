@@ -26,7 +26,7 @@ const tokenNames: {
 };
 
 function getJWT_Secret_Key(): string {
-  const jwtSecretKey: string | undefined = getJWT_Secret_Key();
+  const jwtSecretKey: string | undefined = process.env.JWT_Secret_Key;
   if (!jwtSecretKey && jwtSecretKey?.length !== 0)
     throw new Error("JWT secret missing");
   return jwtSecretKey;

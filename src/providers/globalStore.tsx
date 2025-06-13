@@ -3,6 +3,7 @@ import { Layout } from "@shared/types/Layout";
 import { configureStore, PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import { SecuredUser } from "@/utils/apiUtils";
 
 interface LocationData {
   lon: string;

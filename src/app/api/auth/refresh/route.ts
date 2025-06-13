@@ -4,6 +4,7 @@ import {
   jwtCookiesSetter,
   jwtTokensGenerator,
   reqMethodError,
+  serverError,
 } from "@/utils/apiUtils";
 import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
@@ -25,10 +26,10 @@ export async function POST(
     if (!refreshToken) {
       throw new Error("No refreshToken under the 'refreshToken'");
     }
-
+    const jwtSecretkey = getJWT_Secret_Key();
     const { payload: user } = await jwtVerify(
       refreshToken.value,
-      new TextEncoder().encode(getJWT_Secret_Key())
+      new TextEncoder().encode(jwtSecretkey)
     );
     if (!user) {
       return NextResponse.json(
@@ -57,7 +58,7 @@ export async function POST(
   } catch (e: unknown) {
     return NextResponse.json(
       {
-        message: e as string,
+        message: `${serverError.message} ${e}`,
       },
       { status: 400 }
     );

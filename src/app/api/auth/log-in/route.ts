@@ -62,7 +62,7 @@ export async function POST(req: Request) {
   } catch (e: unknown) {
     return NextResponse.json(
       {
-        message: serverError.message,
+        message: `${serverError.message} ${e}`,
       },
       { status: serverError.code }
     );
