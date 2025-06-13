@@ -1,5 +1,4 @@
 import DataProvider from "@/providers/dataProvider/dataProvider";
-import StoreProvider from "@/providers/globalStore";
 import QueryProvider from "@/providers/queryProvider";
 
 export default function HomeLayout({
@@ -11,10 +10,8 @@ export default function HomeLayout({
 }) {
   return (
     <QueryProvider>
-      <StoreProvider>
-        {searchModal}
-        <DataProvider>{children}</DataProvider>
-      </StoreProvider>
+      {searchModal}
+      <DataProvider>{children}</DataProvider>
     </QueryProvider>
   );
 }

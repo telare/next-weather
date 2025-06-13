@@ -16,10 +16,18 @@ export async function queryFunc({
 }: QueryFuncProps): Promise<WeatherData | undefined> {
   try {
     const weatherData = Promise.all([
-      axios.get(`/api/current-weather?lon=${coordinates.lon}&lat=${coordinates.lat}`),
-      axios.get(`/api/current-weather/pollution?lon=${coordinates.lon}&lat=${coordinates.lat}`),
-      axios.get(`/api/current-weather/uv-index?lon=${coordinates.lon}&lat=${coordinates.lat}`),
-      axios.get(`/api/current-weather/week-forecast?lon=${coordinates.lon}&lat=${coordinates.lat}`),
+      axios.get(
+        `/api/current-weather?lon=${coordinates.lon}&lat=${coordinates.lat}`
+      ),
+      axios.get(
+        `/api/current-weather/pollution?lon=${coordinates.lon}&lat=${coordinates.lat}`
+      ),
+      axios.get(
+        `/api/current-weather/uv-index?lon=${coordinates.lon}&lat=${coordinates.lat}`
+      ),
+      axios.get(
+        `/api/current-weather/week-forecast?lon=${coordinates.lon}&lat=${coordinates.lat}`
+      ),
     ])
       .then(
         async ([
@@ -46,7 +54,7 @@ export async function queryFunc({
         if (axios.isAxiosError(e)) {
           setErrorMessage(errorMessageBuilder(e.response?.status || 0));
         } else {
-          setErrorMessage("An unexpected error occurred.");
+          setErrorMessage(e);
         }
         throw new Error("Error in fetching data", e);
       });

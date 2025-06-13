@@ -28,12 +28,30 @@ const locationSlice = createSlice({
   },
 });
 
+const initialUser: SecuredUser = {
+  email: "",
+  id: "",
+  name: "",
+};
+const userSlice = createSlice({
+  name: "user",
+  initialState: initialUser,
+  reducers: {
+    updateAllUserInfo(state, action: PayloadAction<SecuredUser>) {
+      state.id = action.payload.id;
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+    },
+  },
+});
+
 export const store = configureStore({
-  reducer: { location: locationSlice.reducer },
+  reducer: { location: locationSlice.reducer, user: userSlice.reducer },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export const { updateLocation } = locationSlice.actions;
+export const { updateAllUserInfo } = userSlice.actions;
 
 export default function StoreProvider({ children }: Layout) {
   return <Provider store={store}>{children}</Provider>;
