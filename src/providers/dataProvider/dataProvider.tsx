@@ -15,6 +15,7 @@ export const DataContext = createContext<GlobalContext>({
 
 export default function DataProvider({ children }: Layout) {
   const location = useSelector((state: RootState) => state.location.value);
+
   const [errorMessage, setErrorMessage] = useState<string>("");
   const {
     data: weatherData,
@@ -22,7 +23,7 @@ export default function DataProvider({ children }: Layout) {
     isError,
   } = useQuery({
     queryKey: ["weather", location.lat, location.lon],
-    queryFn: () => 
+    queryFn: () =>
       queryFunc({
         coordinates: { lon: location.lon, lat: location.lat },
         setErrorMessage,

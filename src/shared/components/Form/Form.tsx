@@ -11,6 +11,8 @@ import { User } from "@shared/types/User";
 import { useRouter } from "next/navigation";
 import { handleAuthentication } from "./utils/utils";
 import { customToast } from "../Toast/Toast";
+import { useDispatch } from "react-redux";
+import { updateAllUserInfo } from "@/providers/globalStore";
 export type AuthFormProps = {
   schema: ObjectSchema<FieldValues, AnyObject>;
   title: React.ReactElement;
@@ -25,10 +27,12 @@ export default function Form({ schema, title, type }: AuthFormProps) {
   });
   const fields: string[] = Object.keys(schema.fields);
   const { handleSubmit } = methods;
+  const dispatch = useDispatch();
   function onSubmit(data: Form) {
     handleAuthentication(data as User, type)
       .then((res) => {
-        customToast("Authentication passed, wellcome", res, "success");
+        customToast("Authentication passed, wellcome", res.message, "success");
+        dispatch(updateAllUserInfo(res.user));
         return router.push("/home");
       })
       .catch((e) => {

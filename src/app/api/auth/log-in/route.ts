@@ -1,49 +1,75 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/clients/prismaClient";
-import { User } from "@shared/types/User";
 import bcrypt from "bcryptjs";
+import {
+  jwtCookiesSetter,
+  jwtTokensGenerator,
+  isUser,
+  SecuredUser,
+  reqMethodError,
+  serverError,
+} from "@/utils/apiUtils";
 
-export async function POST(req: Request) {
-  if (req.body && req.method === "POST") {
-    try {
-      const userData: User | undefined = await req.json();
-      if (!userData) throw new Error("Invalid data in request");
-      if (userData) {
-        const userDataDB = await prisma.user.findFirst({
-          where: { email: userData.email },
-        });
-        if (userDataDB) {
-          const isPasswordEqual: boolean = await bcrypt.compare(
-            userData.password,
-            userDataDB.password
-          );
-          if (isPasswordEqual)
-            return NextResponse.json(
-              { message: "Successfully logged in" },
-              { status: 200 }
-            );
-        }
-        return NextResponse.json(
-          { message: "Invalid credentials" },
-          { status: 401 }
-        );
-      }
-    } catch (e: unknown) {
-      return NextResponse.json(
-        {
-          message: `${e}`,
-        },
-        { status: 500 }
-      );
-    } finally {
-      prisma.$disconnect();
-    }
-  } else {
+export async function POST(req: NextRequest) {
+  if (req.method !== "POST") {
     return NextResponse.json(
       {
-        message: "Invalid method or no body in request",
+        message: reqMethodError.message,
       },
-      { status: 400 }
+      { status: reqMethodError.code }
     );
+  }
+
+  try {
+    const userData = await req.json();
+    if (!isUser(userData)) {
+      return NextResponse.json(
+        { message: "Invalid user data provided" },
+        { status: 400 }
+      );
+    }
+    const userDataDB = await prisma.user.findFirst({
+      where: { email: userData.email },
+    });
+    if (!userDataDB) {
+      return NextResponse.json(
+        //  { message: "No account found with that email. Please sign up." },
+        { status: 401 }
+      );
+    }
+
+    const isPasswordEqual: boolean = await bcrypt.compare(
+      userData.password,
+      userDataDB.password
+    );
+    if (!isPasswordEqual) {
+      return NextResponse.json(
+        // { message: "Invalid email or password" },
+        { status: 401 }
+      );
+    }
+    const securedUser: SecuredUser = {
+      id: userDataDB.id,
+      name: userDataDB.name,
+      email: userData.email,
+    };
+    const { accessToken, refreshToken } = jwtTokensGenerator(securedUser);
+
+    await jwtCookiesSetter(accessToken, refreshToken);
+    return NextResponse.json(
+      { message: "Successfully logged in" },
+      { status: 201 }
+    );
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (e: unknown) {
+    return NextResponse.json(
+      {
+        message: serverError.message,
+      },
+      { status: serverError.code }
+    );
+  } finally {
+    await prisma.$disconnect();
   }
 }

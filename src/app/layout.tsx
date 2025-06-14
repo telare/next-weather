@@ -4,6 +4,7 @@ import React from "react";
 import "@shared/styles/global.scss";
 import { Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import StoreProvider from "@/providers/globalStore";
 
 const space_grotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -24,8 +25,10 @@ export default function RootLayout({ children }: Layout) {
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Toaster position="top-right" />
+          <StoreProvider>
+            {children}
+            <Toaster position="top-right" />
+          </StoreProvider>
         </ThemeProvider>
       </body>
     </html>

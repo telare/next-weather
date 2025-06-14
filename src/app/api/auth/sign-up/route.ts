@@ -1,58 +1,74 @@
-import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
-import { cookies } from "next/headers";
 import { User } from "@shared/types/User";
 import { NextResponse } from "next/server";
 import prisma from "@/app/clients/prismaClient";
+import {
+  serverError,
+  isUser,
+  jwtCookiesSetter,
+  jwtTokensGenerator,
+  reqMethodError,
+  SecuredUser,
+} from "@/utils/apiUtils";
 
 export async function POST(req: Request) {
-  const userData: User | undefined = await req.json();
-  if (userData && req.method === "POST") {
-    try {
-      const user_hashed_pass = await bcrypt.hash(userData.password, 10);
-      const isUserInfo = await prisma.user.findUnique({
-        where: { email: (userData as User).email },
-      });
-      if (isUserInfo) {
-        return NextResponse.json(
-          { message: "User already exists" },
-          { status: 409 }
-        );
-      }
-      await prisma.user.create({
-        data: {
-          id: userData.id,
-          name: userData.name,
-          email: userData.email,
-          password: user_hashed_pass,
-        },
-      });
+  if (req.method !== "POST") {
+    return NextResponse.json(
+      {
+        message: reqMethodError.message,
+      },
+      { status: reqMethodError.code }
+    );
+  }
 
-      const Secret_Key: string | undefined = process.env.JWT_SECRET_KEY;
-      const token = jwt.sign(
-        { name: userData.name, id: userData.id, email: userData.email },
-        Secret_Key as string,
-        {
-          algorithm: "HS256",
-          expiresIn: "1h",
-        }
+  try {
+    const userData = await req.json();
+    if (!isUser(userData)) {
+      return NextResponse.json(
+        { message: "Invalid user data provided" },
+        { status: 400 }
       );
-
-      const cookieStore = await cookies();
-      cookieStore.set("session", token, {
-        httpOnly: true,
-        secure: true,
-        expires: new Date(Date.now() + 60 * 60 * 1000),
-        sameSite: "lax",
-        path: "/",
-      });
-      return NextResponse.json({ message: "Successfully created account"}, { status: 201 });
-    } catch (e) {
-      return NextResponse.json({ message: `${e}` }, { status: 500 });
-    } finally {
-      await prisma.$disconnect();
     }
-  } else {
-    return NextResponse.json({ message: "Bad request" }, { status: 400 });
+
+    const userHashedPass: string = await bcrypt.hash(userData.password, 10);
+    const isUserExists: User | null = await prisma.user.findUnique({
+      where: { email: userData.email },
+    });
+    if (isUserExists) {
+      return NextResponse.json(
+        { message: "User already exists" },
+        { status: 409 }
+      );
+    }
+    await prisma.user.create({
+      data: {
+        id: userData.id,
+        name: userData.name,
+        email: userData.email,
+        password: userHashedPass,
+      },
+    });
+    const securedUser: SecuredUser = {
+      id: userData.id,
+      name: userData.name,
+      email: userData.email,
+    };
+    const { accessToken, refreshToken } = jwtTokensGenerator(securedUser);
+
+    await jwtCookiesSetter(accessToken, refreshToken);
+
+    return NextResponse.json(
+      { message: "Successfully created account" },
+      { status: 201 }
+    );
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (e: unknown) {
+    // add  types of errors handling
+    return NextResponse.json(
+      { message: `${serverError.message} ${e}` },
+      { status: serverError.code }
+    );
+  } finally {
+    await prisma.$disconnect();
   }
 }
