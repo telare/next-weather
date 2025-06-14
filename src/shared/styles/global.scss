@@ -4,7 +4,7 @@
 @use "@shared/styles/mixins/themeMixin" as globalThemeMixin;
 @use "@shared/styles/mixins/breakpointsMixin" as breakpointsMixin;
 // for reset styles
-@import "tailwindcss";
+@use "tailwindcss";
 body {
   border: none;
   display: flex;

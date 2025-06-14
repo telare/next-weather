@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 export default function ErrorPage({
   error,
 }: {
-  error: Error & { digest?: string };
+  error: ServerResponse & { digest?: string };
   reset: () => void;
 }) {
   return (

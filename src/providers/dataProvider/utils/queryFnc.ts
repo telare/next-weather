@@ -1,5 +1,5 @@
 import axios from "axios";
-import { errorMessageBuilder } from "./errorMessageBuilder";
+import { clientErrorMessageBuilder } from "./errorMessageBuilder";
 import { WeatherData } from "./types";
 
 interface QueryFuncProps {
@@ -14,58 +14,32 @@ export async function queryFunc({
   coordinates,
   setErrorMessage,
 }: QueryFuncProps): Promise<WeatherData | undefined> {
-  try {
-    const weatherData = Promise.all([
-      axios.get(
-        `/api/current-weather?lon=${coordinates.lon}&lat=${coordinates.lat}`
-      ),
-      axios.get(
-        `/api/current-weather/pollution?lon=${coordinates.lon}&lat=${coordinates.lat}`
-      ),
-      axios.get(
-        `/api/current-weather/uv-index?lon=${coordinates.lon}&lat=${coordinates.lat}`
-      ),
-      axios.get(
-        `/api/current-weather/week-forecast?lon=${coordinates.lon}&lat=${coordinates.lat}`
-      ),
-    ])
-      .then(
-        async ([
-          currentWeatherResp,
-          pollutionResp,
-          uvResp,
-          weekForecastResp,
-        ]) => {
-          const currentWeatherData = currentWeatherResp.data;
-          const pollutionData = pollutionResp.data;
-          const uvData = uvResp.data;
-          const weekForecastData = weekForecastResp.data;
-          return {
-            currentWeather: currentWeatherData,
-            other: {
-              pollution: pollutionData,
-              uv: uvData,
-              weekForecast: weekForecastData,
-            },
-          };
-        }
-      )
-      .catch((e) => {
-        if (axios.isAxiosError(e)) {
-          setErrorMessage(errorMessageBuilder(e.response?.status || 0));
-        } else {
-          setErrorMessage(e);
-        }
-        throw new Error("Error in fetching data", e);
-      });
+  const searchQuery: string = `lon=${coordinates.lon}&lat=${coordinates.lat}`;
+  const weatherData = Promise.all([
+    axios.get(`/api/current-weather?${searchQuery}`),
+    axios.get(`/api/current-weather/pollution?${searchQuery}`),
+    axios.get(`/api/current-weather/uv-index?${searchQuery}`),
+    axios.get(`/api/current-weather/week-forecast?${searchQuery}`),
+  ])
+    .then(([currentWeatherResp, pollutionResp, uvResp, weekForecastResp]) => {
+      return {
+        currentWeather: currentWeatherResp.data,
+        other: {
+          pollution: pollutionResp.data,
+          uv: uvResp.data,
+          weekForecast: weekForecastResp.data,
+        },
+      };
+    })
+    .catch((e) => {
+      if (axios.isAxiosError(e)) {
+        setErrorMessage(clientErrorMessageBuilder(e.response?.status));
+      }
+      {
+        setErrorMessage(e);
+        return undefined;
+      }
+    });
 
-    return weatherData;
-  } catch (e: unknown) {
-    if (axios.isAxiosError(e)) {
-      setErrorMessage(errorMessageBuilder(e.response?.status || 0));
-    } else {
-      setErrorMessage("An unexpected error occurred.");
-    }
-    throw new Error(`Error in fetching process:${e as string}`);
-  }
+  return weatherData;
 }

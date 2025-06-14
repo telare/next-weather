@@ -1,5 +1,5 @@
 import {
-  getJWT_Secret_Key,
+  getJWTSecretKey,
   isSecuredUser,
   jwtCookiesSetter,
   jwtTokensGenerator,
@@ -26,7 +26,7 @@ export async function POST(
     if (!refreshToken) {
       throw new Error("No refreshToken under the 'refreshToken'");
     }
-    const jwtSecretkey = getJWT_Secret_Key();
+    const jwtSecretkey = getJWTSecretKey();
     const { payload: user } = await jwtVerify(
       refreshToken.value,
       new TextEncoder().encode(jwtSecretkey)
@@ -55,6 +55,12 @@ export async function POST(
     cookieStore.delete("refreshToken");
 
     await jwtCookiesSetter(newAccessToken, newRefreshToken);
+    return NextResponse.json(
+      {
+        message: "Credentials updated",
+      },
+      { status: 200 }
+    );
   } catch (e: unknown) {
     return NextResponse.json(
       {
@@ -63,10 +69,4 @@ export async function POST(
       { status: 400 }
     );
   }
-  return NextResponse.json(
-    {
-      message: "Bad request. Invalid type of request",
-    },
-    { status: 400 }
-  );
 }

@@ -1,16 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/app/clients/prismaClient";
 import bcrypt from "bcryptjs";
 import {
-  serverError,
   jwtCookiesSetter,
   jwtTokensGenerator,
-  reqMethodError,
   isUser,
   SecuredUser,
+  reqMethodError,
+  serverError,
 } from "@/utils/apiUtils";
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
   if (req.method !== "POST") {
     return NextResponse.json(
       {
@@ -32,7 +32,10 @@ export async function POST(req: Request) {
       where: { email: userData.email },
     });
     if (!userDataDB) {
-      return NextResponse.json({ message: "Sign up, please" }, { status: 401 });
+      return NextResponse.json(
+        //  { message: "No account found with that email. Please sign up." },
+        { status: 401 }
+      );
     }
 
     const isPasswordEqual: boolean = await bcrypt.compare(
@@ -41,13 +44,13 @@ export async function POST(req: Request) {
     );
     if (!isPasswordEqual) {
       return NextResponse.json(
-        { message: "Invalid email or password" },
+        // { message: "Invalid email or password" },
         { status: 401 }
       );
     }
     const securedUser: SecuredUser = {
-      id: userData.id,
-      name: userData.name,
+      id: userDataDB.id,
+      name: userDataDB.name,
       email: userData.email,
     };
     const { accessToken, refreshToken } = jwtTokensGenerator(securedUser);
@@ -55,14 +58,14 @@ export async function POST(req: Request) {
     await jwtCookiesSetter(accessToken, refreshToken);
     return NextResponse.json(
       { message: "Successfully logged in" },
-      { status: 200 }
+      { status: 201 }
     );
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e: unknown) {
     return NextResponse.json(
       {
-        message: `${serverError.message} ${e}`,
+        message: serverError.message,
       },
       { status: serverError.code }
     );
