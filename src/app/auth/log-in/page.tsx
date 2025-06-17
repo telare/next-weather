@@ -24,7 +24,7 @@ export default function LogInPage() {
       <div className={styles.themeBtnCon}>
         <ThemeToggleBtn />
       </div>
-      <Form schema={logInSchema} title={title} type="log-in" />
+      <Form dataCyPrefix="auth" schema={logInSchema} title={title} type="log-in" />
     </div>
   );
 }

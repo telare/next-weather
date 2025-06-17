@@ -9,6 +9,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
   return (
     <Sonner
       theme={theme as ToasterProps["theme"]}
+      data-cy="notification"
       className="toaster group"
       aria-live="assertive"
       aria-atomic="true"

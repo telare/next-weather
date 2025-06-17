@@ -15,6 +15,7 @@ type Button = {
   func?: () => void;
   width?: string | number;
   className?: string;
+  dataCyPrefix: string;
 };
 export default function Button({
   text,
@@ -22,6 +23,7 @@ export default function Button({
   image,
   icon,
   ariaLabel,
+  dataCyPrefix,
   className,
   ...rest
 }: Button & ButtonHTMLAttributes<HTMLButtonElement>) {
@@ -29,6 +31,7 @@ export default function Button({
     <button
       onClick={func}
       className={className}
+      data-cy={`${dataCyPrefix}-btn`}
       aria-label={ariaLabel ? ariaLabel : text}
       {...rest}
     >

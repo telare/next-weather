@@ -17,8 +17,14 @@ export type AuthFormProps = {
   schema: ObjectSchema<FieldValues, AnyObject>;
   title: React.ReactElement;
   type: "log-in" | "sign-up";
+  dataCyPrefix: string;
 };
-export default function Form({ schema, title, type }: AuthFormProps) {
+export default function Form({
+  schema,
+  title,
+  type,
+  dataCyPrefix,
+}: AuthFormProps) {
   const router = useRouter();
   const pathname = usePathname();
   type Form = InferType<typeof schema>;
@@ -40,17 +46,22 @@ export default function Form({ schema, title, type }: AuthFormProps) {
         return router.push("/auth/sign-up");
       });
   }
+
   return (
     <FormProvider {...methods}>
       <form
         className={styles.formCon}
         onSubmit={handleSubmit(onSubmit)}
         aria-labelledby="form-header"
+        data-cy="auth-form"
       >
-        <header id="form-header">{title}</header>
+        <header id="form-header" data-cy="auth-form-header">
+          {title}
+        </header>
         <div className={styles.formFieldsCon}>
           {fields.map((field, i) => (
             <FormField
+              dataCyPrefix={dataCyPrefix}
               key={i}
               name={field}
               type={field === "password" ? "password" : "text"}
@@ -61,6 +72,7 @@ export default function Form({ schema, title, type }: AuthFormProps) {
         <div className={styles.formFooter}>
           <Button
             text="Continue"
+            dataCyPrefix={dataCyPrefix}
             width={50}
             type="submit"
             className={styles.submitBtn}
@@ -68,12 +80,17 @@ export default function Form({ schema, title, type }: AuthFormProps) {
           <div className={styles.navigationLinks}>
             {pathname === "/auth/sign-up" ? (
               <p>
-                Already have account?<Link href="/auth/log-in">Log In</Link>
+                Already have account?
+                <Link href="/auth/log-in" data-cy="form-navigation">
+                  Log In
+                </Link>
               </p>
             ) : (
               <p>
                 Don&apos;t have account?
-                <Link href="/auth/sign-up">Sign Up</Link>
+                <Link href="/auth/sign-up" data-cy="form-navigation">
+                  Sign Up
+                </Link>
               </p>
             )}
           </div>

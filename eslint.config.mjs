@@ -1,6 +1,7 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
+import pluginCypress from "eslint-plugin-cypress";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -11,7 +12,12 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.config({
-    extends: ["next/core-web-vitals", "next/typescript", "prettier", "plugin:jsx-a11y/recommended"],
+    extends: [
+      "next/core-web-vitals",
+      "next/typescript",
+      "prettier",
+      "plugin:jsx-a11y/recommended",
+    ],
     plugins: ["sonarjs"],
     rules: {
       semi: ["error"],
@@ -22,6 +28,16 @@ const eslintConfig = [
       "react-hooks/exhaustive-deps": "off",
     },
   }),
+  {
+    files: ["cypress/e2e/**/*.{js,ts}"],
+    plugins: { cypress: pluginCypress },
+    languageOptions: {
+      globals: { Cypress: "readonly", cy: "readonly" },
+    },
+    rules: {
+      ...pluginCypress.configs.recommended.rules,
+    },
+  },
 ];
 
 export default eslintConfig;
