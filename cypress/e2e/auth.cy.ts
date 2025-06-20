@@ -1,20 +1,17 @@
 /* eslint-disable prefer-arrow-callback */
 import { tokenNames } from "@/utils/apiUtils";
+import {
+  inputNames,
+  notifElementAttribute,
+  notifs,
+} from "../support/utils/authUtils";
 
-const inputNames: {
-  registration: string[];
-  logIn: string[];
-} = {
-  registration: ["name", "email", "password"],
-  logIn: ["email", "password"],
-};
-const notifs: {
-  success: string;
-  failed: string;
-} = {
-  success: "Authentication passed, wellcome!",
-  failed: "Authentication failed",
-};
+// to improve
+// 4. create a custom command with request for authentication to reuse +
+// 5. check the notification to hide after a user see it + (change the implementation details)
+// 6. after adding a disabled button when redirecting, test it
+// 7. use a context for related inside a describe +
+// 8. create a utils for this test +
 
 describe("Successful displaying of UI", async () => {
   it("should see the registration form", () => {
@@ -54,7 +51,7 @@ describe("Successful displaying of UI", async () => {
   });
 });
 
-describe("Successful registration", () => {
+describe("Registration", () => {
   beforeEach(() => {
     cy.visit("/auth/sign-up");
     cy.fixture("user.json").then(function (user) {
@@ -72,14 +69,15 @@ describe("Successful registration", () => {
     });
     cy.get("button[type=submit]").click();
 
-    cy.get("[data-title]").contains(notifs.success).as("notif");
+    cy.get(notifElementAttribute).contains(notifs.success).as("notif");
     cy.get("@notif").should("be.visible");
 
     cy.getCookie(tokenNames.access).should("exist");
     cy.getCookie(tokenNames.refresh).should("exist");
     cy.url().should("include", "/home");
+    cy.get("@notif").should("not.be.visible");
   });
-  describe("User should fail registration", () => {
+  context("User should fail registration", () => {
     beforeEach(() => {
       inputNames.registration.forEach((fieldName) => {
         cy.get(`input[name="${fieldName}"]`).as(`${fieldName}Input`);
@@ -93,10 +91,11 @@ describe("Successful registration", () => {
 
       cy.get("button[type=submit]").click();
 
-      cy.get("[data-title]").contains(notifs.failed).as("notif");
+      cy.get(notifElementAttribute).contains(notifs.failed).as("notif");
       cy.get("@notif").should("be.visible");
 
       cy.url().should("include", "/auth/sign-up");
+      cy.get("@notif").should("not.be.visible");
     });
     it("due to invalid email", function () {
       cy.get("@nameInput").type(this.user.email);
@@ -153,21 +152,15 @@ describe("Successful log-in", () => {
     });
   });
   it("should successfully log-in", function () {
-    inputNames.logIn.forEach((fieldName) => {
-      cy.get(`@${fieldName}Input`).type(this.user[fieldName]);
-      cy.get(`@${fieldName}Input`).should("have.value", this.user[fieldName]);
-    });
-
-    cy.get("button[type='submit']").click();
-
-    cy.get("[data-title]").contains(notifs.success).as("notif");
+    cy["log-in"](this.user.email, this.user.password);
+    cy.get(notifElementAttribute).contains(notifs.success).as("notif");
     cy.get("@notif").should("be.visible");
 
     cy.url().should("include", "/home");
     cy.getCookie("accessToken").should("exist");
     cy.getCookie("refreshToken").should("exist");
   });
-  describe("User should fail log-in with invalid credentials", () => {
+  context("User should fail log-in with invalid credentials", () => {
     it("User should fail due to incorrect email", function () {
       cy.get("@emailInput").type("incorrectEmail");
       cy.get("@passwordInput").type(this.user.password);
