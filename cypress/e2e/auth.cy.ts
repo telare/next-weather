@@ -6,14 +6,21 @@ import {
   notifs,
 } from "../support/utils/authUtils";
 
-// to improve
-// 4. create a custom command with request for authentication to reuse +
-// 5. check the notification to hide after a user see it + (change the implementation details)
-// 6. after adding a disabled button when redirecting, test it
-// 7. use a context for related inside a describe +
-// 8. create a utils for this test +
 
-describe("Successful displaying of UI", async () => {
+describe("Accessibillity on the first load", () => {
+  it("The entire register page should be accessbile", () => {
+    cy.visit("/auth/sign-up");
+    cy.injectAxe();
+    cy.checkA11y();
+  });
+  it("The entire log-in page should be accessbile", () => {
+    cy.visit("/auth/log-in");
+    cy.injectAxe();
+    cy.checkA11y();
+  });
+});
+
+describe("Successful displaying of UI", () => {
   it("should see the registration form", () => {
     cy.visit("/auth/sign-up");
 
@@ -33,7 +40,6 @@ describe("Successful displaying of UI", async () => {
     cy.get("button[type='submit'][data-cy='auth-btn']").should("be.visible");
     cy.get("a[href='/auth/log-in']").should("be.visible");
   });
-
   it("should see the log-in form", () => {
     cy.visit("/auth/log-in");
     cy.get("form[data-cy='auth-form']").should("be.visible");
@@ -60,6 +66,7 @@ describe("Registration", () => {
     inputNames.registration.forEach((fieldName) => {
       cy.get(`input[name="${fieldName}"]`).as(`${fieldName}Input`);
     });
+    cy.injectAxe();
   });
   it("user should successfully register and be redirected to home", function () {
     cy.task("deleteTestUsers");
@@ -68,9 +75,16 @@ describe("Registration", () => {
       cy.get(`@${fieldName}Input`).should("have.value", this.user[fieldName]);
     });
     cy.get("button[type=submit]").click();
-
     cy.get(notifElementAttribute).contains(notifs.success).as("notif");
     cy.get("@notif").should("be.visible");
+    cy.checkA11y(
+      { exclude: notifElementAttribute },
+      {
+        rules: {
+          "color-contrast": { enabled: false },
+        },
+      }
+    );
 
     cy.getCookie(tokenNames.access).should("exist");
     cy.getCookie(tokenNames.refresh).should("exist");
@@ -93,6 +107,14 @@ describe("Registration", () => {
 
       cy.get(notifElementAttribute).contains(notifs.failed).as("notif");
       cy.get("@notif").should("be.visible");
+      cy.checkA11y(
+        { exclude: notifElementAttribute },
+        {
+          rules: {
+            "color-contrast": { enabled: false },
+          },
+        }
+      );
 
       cy.url().should("include", "/auth/sign-up");
       cy.get("@notif").should("not.be.visible");
@@ -113,6 +135,7 @@ describe("Registration", () => {
       cy.get("p[data-cy='auth-form-email-field-error']").as("emailError");
       cy.get("@emailError").should("be.visible");
       cy.get("@emailError").should("have.text", "Invalid email address");
+      cy.checkA11y();
     });
     it("due to short password", function () {
       cy.get("@nameInput").type(this.user.name);
@@ -125,8 +148,8 @@ describe("Registration", () => {
       cy.get("p[data-cy='auth-form-password-field-error']").as("passwordError");
       cy.get("@passwordError").should("be.visible");
       cy.get("@passwordError").should("have.text", "At least 4 symbols");
+      cy.checkA11y();
     });
-    // maybe do in a form component test
     it("due to missing name field", function () {
       cy.get("@emailInput").type(this.user.email);
       cy.get("@passwordInput").type("012");
@@ -137,6 +160,7 @@ describe("Registration", () => {
       cy.get("p[data-cy='auth-form-name-field-error']").as("nameError");
       cy.get("@nameError").should("be.visible");
       cy.get("@nameError").should("have.text", "At least 2 symbols");
+      cy.checkA11y();
     });
   });
 });

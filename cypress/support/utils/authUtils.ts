@@ -9,7 +9,7 @@ const notifs: {
   success: string;
   failed: string;
 } = {
-  success: "Authentication passed, wellcome!",
+  success: "Authentication passed, welcome!",
   failed: "Authentication failed",
 };
 const notifElementAttribute: string = "[data-sonner-toast]";

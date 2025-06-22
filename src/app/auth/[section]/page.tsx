@@ -21,7 +21,7 @@ export default function AuthPage() {
     try {
       const authResult = await handleAuthentication(data, section);
       customToast(
-        "Authentication passed, wellcome",
+        "Authentication passed, welcome",
         authResult.message,
         "success"
       );
@@ -36,7 +36,7 @@ export default function AuthPage() {
   const formTitle: React.ReactElement =
     section === "log-in" ? (
       <>
-        <h1>Wellcome Back!</h1>
+        <h1>Welcome Back!</h1>
         <p>Log In in with your data</p>
       </>
     ) : (
@@ -49,7 +49,7 @@ export default function AuthPage() {
       </>
     );
   return (
-    <div className={styles.wrapper}>
+    <main className={styles.wrapper}>
       <div className={styles.themeBtnCon}>
         <ThemeToggleBtn />
       </div>
@@ -60,6 +60,6 @@ export default function AuthPage() {
         formLinks={<AuthFormLinks />}
         schema={schemas[section] ?? schemas["sign-up"]}
       />
-    </div>
+    </main>
   );
 }
