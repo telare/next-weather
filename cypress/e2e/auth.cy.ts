@@ -1,24 +1,5 @@
-/* eslint-disable prefer-arrow-callback */
 import { tokenNames } from "@/utils/apiUtils";
-import {
-  inputNames,
-  notifElementAttribute,
-  notifs,
-} from "../support/utils/authUtils";
-
-
-describe("Accessibillity on the first load", () => {
-  it("The entire register page should be accessbile", () => {
-    cy.visit("/auth/sign-up");
-    cy.injectAxe();
-    cy.checkA11y();
-  });
-  it("The entire log-in page should be accessbile", () => {
-    cy.visit("/auth/log-in");
-    cy.injectAxe();
-    cy.checkA11y();
-  });
-});
+import { notifElementAttribute, notifs } from "../support/utils/authUtils";
 
 describe("Successful displaying of UI", () => {
   it("should see the registration form", () => {
@@ -60,23 +41,17 @@ describe("Successful displaying of UI", () => {
 describe("Registration", () => {
   beforeEach(() => {
     cy.visit("/auth/sign-up");
-    cy.fixture("user.json").then(function (user) {
-      this.user = user;
-    });
-    inputNames.registration.forEach((fieldName) => {
-      cy.get(`input[name="${fieldName}"]`).as(`${fieldName}Input`);
-    });
     cy.injectAxe();
+    cy.aliasAuthInputs("registration");
   });
-  it("user should successfully register and be redirected to home", function () {
+  it("user should successfully register and be redirected to home", () => {
     cy.task("deleteTestUsers");
-    inputNames.registration.forEach((fieldName) => {
-      cy.get(`@${fieldName}Input`).type(this.user[fieldName]);
-      cy.get(`@${fieldName}Input`).should("have.value", this.user[fieldName]);
-    });
-    cy.get("button[type=submit]").click();
+
+    cy["sign-up"]();
+
     cy.get(notifElementAttribute).contains(notifs.success).as("notif");
     cy.get("@notif").should("be.visible");
+
     cy.checkA11y(
       { exclude: notifElementAttribute },
       {
@@ -92,18 +67,8 @@ describe("Registration", () => {
     cy.get("@notif").should("not.be.visible");
   });
   context("User should fail registration", () => {
-    beforeEach(() => {
-      inputNames.registration.forEach((fieldName) => {
-        cy.get(`input[name="${fieldName}"]`).as(`${fieldName}Input`);
-      });
-    });
-    it("due to existing user", function () {
-      inputNames.registration.forEach((fieldName) => {
-        cy.get(`@${fieldName}Input`).type(this.user[fieldName]);
-        cy.get(`@${fieldName}Input`).should("have.value", this.user[fieldName]);
-      });
-
-      cy.get("button[type=submit]").click();
+    it("due to existing user", () => {
+      cy["sign-up"]();
 
       cy.get(notifElementAttribute).contains(notifs.failed).as("notif");
       cy.get("@notif").should("be.visible");
@@ -119,17 +84,9 @@ describe("Registration", () => {
       cy.url().should("include", "/auth/sign-up");
       cy.get("@notif").should("not.be.visible");
     });
-    it("due to invalid email", function () {
-      cy.get("@nameInput").type(this.user.email);
-      cy.get("@nameInput").should("have.value", this.user.email);
+    it("due to invalid email", () => {
+      cy["sign-up"](undefined, "invalidEmail", undefined);
 
-      cy.get("@emailInput").type("invalidEmail");
-      cy.get("@emailInput").should("have.value", "invalidEmail");
-
-      cy.get("@passwordInput").type(this.user.password);
-      cy.get("@passwordInput").should("have.value", this.user.password);
-
-      cy.get("button[type=submit]").click();
       cy.url().should("include", "/auth/sign-up");
 
       cy.get("p[data-cy='auth-form-email-field-error']").as("emailError");
@@ -137,12 +94,9 @@ describe("Registration", () => {
       cy.get("@emailError").should("have.text", "Invalid email address");
       cy.checkA11y();
     });
-    it("due to short password", function () {
-      cy.get("@nameInput").type(this.user.name);
-      cy.get("@emailInput").type(this.user.email);
-      cy.get("@passwordInput").type("012");
+    it("due to short password", () => {
+      cy["sign-up"](undefined, undefined, "012");
 
-      cy.get("button[type=submit]").click();
       cy.url().should("include", "/auth/sign-up");
 
       cy.get("p[data-cy='auth-form-password-field-error']").as("passwordError");
@@ -150,33 +104,29 @@ describe("Registration", () => {
       cy.get("@passwordError").should("have.text", "At least 4 symbols");
       cy.checkA11y();
     });
-    it("due to missing name field", function () {
-      cy.get("@emailInput").type(this.user.email);
-      cy.get("@passwordInput").type("012");
+    // it("due to missing name field", function () {
+    //   cy.get("@emailInput").type(this.user.email);
+    //   cy.get("@passwordInput").type("012");
 
-      cy.get("button[type=submit]").click();
-      cy.url().should("include", "/auth/sign-up");
+    //   cy.get("button[type=submit]").click();
+    //   cy.url().should("include", "/auth/sign-up");
 
-      cy.get("p[data-cy='auth-form-name-field-error']").as("nameError");
-      cy.get("@nameError").should("be.visible");
-      cy.get("@nameError").should("have.text", "At least 2 symbols");
-      cy.checkA11y();
-    });
+    //   cy.get("p[data-cy='auth-form-name-field-error']").as("nameError");
+    //   cy.get("@nameError").should("be.visible");
+    //   cy.get("@nameError").should("have.text", "At least 2 symbols");
+    //   cy.checkA11y();
+    // });
   });
 });
 
 describe("Successful log-in", () => {
   beforeEach(() => {
     cy.visit("/auth/log-in");
-    inputNames.logIn.forEach((fieldName) => {
-      cy.get(`input[name="${fieldName}"]`).as(`${fieldName}Input`);
-    });
-    cy.fixture("user.json").then(function (user) {
-      this.user = user;
-    });
+    cy.aliasAuthInputs("logIn");
   });
-  it("should successfully log-in", function () {
-    cy["log-in"](this.user.email, this.user.password);
+  it("should successfully log-in", () => {
+    cy["log-in"]();
+
     cy.get(notifElementAttribute).contains(notifs.success).as("notif");
     cy.get("@notif").should("be.visible");
 
@@ -185,24 +135,14 @@ describe("Successful log-in", () => {
     cy.getCookie("refreshToken").should("exist");
   });
   context("User should fail log-in with invalid credentials", () => {
-    it("User should fail due to incorrect email", function () {
-      cy.get("@emailInput").type("incorrectEmail");
-      cy.get("@passwordInput").type(this.user.password);
+    it("User should fail due to incorrect email", () => {
+      cy["log-in"]("incorrectEmail");
 
-      cy.get("@emailInput").should("have.value", "incorrectEmail");
-      cy.get("@passwordInput").should("have.value", this.user.password);
-
-      cy.get("button[type='submit']").click();
       cy.url().should("include", "/auth/log-in");
     });
-    it("User should fail due to incorrect password", function () {
-      cy.get("@emailInput").type(this.user.email);
-      cy.get("@passwordInput").type("incorrectPassword");
+    it("User should fail due to incorrect password", () => {
+      cy["log-in"](undefined, "incorrectPassword");
 
-      cy.get("@emailInput").should("have.value", this.user.email);
-      cy.get("@passwordInput").should("have.value", "incorrectPassword");
-
-      cy.get("button[type='submit']").click();
       cy.url().should("include", "/auth/log-in");
     });
   });

@@ -50,19 +50,19 @@ export default function CurrentWeather() {
           aria-label={`Weather details for ${weather.data.currentWeather.name}`}
         >
           <div aria-label={`Location: ${weather.data.currentWeather.name}`}>
-            <h3>
+            <h1>
               {weather.data.currentWeather.name &&
                 weather.data.currentWeather.name}
-            </h3>
+            </h1>
           </div>
           <div
             aria-label={`Current temperature is ${Math.floor(
               weather.data.currentWeather.temperature.current_temp
             )} degrees`}
           >
-            <h1>{`${Math.floor(
+            <h2>{`${Math.floor(
               weather.data.currentWeather.temperature.current_temp
-            )}°`}</h1>
+            )}°`}</h2>
           </div>
         </section>
         <footer

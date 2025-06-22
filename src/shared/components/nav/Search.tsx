@@ -73,9 +73,9 @@ export default function Search() {
         aria-label="Search shortcut, press Command + F"
         title="Press Command + F to search for a city"
       >
-        <kbd aria-label="Control key">{commandIcon}</kbd>
+        <kbd>{commandIcon}</kbd>
         <span>+</span>
-        <kbd aria-label="F key">F</kbd>
+        <kbd>F</kbd>
       </div>
     </search>
   );

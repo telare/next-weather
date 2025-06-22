@@ -47,7 +47,7 @@
     flex-direction: column;
     border: none;
     h1,
-    h3 {
+    h2 {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
@@ -56,7 +56,7 @@
 
       text-align: center;
     }
-    h1 {
+    h2 {
       font-size: 4.6875rem; // 75px
     }
 
