@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ButtonHTMLAttributes, JSX } from "react";
 
-type Button = {
+export type Button = {
   text?: string;
   image?: {
     src: string;

@@ -28,6 +28,7 @@ export default function Modal({ children, onOpenChange }: Layout & ModalProps) {
           {children}
             <Button
               type="button"
+              dataCyPrefix="modal"
               text="Close modal"
               icon={closeIcon}
               func={onOpenChange}

@@ -31,6 +31,7 @@ import { ElementType } from "react";
 function accessibleWrapper(Icon: ElementType, label?: string) {
   return (
     <Icon
+      data-cy="icon"
       aria-hidden="true"
       focusable={false}
       aria-label={label ? label : ""}
