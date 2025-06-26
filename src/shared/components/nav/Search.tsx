@@ -49,14 +49,16 @@ export default function Search() {
   return (
     <search
       className={styles.searchCon}
+      data-cy="search"
       role="search" // for legacy support
       aria-label="City search" // Keep this for now, though it might become redundant over time
     >
-      <label htmlFor={searchInputID} className={styles.searchLabel}>
+      <label htmlFor={searchInputID} className={styles.searchLabel} data-cy="search-label">
         Search for a city
       </label>
       <input
         type="search"
+        data-cy="search-input"
         id={searchInputID}
         placeholder="Search Here..."
         aria-describedby="searchShortcut"
@@ -69,6 +71,7 @@ export default function Search() {
       />
       <div
         id="searchShortcut"
+        data-cy="search-shortcut"
         className={styles.searchShortCut}
         aria-label="Search shortcut, press Command + F"
         title="Press Command + F to search for a city"

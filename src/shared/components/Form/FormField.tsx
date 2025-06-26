@@ -1,7 +1,7 @@
 "use client";
 import { useFormContext } from "react-hook-form";
 import styles from "@shared/styles/Form.module.scss";
-type FormField = {
+export type FormField = {
   name: string;
   type: "text" | "password";
   placeholder: string;
@@ -19,13 +19,13 @@ export default function FormField({
   } = useFormContext();
   const errorId = `${name}-error`;
   return (
-    <div className={styles.formField}>
+    <div className={styles.formField} data-cy="form-field">
       <input
         placeholder={placeholder.charAt(0).toUpperCase() + placeholder.slice(1)}
         type={type}
-        data-cy={`${dataCyPrefix}-form-${name}-field`}
+        data-cy={`${dataCyPrefix}-form-${name}-field-input`}
         aria-label={placeholder}
-        aria-invalid={errors[name] ? "true" : "false"}
+        aria-invalid={errors[name] ? true : false}
         aria-errormessage={errors[name] ? errorId : undefined}
         aria-atomic="true"
         aria-describedby={errors[name] ? errorId : undefined} // for legacy support
@@ -39,7 +39,7 @@ export default function FormField({
           aria-atomic="true"
         >
           {errors[name]?.message && (
-            <p data-cy={`${dataCyPrefix}-form-${name}-field-error`}>
+            <p data-cy={`${dataCyPrefix}-form-${name}-field-input-error`}>
               {errors[name]?.message.toString()}
             </p>
           )}

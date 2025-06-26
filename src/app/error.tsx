@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 export default function ErrorPage({
   error,
 }: {
-  error: ServerResponse & { digest?: string };
+  error: Error & { digest?: string };
   reset: () => void;
 }) {
   return (
@@ -15,6 +15,7 @@ export default function ErrorPage({
         <p>Error message: {error.message}</p>
       </div>
       <Button
+        dataCyPrefix="tryAgain"
         func={() => redirect("/auth/log-in")}
         text="Try again"
         type="button"
