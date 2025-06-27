@@ -59,6 +59,8 @@
     "axe-core": "^4.10.3",
     "cypress": "^14.5.0",
     "cypress-axe": "^1.6.0",
+    "cypress-plugin-api": "^2.11.2",
+    "dotenv": "^16.6.0",
     "eslint": "^9.29.0",
     "eslint-config-next": "15.1.6",
     "eslint-config-prettier": "^10.0.1",

@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
     });
     if (!userDataDB) {
       return NextResponse.json(
-        //  { message: "No account found with that email. Please sign up." },
+         { message: "No account found with that email. Please sign up." },
         { status: 401 }
       );
     }
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
     );
     if (!isPasswordEqual) {
       return NextResponse.json(
-        // { message: "Invalid email or password" },
+        { message: "Invalid email or password" },
         { status: 401 }
       );
     }

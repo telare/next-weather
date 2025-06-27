@@ -55,11 +55,16 @@ function getJWTSecretKey(): string {
   }
   return jwtSecretKey;
 }
-function jwtTokensGenerator(userCredentials: SecuredUser): {
+function jwtTokensGenerator(
+  userCredentials: SecuredUser,
+  customJWTSecretKey?: string
+): {
   accessToken: string;
   refreshToken: string;
 } {
-  const jwtSecretKey: string = getJWTSecretKey();
+  const jwtSecretKey = customJWTSecretKey
+    ? customJWTSecretKey
+    : getJWTSecretKey();
   const accessToken: string = jwt.sign(
     {
       name: userCredentials.name,
@@ -114,7 +119,6 @@ async function jwtCookiesSetter(
       sameSite: "lax",
       path: "/",
     });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e: unknown) {
     if (e instanceof Error) {
       throw new Error(`Failed to set authentication cookies: ${e.message}`);
