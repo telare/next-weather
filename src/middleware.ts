@@ -8,16 +8,19 @@ export async function middleware(request: NextRequest) {
     const cookieStore = await cookies();
     const accessToken = cookieStore.get("accessToken");
     if (!accessToken) {
-      return NextResponse.json({
-        status: 401,
-      });
+      return NextResponse.json(
+        {
+          message:
+            "Unauthorized due to invalid credentials. Please log-in or sign-up.",
+        },
+        { status: 401 }
+      );
     }
     await jwtVerify(
       accessToken.value,
       new TextEncoder().encode(getJWTSecretKey())
     );
     return NextResponse.next();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (e: unknown) {
     // if this block - access token invalid
     if (
@@ -32,9 +35,12 @@ export async function middleware(request: NextRequest) {
           },
         });
         if (!res.ok) {
-          return NextResponse.json({
-            status: 401,
-          });
+          return NextResponse.json(
+            {
+              message: "Unauthorized",
+            },
+            { status: 401 }
+          );
         }
         const newSetCookieHeader = res.headers.get("Set-Cookie");
         const response = NextResponse.next();
@@ -52,9 +58,12 @@ export async function middleware(request: NextRequest) {
       }
     } else {
       if (e instanceof errors.JOSEError) {
-        return NextResponse.json({
-          status: 401,
-        });
+        return NextResponse.json(
+          {
+            message: `Error caused by jose: ${e}`,
+          },
+          { status: 401 }
+        );
       } else {
         return NextResponse.json(
           {
