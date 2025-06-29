@@ -12,6 +12,7 @@ jobs:
       JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
       WEATHER_API_KEY: ${{secrets.WEATHER_API_KEY}}
       AUTO_COMPLETE_KEY: ${{secrets.AUTO_COMPLETE_KEY}}
+      DATABASE_URL: ${{secrets.DATABASE_URL}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
