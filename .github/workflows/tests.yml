@@ -2,17 +2,23 @@ name: Cypress Tests Workflow
 
 on: [push]
 
-jobs: 
-    cypress-run:
-        runs-on: "ubuntu-latest"
+jobs:
+  cypress-run:
+    runs-on: "ubuntu-latest"
+    env:
+      AUTH_SECRET: ${{secrets.AUTH_SECRET}}
+      GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
+      GOOGLE_CLIENT_SECRET: ${{secrets.GOOGLE_CLIENT_SECRET}}
+      JWT_SECRET_KEY: ${{secrets.JWT_SECRET_KEY}}
+      WEATHER_API_KEY: ${{secrets.WEATHER_API_KEY}}
+      AUTO_COMPLETE_KEY: ${{secrets.AUTO_COMPLETE_KEY}}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-
-            - name: Cypress run
-              uses: cypress-io/github-action@v6
-              with:
-                build: npm run build
-                start: npm start
-                browser: chrome
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          build: npm run build
+          start: npm start
+          browser: chrome
