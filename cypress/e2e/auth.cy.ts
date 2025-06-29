@@ -1,6 +1,7 @@
 import { tokenNames } from "@/utils/apiUtils";
 import { notifElementAttribute, notifs } from "../support/utils/authUtils";
-
+import { generateFieldDataCy } from "@/shared/components/Form/FormField.cy";
+const prefix = "auth";
 describe("Successful displaying of UI", () => {
   it("should see the registration form", () => {
     cy.visit("/auth/sign-up");
@@ -8,15 +9,15 @@ describe("Successful displaying of UI", () => {
     cy.get("form[data-cy='auth-form']").should("be.visible");
     cy.get("header[data-cy='auth-form-header']").should("be.visible");
 
-    cy.get("input[name='name'][data-cy='auth-form-name-field']").should(
-      "be.visible"
-    );
-    cy.get("input[name='email'][data-cy='auth-form-email-field']").should(
-      "be.visible"
-    );
-    cy.get("input[name='password'][data-cy='auth-form-password-field']").should(
-      "be.visible"
-    );
+    cy.get(
+      `input[name='name']${generateFieldDataCy(prefix, "name", false)}`
+    ).should("be.visible");
+    cy.get(
+      `input[name='email']${generateFieldDataCy(prefix, "email", false)}`
+    ).should("be.visible");
+    cy.get(
+      `input[name='password']${generateFieldDataCy(prefix, "password", false)}`
+    ).should("be.visible");
 
     cy.get("button[type='submit'][data-cy='auth-btn']").should("be.visible");
     cy.get("a[href='/auth/log-in']").should("be.visible");
@@ -26,12 +27,12 @@ describe("Successful displaying of UI", () => {
     cy.get("form[data-cy='auth-form']").should("be.visible");
     cy.get("header[data-cy='auth-form-header']").should("be.visible");
 
-    cy.get("input[name='email'][data-cy='auth-form-email-field']").should(
-      "be.visible"
-    );
-    cy.get("input[name='password'][data-cy='auth-form-password-field']").should(
-      "be.visible"
-    );
+    cy.get(
+      `input[name='email']${generateFieldDataCy(prefix, "email", false)}`
+    ).should("be.visible");
+    cy.get(
+      `input[name='password']${generateFieldDataCy(prefix, "password", false)}`
+    ).should("be.visible");
 
     cy.get("button[type='submit'][data-cy='auth-btn']").should("be.visible");
     cy.get("a[href='/auth/sign-up']").should("be.visible");
@@ -89,7 +90,7 @@ describe("Registration", () => {
 
       cy.url().should("include", "/auth/sign-up");
 
-      cy.get("p[data-cy='auth-form-email-field-error']").as("emailError");
+      cy.get(`p${generateFieldDataCy(prefix, "email", true)}`).as("emailError");
       cy.get("@emailError").should("be.visible");
       cy.get("@emailError").should("have.text", "Invalid email address");
       cy.checkA11y();
@@ -99,23 +100,28 @@ describe("Registration", () => {
 
       cy.url().should("include", "/auth/sign-up");
 
-      cy.get("p[data-cy='auth-form-password-field-error']").as("passwordError");
+      cy.get(`p${generateFieldDataCy(prefix, "password", true)}`).as(
+        "passwordError"
+      );
       cy.get("@passwordError").should("be.visible");
       cy.get("@passwordError").should("have.text", "At least 4 symbols");
       cy.checkA11y();
     });
-    // it("due to missing name field", function () {
-    //   cy.get("@emailInput").type(this.user.email);
-    //   cy.get("@passwordInput").type("012");
+    it("due to missing name field", () => {
+      cy.get("@emailInput").type("example1a11@test.io");
+      cy.get("@emailInput").should("have.value", "example1a11@test.io");
 
-    //   cy.get("button[type=submit]").click();
-    //   cy.url().should("include", "/auth/sign-up");
+      cy.get("@passwordInput").type("d3df@gf");
+      cy.get("@passwordInput").should("have.value", "d3df@gf");
 
-    //   cy.get("p[data-cy='auth-form-name-field-error']").as("nameError");
-    //   cy.get("@nameError").should("be.visible");
-    //   cy.get("@nameError").should("have.text", "At least 2 symbols");
-    //   cy.checkA11y();
-    // });
+      cy.get("button[type='submit']").click();
+      cy.url().should("include", "/auth/sign-up");
+
+      cy.get(`p${generateFieldDataCy(prefix, "name", true)}`).as("nameError");
+      cy.get("@nameError").should("be.visible");
+      cy.get("@nameError").should("have.text", "At least 2 symbols");
+      cy.checkA11y();
+    });
   });
 });
 
