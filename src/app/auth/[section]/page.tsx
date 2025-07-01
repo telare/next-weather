@@ -7,13 +7,13 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { handleAuthentication, isUser, schemas } from "../utility/utils";
 import { customToast } from "@/shared/components/Toast/Toast";
-import { updateAllUserInfo } from "@/providers/globalStore";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "@/providers/dataProvider/globalStore/globalStore";
+import { updateUser } from "@/providers/dataProvider/globalStore/actions/user/types";
 
 export default function AuthPage() {
   const router = useRouter();
   const { section } = useParams<{ section: "log-in" | "sign-up" }>();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   async function onSubmit(data: unknown): Promise<void> {
     if (!isUser(data, section)) {
       throw new Error("Invalid user data");
@@ -25,7 +25,7 @@ export default function AuthPage() {
         authResult.message,
         "success"
       );
-      dispatch(updateAllUserInfo(authResult.user));
+      dispatch(updateUser(authResult.user));
       return router.push("/home");
     } catch (e: unknown) {
       customToast("Authentication failed", e as string, "error");

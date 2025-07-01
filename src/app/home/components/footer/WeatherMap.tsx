@@ -8,15 +8,16 @@ import {
   useMapEvent,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState, updateLocation } from "@/providers/globalStore";
 import L from "leaflet";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "@/providers/dataProvider/globalStore/globalStore";
+import { updateLocation } from "@/providers/dataProvider/globalStore/actions/location/types";
 
 export default function WeatherMap() {
-  const defaultLocation = useSelector(
-    (state: RootState) => state.location.value
-  );
-  const dispatch = useDispatch();
+  const defaultLocation = useAppSelector((state) => state.location);
+  const dispatch = useAppDispatch();
   const { lat, lon } = defaultLocation;
   const customIcon = L.icon({
     iconUrl: "/img/marker.png",

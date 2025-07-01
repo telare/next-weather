@@ -1,10 +1,11 @@
+"use client";
 import { ThemeProvider } from "@/providers/themeProvider";
 import { Layout } from "@shared/types/Layout";
 import React from "react";
 import "@shared/styles/global.scss";
 import { Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
-import StoreProvider from "@/providers/globalStore";
+import StoreProvider from "@/providers/globalStoreProvider";
 
 const space_grotesk = Space_Grotesk({
   subsets: ["latin"],

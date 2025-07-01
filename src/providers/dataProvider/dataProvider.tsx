@@ -2,8 +2,7 @@
 import { Layout } from "@shared/types/Layout";
 import { useQuery } from "@tanstack/react-query";
 import { createContext, useState } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../globalStore";
+import { useAppSelector } from "./globalStore/globalStore";
 import { GlobalContext } from "./utils/types";
 import { queryFunc } from "./utils/queryFnc";
 
@@ -14,7 +13,7 @@ export const DataContext = createContext<GlobalContext>({
 });
 
 export default function DataProvider({ children }: Layout) {
-  const location = useSelector((state: RootState) => state.location.value);
+  const location = useAppSelector((state) => state.location);
 
   const [errorMessage, setErrorMessage] = useState<string>("");
   const {

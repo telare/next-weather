@@ -1,16 +1,16 @@
 "use client";
 import styles from "@shared/styles/Nav.module.scss";
-import { updateLocation } from "@/providers/globalStore";
-import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import useDebounce from "@/hooks/useDebounce";
 import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
 import { commandIcon } from "@/utils/Icons";
+import { useAppDispatch } from "@/providers/dataProvider/globalStore/globalStore";
+import { UPDATE_LOCATION } from "@/providers/dataProvider/globalStore/actions/location/types";
 export default function Search() {
   const router = useRouter();
   const pathname = usePathname();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const [inputValue, setInputValue] = useState<string>("");
   const debouncedValue = useDebounce({ value: inputValue, timeOut: 2000 });
   const searchInputID = "citySearch";
@@ -38,7 +38,12 @@ export default function Search() {
       try {
         axios
           .get(`/api/geocode?city=${debouncedValue}`)
-          .then((resp) => dispatch(updateLocation(resp.data)))
+          .then((resp) =>
+            dispatch({
+              type: UPDATE_LOCATION,
+              payload: resp.data,
+            })
+          )
           .then(() => router.back());
       } catch (e: unknown) {
         //redirect to error page
@@ -53,7 +58,11 @@ export default function Search() {
       role="search" // for legacy support
       aria-label="City search" // Keep this for now, though it might become redundant over time
     >
-      <label htmlFor={searchInputID} className={styles.searchLabel} data-cy="search-label">
+      <label
+        htmlFor={searchInputID}
+        className={styles.searchLabel}
+        data-cy="search-label"
+      >
         Search for a city
       </label>
       <input

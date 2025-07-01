@@ -13,7 +13,7 @@ import {
   AppRouterContext,
   AppRouterInstance,
 } from "next/dist/shared/lib/app-router-context.shared-runtime";
-import { store } from "@/providers/globalStore";
+import { globalStore } from "@/providers/dataProvider/globalStore/globalStore";
 // Alternatively, can be defined in cypress/support/component.d.ts
 // with a <reference path="./component" /> at the top of your spec.
 declare global {
@@ -67,7 +67,7 @@ Cypress.Commands.add("mountWithAllProviders", (component, options = {}) => {
   const wrappedComponent = (
     <AppRouterContext value={createNavigation(navigationProps)}>
       <ThemeProvider {...themeProps}>
-        <Provider store={store}>{component}</Provider>
+        <Provider store={globalStore}>{component}</Provider>
       </ThemeProvider>
     </AppRouterContext>
   );
