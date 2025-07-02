@@ -2,11 +2,13 @@
 import styles from "@shared/styles/Nav.module.scss";
 import { useEffect, useState } from "react";
 import useDebounce from "@/hooks/useDebounce";
-import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
 import { commandIcon } from "@/utils/Icons";
 import { useAppDispatch } from "@/providers/dataProvider/globalStore/globalStore";
-import { UPDATE_LOCATION } from "@/providers/dataProvider/globalStore/actions/location/types";
+
+import { fetchLocation } from "@/providers/dataProvider/globalStore/actions/location/types";
+
+// add on success state true from the store to router.back!!!!!!
 export default function Search() {
   const router = useRouter();
   const pathname = usePathname();
@@ -35,20 +37,7 @@ export default function Search() {
 
   useEffect(() => {
     if (debouncedValue) {
-      try {
-        axios
-          .get(`/api/geocode?city=${debouncedValue}`)
-          .then((resp) =>
-            dispatch({
-              type: UPDATE_LOCATION,
-              payload: resp.data,
-            })
-          )
-          .then(() => router.back());
-      } catch (e: unknown) {
-        //redirect to error page
-        throw new Error(e as string);
-      }
+      dispatch(fetchLocation(debouncedValue));
     }
   }, [debouncedValue, dispatch, router]);
   return (
@@ -92,3 +81,13 @@ export default function Search() {
     </search>
   );
 }
+
+// axios
+//   .get(`/api/geocode?city=${debouncedValue}`)
+//   .then((resp) =>
+//     dispatch({
+//       type: UPDATE_LOCATION,
+//       payload: resp.data,
+//     })
+//   )
+//   .then(() => router.back());

@@ -1,3 +1,4 @@
+import { Location } from "@/providers/dataProvider/globalStore/reducers/location";
 import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
@@ -8,17 +9,15 @@ export async function GET(req: NextRequest) {
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.WEATHER_API_KEY}`
     );
 
-    const coordinates: {
-      lon: string;
-      lat: string;
-      name: string;
-    } = {
+    const coordinates: Location = {
       lon: res.data.coord.lon,
       lat: res.data.coord.lat,
-      name: res.data.name,
+      cityName: res.data.name,
     };
-    return NextResponse.json(coordinates);
+    return NextResponse.json(coordinates, { status: 200 });
   } catch (e) {
-    return NextResponse.json(`Error in fetching coordinates: ${e}`);
+    return NextResponse.json(`Error in fetching coordinates: ${e}`, {
+      status: 400,
+    });
   }
 }

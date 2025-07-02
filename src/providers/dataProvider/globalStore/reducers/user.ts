@@ -1,6 +1,6 @@
 import { SecuredUser } from "@/utils/apiUtils";
 import {
-  UPDATE_USER,
+  USER_UPDATE,
   UPDATE_USER_EMAIL,
   UPDATE_USER_ID,
   UPDATE_USER_NAME,
@@ -17,7 +17,7 @@ export default function UserReducer(
   action: UserAction
 ): SecuredUser {
   switch (action.type) {
-    case UPDATE_USER:
+    case USER_UPDATE:
       return {
         ...state,
         name: action.payload.name,
@@ -39,7 +39,7 @@ export default function UserReducer(
         ...state,
         email: action.payload,
       };
-    case "RESET_USER":
+    case "USER_RESET":
       return initialUser;
     default:
       return state;
