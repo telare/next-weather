@@ -6,7 +6,8 @@ import { UserAction } from "./actions/user/types";
 import { LocationAction } from "./actions/location/types";
 import { ThunkDispatch } from "redux-thunk";
 import { configureStore } from "@reduxjs/toolkit";
-
+import createSagaMiddleware from "redux-saga";
+import sagaObserver from "./sagas";
 const RootReducer = combineReducers({
   location: LocationReducer,
   user: UserReducer,
@@ -14,10 +15,14 @@ const RootReducer = combineReducers({
 export type RootState = ReturnType<typeof RootReducer>;
 
 // export const globalStore = createStore(RootReducer, applyMiddleware(thunk));
+const sagaMiddleware = createSagaMiddleware();
 export const globalStore = configureStore({
   reducer: RootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(sagaMiddleware),
 });
-type RootAction = UserAction | LocationAction;
+sagaMiddleware.run(sagaObserver);
+export type RootAction = UserAction | LocationAction;
 // define thunk dispatch type, because
 // now middleware gives dispatch an
 // ability to receive fnc not only plain action object

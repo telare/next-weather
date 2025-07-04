@@ -6,7 +6,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { commandIcon } from "@/utils/Icons";
 import { useAppDispatch } from "@/providers/dataProvider/globalStore/globalStore";
 
-import { fetchLocation } from "@/providers/dataProvider/globalStore/actions/location/types";
+import {
+  updateLocationRequest,
+} from "@/providers/dataProvider/globalStore/actions/location/types";
 
 // add on success state true from the store to router.back!!!!!!
 export default function Search() {
@@ -37,7 +39,7 @@ export default function Search() {
 
   useEffect(() => {
     if (debouncedValue) {
-      dispatch(fetchLocation(debouncedValue));
+      dispatch(updateLocationRequest(debouncedValue));
     }
   }, [debouncedValue, dispatch, router]);
   return (
