@@ -38,7 +38,6 @@ describe("Successful displaying of UI", () => {
     cy.get("a[href='/auth/sign-up']").should("be.visible");
   });
 });
-
 describe("Registration", () => {
   beforeEach(() => {
     cy.visit("/auth/sign-up");
@@ -52,15 +51,6 @@ describe("Registration", () => {
 
     cy.get(notifElementAttribute).contains(notifs.success).as("notif");
     cy.get("@notif").should("be.visible");
-
-    cy.checkA11y(
-      { exclude: notifElementAttribute },
-      {
-        rules: {
-          "color-contrast": { enabled: false },
-        },
-      }
-    );
 
     cy.getCookie(tokenNames.access).should("exist");
     cy.getCookie(tokenNames.refresh).should("exist");

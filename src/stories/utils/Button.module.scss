@@ -1,0 +1,31 @@
+button {
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  width: auto;
+  height: auto;
+  border: solid rgba(62, 246, 11, 0.746);
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.specific {
+  width: 7rem;
+  height: 3rem;
+  padding: 0.8rem 1.5rem;
+  cursor: crosshair;
+  border-radius: 3rem;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}

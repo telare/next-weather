@@ -26,7 +26,7 @@ export default function Button({
   dataCyPrefix,
   className,
   ...rest
-}: Button & ButtonHTMLAttributes<HTMLButtonElement>) {
+}: Button & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "onClick">) {
   return (
     <button
       onClick={func}
